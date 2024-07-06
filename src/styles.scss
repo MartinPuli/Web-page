@@ -1,8 +1,8 @@
 //fonts
 
 @font-face {
-    font-family: 'avenir'; 
-    src: url('./fonts/AvenirRegular/Avenir Regular.ttf'); 
+    font-family: 'letra'; 
+    src: url(../src/fonts/AvenirRegular/AvenirRegular.ttf) format("ttf"); 
 }
 
 // Variables
@@ -15,7 +15,7 @@ $header-proveedores-background: #8C87EA;
 $proveedores-botones: #5D58BB;
 $proveedores-letra: white;
 $header-letra: white;
-$letra-principal: "avenir";
+$letra-principal: "letra";
 $color-claros-proveedor: #F2F2FD;
 
 //Configuraciones
