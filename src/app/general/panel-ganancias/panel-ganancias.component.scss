@@ -1,0 +1,132 @@
+@import '../../../styles.scss';
+
+.panel {
+    background-color: #E5E4FA;
+    padding: 2% 18%;
+
+    &__ganancias {
+        h3 {
+            font-size: 26px;
+            line-height: 36px;
+        }
+
+        &__paneles {
+            display: flex;
+            flex: row;
+            justify-content: space-between;
+            margin-bottom: 40px;
+
+            div {
+                width: 32.5%;
+                border: 1px #1F1D3E solid;
+                background-color: $color-claros-proveedor;
+                border-radius: 10px;
+                padding: 5px 15px;
+
+                h3 {
+                    font-size: 18px;
+                    margin-bottom: -2px;
+                    text-align: right;
+                }
+
+                h2 {
+                    font-size: 40px;
+                    text-align: right;
+                    margin: 0;
+                }
+            }
+        }
+
+
+    }
+
+    &__historial {
+        &__encabezado {
+            display: flex;
+            flex-direction: row;
+
+            h3 {
+                font-size: 26px;
+                line-height: 36px;
+                margin-right: 35px
+            }
+
+            button {
+                @extend .botones__boton;
+                background-color: $proveedores-botones;
+                font-size: 18px;
+                font-weight: 500;
+                height: 36px;
+                padding: 5px 20px 5px 20px;
+            }
+        }
+
+        &__indices {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            h4 {
+                font-size: 14px;
+                color: #1D195999;
+                margin: 0%;
+            }
+
+            &__izquierda {
+                width: 28%;
+                text-align: center;
+            }
+
+            &__medio {
+                width: 50%;
+                text-align: center;
+            }
+
+            &__derecha {
+                width: 15%;
+                text-align: center;
+            }
+        }
+
+        &__venta {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: $color-claros-proveedor;
+            border: 1px solid #1F1D3E;
+            border-radius: 4.44px;
+            align-items: center;
+            padding: 10px 12px;
+            margin: 0px 0px 20px 0px;
+            width: 100%;
+
+            h4 {
+                font-size: 18px;
+                line-height: 24px;
+                margin: 0%;
+            }
+
+            &__producto {
+                width: 28%;
+                text-align: left;
+            }
+
+            &__entrega {
+                width: 50%;
+                text-align: center;
+            }
+
+            &__precio {
+                width: 15%;
+                text-align: right;
+            }
+        }
+
+        &__vacio {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #1D195999;
+            font-weight: 700;
+        }
+    }
+}

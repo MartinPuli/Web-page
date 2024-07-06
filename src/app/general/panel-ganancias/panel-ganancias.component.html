@@ -1,0 +1,57 @@
+<div class="panel">
+    <div class="panel__ganancias">
+        <h3>Panel de Ganancias</h3>
+        <div class="panel__ganancias__paneles">
+            <div>
+                <h3>Ganancia</h3>
+                <h2>{{ gananciasTotales() | currency }}</h2>
+            </div>
+            <div>
+                <h3>Ventas Completadas</h3>
+                <h2>{{ cantidadVentasCompletadas() }}</h2>
+            </div>
+            <div>
+                <h3>Ventas en Proceso</h3>
+                <h2>{{ cantidadVentasProceso() }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="panel__historial">
+        <div class="panel__historial__encabezado">
+            <h3>Historial de Ventas</h3>
+            <button [routerLink]="['/panel/ventas']">Ver todas</button>
+        </div>
+        @if (cantidadVentasCompletadas()) {
+        <div class="panel__historial__lista">
+            <div class="panel__historial__indices">
+                <h4 class="panel__historial__indices__izquierda">Producto</h4>
+                <h4 class="panel__historial__indices__medio">Forma de envío</h4>
+                <h4 class="panel__historial__indices__derecha">Ganancia</h4>
+            </div>
+        </div>
+        @for (venta of ventas(); track $index) {
+        @if (venta.state == "completa") {
+        <div class="panel__historial__venta">
+            <h4 class="panel__historial__producto"> {{
+                venta.product | limiteCaracteres }} </h4>
+            @if (venta.correo) {
+            <h4 class="panel__historial__venta__entrega">
+                Entregado por {{ venta.correo }} el {{ venta.fechaEntrega |
+                formatoFecha }} </h4>
+            }
+            @else {
+            <h4 class="panel__historial__venta__entrega">
+                Entregado por el vendedor el {{ venta.fechaEntrega |
+                formatoFecha }} </h4>
+            }
+            <h4 class="panel__historial__venta__precio"> {{
+                venta.price | currency }} </h4>
+        </div>
+        }
+        }
+        }
+        @else {
+            <h4 class="panel__historial__vacio">Todavía no has completado ninguna venta</h4>
+        }
+    </div>
+</div>

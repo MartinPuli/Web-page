@@ -1,0 +1,66 @@
+<header class="header">
+    <div class="header__logo"></div>
+    <div class="header__botones">
+        <button>Mis Ventas</button>
+        <button>Mi Cuenta</button>
+    </div>
+</header>
+
+<main class="detalle">
+    <div class="detalle__encabezado">
+        <button type="button" [routerLink]="['']" > Volver</button>
+        <p> {{ producto?.category}}</p>
+    </div>
+    <div class="detalle__contenido">
+        <div class="detalle__contenido__imagen">
+            <img src="{{ producto?.image }}" alt="imagen-producto">
+        </div>
+        <h1 class="detalle__contenido__titulo">{{producto?.title}}</h1>
+        <h2 class="detalle__contenido__precio">{{producto?.price |
+            currency}}</h2>
+        <div class="detalle__contenido__botones">
+            <button type="button">Añadir a mis ventas</button>
+            <button type="button">Descargar flyer de venta</button>
+        </div>
+        <div class="detalle__contenido__imagenes">
+            <div class="detalle__contenido__imagenes__imagen">
+            </div>
+            <div class="detalle__contenido__imagenes__imagen">
+            </div>
+            <div class="detalle__contenido__imagenes__imagen">
+            </div>
+            <div class="detalle__contenido__imagenes__imagen">
+            </div>
+        </div>
+        <div class="detalle__contenido__descripcion">
+            <h4>Descipción: </h4>
+            <p>{{producto?.description}}</p>
+        </div>
+        <div class="detalle__contenido__especificaciones">
+            <h4>Descipción: </h4>
+            <p>-Tamaño: xxx</p>
+            <p>-Altura: xxx</p>
+        </div>
+        <div class="detalle__contenido__claves">
+            <h4>Palabras Clave:</h4>
+            <button type="button">Electrónica</button>
+            <button type="button">Negro</button>
+            <button type="button">Monitor Led</button>
+            <button type="button">Video</button>
+            <button type="button">Nuevo</button>
+            <button type="button">Noblex</button>
+        </div>
+    </div>
+    <div class="detalle__preguntas">
+        <h3>Preguntas y Respuestas</h3>
+        <form class="detalle__preguntas__form"
+            [formGroup]="preguntar" (ngSubmit)="hacerPregunta()">
+            <input title="Pregunta" class="form-control"
+                list="datalistOptions" id="exampleDataList"
+                placeholder="Hacé tu pregunta"
+                formControlName="pregunta">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </form>
+        <h5></h5>
+    </div>
+</main>

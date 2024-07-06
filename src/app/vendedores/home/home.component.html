@@ -1,0 +1,120 @@
+<header class="header">
+    <div class="header__logo"></div>
+    <div class="header__botones">
+        <button>Mis Ventas</button>
+        <button [routerLink]="['/proveedor']">Cambiar a Perfil Proveedor</button>
+        <button>Mi Cuenta</button>
+    </div>
+</header>
+<main class="home">
+    <h1 class="home__title">¡Hola, encontrá ese producto que querés vender!</h1>
+    <form class="home__form"
+        [formGroup]="inputBusqueda" (ngSubmit)="filtrar()">
+        <div class="mb-3">
+            <input title="Busqueda" class="form-control"
+                placeholder="Buscá por palabra clave ..."
+                formControlName="busqueda">
+        </div>
+        <button type="submit">Filtrar</button>
+    </form>
+    <div class="home__inspirado">
+        <h3>Inspirado en tus ultimas busquedas</h3>
+        <div class="home__inspirado__container">
+            @for (producto of productosInspirados(); track $index) {
+            <div class="home__inspirado__container__producto">
+                <div>
+                    <img
+                        src="{{ producto.image }}"
+                        alt="producto-imagen">
+                    <p> {{ producto.title }}</p>
+                </div>
+                <button type="button" [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="home__ultimo">
+        <h3>Similar a lo último que vendiste</h3>
+        <div class="home__ultimo__container">
+            <div class="home__ultimo__container__img">
+                <img
+                    src="{{ productoParecido().image }}"
+                    alt="producto-imagen">
+            </div>
+            <div class="home__ultimo__container__info">
+                <div>
+                    <h4> {{ productoParecido().title }} </h4>
+                    <p> {{ productoParecido().description }}</p>
+                </div>
+                <div class="home__ultimo__container__info__botones">
+                    <button type="button" [routerLink]="['/products', productoParecido().id]"> Ver Publicación </button>
+                    <button> Anadir a Mis Ventas </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home__vendido">
+        <h3>Más vendidos de Ropa y Calzado esta última semana</h3>
+        <div class="home__vendido__container">
+            @for (producto of productosVendidos(); track $index) {
+            <div class="home__vendido__container__producto">
+                <div>
+                    <img
+                        src="{{ producto.image }}"
+                        alt="producto-imagen">
+                    <p> {{ producto.title }}</p>
+                </div>
+                <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="home__oportunidad">
+        <h3>¡Esta es tu oportunidad! Nadie lo ha tomado aún</h3>
+        <div class="home__oportunidad__container">
+            @for (producto of productosOportunidad(); track $index) {
+            <div class="home__oportunidad__container__producto">
+                <div class="home__oportunidad__container__producto__info">
+                    <img
+                        src="{{ producto.image }}"
+                        alt="producto-imagen">
+                    <p> {{ producto.title }}</p>
+                </div>
+                <div class="home__oportunidad__container__producto__botones">
+                    <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+                    <button> Añadir a mis ventas </button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="home__vendido__mes">
+        <h3>Más vendidos de Hornos, Parrillas y Accesorios este último mes</h3>
+        <div class="home__vendido__container">
+            @for (producto of productosVendidosMes(); track $index) {
+            <div class="home__vendido__container__producto">
+                <div>
+                    <img
+                        src="{{ producto.image }}"
+                        alt="producto-imagen">
+                    <p> {{ producto.title }}</p>
+                </div>
+                <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+            </div>
+            }
+        </div>
+    </div>
+    <div class="home__categorias">
+        <div class="home__categorias__encabezado">
+            <h3>Principales Categorías</h3>
+            <button>Ver todas</button>
+        </div>
+        <div class="home__categorias__container">
+            @for (categoria of categorias; track $index) {
+            <div class="home__categorias__container__categoria">
+                <button> {{categorias[$index]}} </button>
+            </div>
+            }
+        </div>
+    </div>
+</main>

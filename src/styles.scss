@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+//fonts
+
+@font-face {
+    font-family: 'avenir'; 
+    src: url('./fonts/AvenirRegular/Avenir Regular.ttf'); 
+}
+
+// Variables
+
+$background-vendedores: #EEF2FE;
+$background-proveedores: white;
+$header-vendedores-background: #3352B3;
+$vendedores-botones: #4671F6;
+$header-proveedores-background: #8C87EA;
+$proveedores-botones: #5D58BB;
+$proveedores-letra: white;
+$header-letra: white;
+$letra-principal: "avenir";
+$color-claros-proveedor: #F2F2FD;
+
+//Configuraciones
+
+html,
+body {
+    height: 100%;
+    display: block;
+    margin: 0;
+}
+
+//Clases
+
+.center {
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+}
+
+.header {
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0% 15%;
+    align-items: center;
+}
+
+.botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    &__boton {
+        padding: 5px 20px 5px 20px;
+        border: 0px;
+        border-radius: 5px;
+        color: white;
+        font-family: $letra-principal;
+    }
+}

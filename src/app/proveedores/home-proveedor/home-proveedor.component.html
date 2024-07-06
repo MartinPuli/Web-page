@@ -1,0 +1,63 @@
+<header class="header">
+    <div class="header__logo"></div>
+    <div class="header__botones">
+        <button>Publicaciones en Proceso</button>
+        <button [routerLink]="['']">Cambiar a Perfil Vendedor</button>
+        <button>Mi Cuenta</button>
+    </div>
+</header>
+<main class="proveedor">
+    <div class="proveedor__encabezado">
+        <div class="proveedor__encabezado__sup">
+            <div>
+                <h1>Martin,</h1>
+                <h2>¡qué bueno encontrarte!</h2>
+            </div>
+            <button>Nuevo Producto</button>
+        </div>
+        <h3>¿Qué hacemos hoy?</h3>
+        <div class="proveedor__encabezado__botones">
+            <button>Historial de ventas</button>
+            <button>Panel de ganancias</button>
+            <button>Estado de la venta</button>
+            <button>Logros y recompensas</button>
+        </div>
+    </div>
+    <div class="proveedor__paneles">
+        <div class="proveedor__paneles__actualizaciones">
+            <div class="proveedor__paneles__actualizaciones__header">
+                <h2>Actualizaciones</h2>
+                <button (click)="abrirTodasActualizaciones()">Ver Todas</button>
+            </div>
+            <div class="proveedor__paneles__actualizaciones__contenido">
+                <div
+                    class="proveedor__paneles__actualizaciones__contenido__recientes">
+                    @for (actualizacion of actualizacionesMostradas(); track
+                    $index)
+                    {
+                    <div
+                        class="proveedor__paneles__actualizaciones__contenido__recientes__notificacion">
+
+                        <h5>{{ actualizacion.titulo }}</h5>
+                        <button
+                            (click)="abrirDetalle(actualizacion)">Más
+                            Detalles</button>
+                    </div>
+                    }
+                </div>
+                <div
+                    class="proveedor__paneles__actualizaciones__contenido__ganancias">
+                    <div
+                        class="proveedor__paneles__actualizaciones__contenido__ganancias__card">
+                        <h4>Ganancia:</h4>
+                        <p>{{ ganancias() | currency }}</p>
+                    </div>
+                    <button>Ir a la sección Panel Ganancias</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="provisional"></div>
+    <app-panel-ganancias></app-panel-ganancias>
+    <app-logros></app-logros>
+</main>

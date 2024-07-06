@@ -1,0 +1,120 @@
+<header class="header">
+    <div class="header__logo"></div>
+    <div class="header__botones">
+        <button>Mi Cuenta</button>
+    </div>
+</header>
+<div class="ventas">
+    <div class="ventas__proceso">
+        <div class="ventas__proceso__encabezado">
+            <h1>Ventas en proceso</h1>
+            <button [routerLink]="['/proveedor/']">Volver</button>
+        </div>
+        <form class="ventas__form"
+            [formGroup]="inputProceso" (ngSubmit)="filtrar('proceso')">
+            <input title="Busqueda" class="form-control"
+                placeholder="Buscá por palabra clave ..."
+                formControlName="busqueda">
+            <button type="submit">Filtrar</button>
+        </form>
+        @if(ventasProceso().length != 0)
+        {
+        @for (venta of ventasProceso(); track $index) {
+        <div class="ventas__card">
+            <div class="ventas__card__producto">
+                <div class="ventas__card__producto__imagen">
+                    <img src="{{ venta.imageUrl }}" alt="imagen_producto">
+                </div>
+                <div class="ventas__card__producto__detalles">
+                    <h3 [innerHTML]="destacarTermino(venta.product, valorFiltradoProceso())"></h3>
+                    <h3>Unidades: {{ venta.quantity }}</h3>
+                </div>
+            </div>
+            <div class="ventas__card__info"
+                [style.background-color]="venta.state == 'proceso' ? '#6965B3' : '#3E3B7D'">
+                <div class="ventas__card__info__precio">
+                    <h3>Precio establecido:</h3>
+                    <h2>{{ venta.price | currency }}</h2>
+                </div>
+                <div class="ventas__card__info__entrega">
+                    @if (venta.method == "mano") {
+                        <h3>Tenés tiempo de
+                            entregar el paquete al correo hasta el {{ venta.deadline |
+                            formatoFechaVentas }}</h3>
+                        }
+                        @else {
+                        <h3>El {{ venta.method }}
+                            pasará a recoger el producto el {{ venta.deadline |
+                            formatoFechaVentas }}</h3>
+                        }
+                </div>
+                <div  class="ventas__card__info__costo">
+                    @if (venta.costo == "proveedor") {
+                    <h3>Costo del envío a cargo
+                        suyo</h3>
+                    }
+                    @else {
+                    <h3>Costo del envío a cargo
+                        del {{ venta.costo }}</h3>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+        }
+        @else {
+            <h2 id="vacio">Todavía no tiene ventas en proceso</h2>
+        }
+    </div>
+    <div>
+        <h2>Ventas finalizadas</h2>
+        <form class="ventas__form"
+            [formGroup]="inputProceso" (ngSubmit)="filtrar('completa')">
+            <input title="Busqueda" class="form-control"
+                placeholder="Buscá por palabra clave ..."
+                formControlName="busqueda">
+            <button type="submit">Filtrar</button>
+        </form>
+        @if(ventasCompleto().length != 0)
+        {
+        @for (venta of ventasCompleto(); track $index) {
+        <div class="ventas__card">
+            <div class="ventas__card__producto">
+                <div class="ventas__card__producto__imagen">
+                    <img src="{{ venta.imageUrl }}" alt="imagen_producto">
+                </div>
+                <div class="ventas__card__producto__detalles">
+                    <h3 [innerHTML]="destacarTermino(venta.product, valorFiltradoCompleto())"></h3>
+                    <h3>Unidades: {{ venta.quantity }}</h3>
+                </div>
+            </div>
+            <div class="ventas__card__info"
+                [style.background-color]="venta.state == 'proceso' ? '#6965B3' : '#3E3B7D'">
+                <div class="ventas__card__info__precio">
+                    <h3>Precio establecido:</h3>
+                    <h2>{{ venta.price | currency }}</h2>
+                </div>
+                <div class="ventas__card__info__entrega">
+                    @if (venta.method == "mano") {
+                    <h3>Llevaste el paquete
+                        al correo el {{ venta.deadline | formatoFechaVentas }}</h3>
+                    }
+                    @else {
+                    <h3>El {{ venta.method }}
+                        recogió el producto el {{ venta.deadline |
+                        formatoFechaVentas }}</h3>
+                    }
+                </div>
+                <div class="ventas__card__info__completa">
+                    <h3>¡Vendiste
+                        correctamente este producto!</h3>
+                </div>
+            </div>
+        </div>
+        }
+        }
+        @else {
+            <h2 id="vacio">Todavía no completó ninguna venta</h2>
+        }
+    </div>
+</div>

@@ -1,0 +1,50 @@
+@import '../../../styles.scss';
+
+.logros{
+    background-color: #6965B3;
+    padding: 2% 18% 2% 18%;
+
+    h2{
+        font-size: 28px;
+        line-height: 36px;
+        color: #E5E4FA;
+    }
+    &__container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        &__logro{
+            width: 24%;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            padding: 4px 8px 4px 8px;
+            border-radius: 5px;
+
+            h4{
+                font-size: 30px;
+                text-align: right;
+                margin: 0;
+            }
+
+            p{
+                font-size: 12px;
+                text-align: right;
+                margin: 0 0 -7px 0;
+            }
+        }
+    }
+}
+
+.obtenido{
+    background-color: $color-claros-proveedor; 
+    border: solid 1px #1F1D3E;
+    color: #1F1D3E;
+}
+
+.no-obtenido{
+    background-color: #3E3B7D; 
+    border: solid 1px #A5A1EE;
+    color: #A5A1EE;
+}
+  

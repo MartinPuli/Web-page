@@ -1,0 +1,190 @@
+@import '../../../styles.scss';
+
+.header {
+    @extend .header;
+    background-color: $header-proveedores-background;
+
+    &__botones {
+        @extend .botones;
+
+        button {
+            @extend .botones__boton;
+            background-color: $proveedores-botones;
+            margin-left: 25px;
+            height: 35px;
+            font: 17px 500;
+        }
+    }
+}
+
+.proveedor {
+    background-color: $background-proveedores;
+    color: #1F1D3E;
+    font-family: $letra-principal;
+
+    &__encabezado {
+        padding: 5% 18% 2% 18%;
+
+        &__sup {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        &__botones {
+            @extend .proveedor__encabezado__sup
+        }
+
+
+        h1 {
+            font-weight: 900;
+            width: 100%;
+            font-size: 48px;
+            line-height: 30px;
+        }
+
+        h2 {
+            font-weight: 700;
+            width: 100%;
+            font-size: 42px;
+            line-height: 24px;
+        }
+
+        h3 {
+            font-weight: 500;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            @extend .botones__boton;
+            background-color: $proveedores-botones;
+            font-size: 17px;
+            font-weight: 500;
+            padding: 8px 25px 8px 25px;
+        }
+
+
+    }
+
+
+    &__paneles {
+        padding: 2% 18%;
+        background-color: #E5E4FA;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &__actualizaciones {
+            width: 100%;
+
+            &__header {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                margin-bottom: 10px;
+                width: 100%;
+
+                h2 {
+                    font-size: 28px;
+                    margin-right: 15px
+                }
+
+                button {
+                    @extend .botones__boton;
+                    background-color: $proveedores-botones;
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding: 3px 18px 3px 18px;
+                    transform: translateY(-8px);
+                }
+            }
+
+            &__contenido {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+
+                &__recientes {
+                    display: flex;
+                    padding: 0;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 65%;
+
+                    &__notificacion {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        align-content: center;
+                        margin-bottom: 20px;
+                        padding: 5px 10px 5px 20px;
+                        background-color: $color-claros-proveedor;
+                        border: 1px #1F1D3E solid;
+                        border-radius: 5px;
+                        width: 100%;
+
+                        h5 {
+                            margin: 0;
+                            font-size: 20px;
+                        }
+
+                        button {
+                            @extend .botones__boton;
+                            background-color: $proveedores-botones;
+                            font-size: 14px;
+                            font-weight: 500;
+                            padding: 3px 18px 3px 18px;
+                        }
+
+                    }
+
+                }
+
+                &__ganancias {
+                    width: 30%;
+
+                    &__card {
+                        background-color: $color-claros-proveedor;
+                        border: 1px solid #1F1D3E;
+                        padding: 10px 10px;
+                        border-radius: 5px;
+                        margin-bottom: 15px;
+
+                        h4 {
+                            font-size: 18px;
+                            line-height: 22px;
+                            font-weight: 600;
+                            text-align: right;
+                            margin-bottom: 5px;
+                        }
+
+                        p {
+                            font-size: 44px;
+                            line-height: 56px;
+                            text-align: right;
+                            margin: 0;
+                        }
+                    }
+
+                    button {
+                        @extend .botones__boton;
+                        background-color: $proveedores-botones;
+                        font-size: 14px;
+                        font-weight: 500;
+                        padding: 3px 18px 3px 18px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.provisional {
+    height: 300px;
+    background-color: #1f1d3e44;
+}

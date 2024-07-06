@@ -1,0 +1,30 @@
+@import '../../../styles.scss';
+
+.footer {
+    background-color: #292753;
+    border: 0px;
+    padding: 5% 18%;
+
+    &__logo {
+        height: 100px;
+    }
+
+    &__botones {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        button {
+            padding: 3px 16px 3px 16px;
+            height: 36px;
+            margin-bottom: 10px;
+            background-color: #E4E9FA;
+            border-radius: 5px;
+            font-family: $letra-principal;
+            font-weight: 800;
+            font-size: 16px;
+            color: #5871BB;
+            border: none;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.detalle-dialog {
+  padding: 3%;
+  div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: black 2px solid;
+    height: 30px;
+    margin-bottom: 10px;
+    h2 {
+      color: #333;
+      font-size: 24px;
+      transform: translateY(-14px);
+    }
+    p {
+      color: #666;
+      font-size: 12px;
+    }
+  }
+
+  }
+  

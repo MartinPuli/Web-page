@@ -1,0 +1,196 @@
+@import '../../../styles.scss';
+
+.header {
+    @extend .header;
+    background-color: $header-vendedores-background;
+
+    &__botones {
+        @extend .botones;
+
+        button {
+            @extend .botones__boton;
+            background-color: $vendedores-botones;
+            margin-left: 25px;
+            height: 35px;
+            font: 17px 500;
+        }
+    }
+}
+
+.detalle {
+    background-color: $background-vendedores;
+    padding: 2% 18% 5% 18%;
+    color: #192959;
+
+    button {
+        @extend .botones__boton;
+        background-color: $vendedores-botones;
+        height: 36px;
+        font: 16px 500;
+        margin-right: 20px;
+        height: 36px;
+    }
+
+    &__encabezado {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+
+        p {
+            padding: 5px 20px 5px 20px;
+            align-self: center;
+            font-weight: 500;
+            font-family: $letra-principal;
+            font-size: 18px;
+        }
+    }
+
+    &__contenido {
+        display: grid;
+        grid-template-areas:
+            "imagen imagen imagen titulo titulo titulo"
+            "imagen imagen imagen precio precio precio"
+            "imagen imagen imagen botones botones ."
+            "imagenes imagenes imagenes imagenes imagenes imagenes"
+            "descripcion descripcion descripcion descripcion especificaciones especificaciones"
+            "descripcion descripcion descripcion descripcion claves claves"
+            "descripcion descripcion descripcion descripcion . .";
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 3%;
+        height: 100%;
+
+
+        &__imagen {
+            grid-area: imagen;
+            background-color: white;
+            border-radius: 10px;
+            border: solid 1px #0A1015;
+            padding: 1vw;
+            width: 30vw;
+            height: 30vw;
+            padding: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: auto;
+
+            img {
+                object-fit: scale-down;
+                height: 28vw;
+                width: 28vw;
+                margin: auto;
+            }
+        }
+
+        &__titulo {
+            grid-area: titulo;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        &__precio {
+            grid-area: precio;
+            font-size: 60px;
+            font-weight: 600;
+            justify-content: center;
+        }
+
+        &__botones {
+            display: flex;
+            flex-direction: column;
+            grid-area: botones;
+            justify-content: end;
+
+            button {
+                margin-bottom: 15px;
+            }
+        }
+
+        &__imagenes {
+            grid-area: imagenes;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            margin-bottom: 30px;
+
+            div {
+                border: solid #0A1015 1px;
+                border-radius: 10px;
+                background-color: white;
+                width: 120px;
+                height: 120px;
+                margin-right: 20px;
+            }
+        }
+
+        &__descripcion {
+            grid-area: descripcion;
+            border: solid 1px #192959;
+            border-radius: 20px;
+            background-color: #CDD8FD;
+            padding: 2%;
+
+            h4 {
+                font-size: 26px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        &__especificaciones {
+            grid-area: especificaciones;
+            border: solid 1px #192959;
+            border-radius: 20px;
+            background-color: #DDE5FD;
+            padding: 4%;
+            margin-bottom: 20px;
+        }
+
+        &__claves {
+            grid-area: claves;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            h4 {
+                font-size: 26px;
+            }
+
+            button {
+                padding: 5px 20px 5px 20px;
+                border-radius: 5px;
+                color: #0D0C20;
+                border: #0D0C20 1px solid;
+                background-color: #EEF2FE;
+                margin-bottom: 10px;
+                font-weight: 600;
+            }
+        }
+    }
+
+    &__preguntas {
+        margin-top: 70px;
+
+        &__form {
+            display: flex;
+            flex-direction: row;
+            margin-right: 10px;
+
+            input {
+                width: 70%;
+                border: #0D0C20 1px solid;
+                border-radius: 3.46px;
+                padding: 8px 20px 8px 20px;
+                margin-right: 5%;
+            }
+
+            button {
+                margin-top: 4px;
+            }
+        }
+    }
+}
