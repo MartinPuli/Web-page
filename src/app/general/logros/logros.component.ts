@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input, input } from '@angular/core';
 import { logros } from './logros-data.';
 import { Logros } from '../../models/logros-model';
 import { CommonModule } from '@angular/common';
+import { LogrosService } from '../../services/logros.service';
 
 @Component({
   selector: 'app-logros',
@@ -11,5 +12,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './logros.component.scss'
 })
 export class LogrosComponent {
-  logrosObtenidos:Logros[] = logros
+  @Input () isVendedor!: Boolean
+
+  private _apiLogros = inject(LogrosService)
+
+  logrosObtenidos!:Logros[]
+
+  ngOnInit(): void {
+    this.logrosObtenidos = this.isVendedor
+      ? this._apiLogros.getLogrosVendedor()
+      : this._apiLogros.getLogrosProveedor()
+    
+  }
 }

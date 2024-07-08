@@ -1,0 +1,171 @@
+@import '../../../styles.scss';
+
+.header {
+    @extend .header;
+
+    &__botones {
+        @extend .botones;
+
+        button {
+            @extend .botones__boton;
+            margin-left: 25px;
+            height: 35px;
+            font: 17px 500;
+        }
+    }
+}
+
+.vendedor {
+    &__header {
+        background-color: $header-vendedores-background;
+    }
+
+    &__cuenta {
+        background-color: #EEF2FE;
+    }
+
+    button {
+        background-color: $vendedores-botones;
+    }
+}
+
+.proveedor {
+    &__header {
+        background-color: $header-proveedores-background;
+    }
+
+    &__cuenta {
+        background-color: #E5E4FA;
+    }
+
+    button {
+        background-color: $proveedores-botones;
+    }
+}
+
+.completo{
+    h3,
+    i{
+        color: green;
+    }
+}
+
+.incompleto{
+    h3,
+    i{
+        color: red;
+    }
+}
+
+.cuenta {
+    padding: 2% 18% 2% 18%;
+
+    &__encabezado {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 10px;
+
+        h1 {
+            font-weight: 900;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        button {
+            @extend .botones__boton;
+            height: 36px;
+            font: 16px 500;
+            margin-right: 20px;
+            height: 36px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 60px;
+
+        &__casilla {
+            border-radius: 4.44px;
+            background-color: #F2F2FD;
+            border: 1px #1F1D3E solid;
+            padding: 10px 16px 10px 16px;
+            width: 400px;
+            h3{
+                height: 18px;
+                font-size: 18px;
+                line-height: 18px;
+                margin: 0;
+            }
+        }
+
+        &__imagen {
+            width: 260px;
+            height: 260px;
+            padding: 2%;
+            background-color: white;
+            border: 1px #0D0C20 solid;
+            border-radius: 11px;
+            object-fit: scale-down;
+        }
+
+        &__principal {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            div {
+                @extend .cuenta__info__casilla;
+                color: black;
+            }
+        }
+
+
+        &__editar {
+            @extend .botones__boton;
+            font-size: 13px;
+            align-self: flex-end;
+        }
+    }
+
+    &__adicional{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        h2{
+            font-size: 28px;
+            margin: 0;
+        }
+
+        &__adicionales,
+        &__seguridad {
+            display: flex;
+            flex-direction: column;
+
+            div {
+                @extend .cuenta__info__casilla;
+                color: #19295999;
+                margin-top: 20px
+            }
+        }
+
+        &__container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        button{
+            @extend .botones__boton;
+            font-size: 13px;
+            margin-top: 20px;
+            width: auto;
+            width: 110.81px;
+        }
+    }
+}

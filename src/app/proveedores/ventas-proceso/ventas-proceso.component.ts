@@ -26,20 +26,20 @@ export class VentasProcesoComponent {
   valorFiltradoProceso = signal("")
   valorFiltradoCompleto = signal("")
 
-  ventasProceso = computed(()=>{
-    return this.signalVentas().filter((venta)=>{
+  ventasProceso = computed(() => {
+    return this.signalVentas().filter((venta) => {
       return venta.state == "proceso" && venta.product.toLowerCase().includes(this.valorFiltradoProceso())
     })
   })
 
-  ventasCompleto = computed(()=>{
-    return this.signalVentas().filter((venta)=>{
+  ventasCompleto = computed(() => {
+    return this.signalVentas().filter((venta) => {
       return venta.state == "completa" && venta.product.toLowerCase().includes(this.valorFiltradoCompleto())
     })
   })
-  
 
-  constructor(private form: FormBuilder){
+
+  constructor(private form: FormBuilder) {
     this.inputProceso = this.form.group({
       busqueda: ["", Validators.required]
     })
@@ -53,15 +53,15 @@ export class VentasProcesoComponent {
     this.signalVentas.set(this.ventasTraidas)
   }
 
-  filtrar(input: 'proceso' | 'completa'){
-    if (input == 'proceso') this.valorFiltradoProceso.set(this.inputProceso.get('busqueda')?.value.toLowerCase()) 
-    else if (input == 'completa') this.valorFiltradoProceso.set(this.inputCompleto.get('busqueda')?.value.toLowerCase())
+  filtrar(input: 'proceso' | 'completa') {
+    if (input == 'proceso')this.valorFiltradoProceso.set(this.inputProceso.get('busqueda')?.value.toLowerCase())
+      else if (input == 'completa') this.valorFiltradoCompleto.set(this.inputCompleto.get('busqueda')?.value.toLowerCase())
   }
 
   destacarTermino(texto: string, terminoBuscado: string): string {
     if (!terminoBuscado) return texto;
-    
-    const regex = new RegExp(`(${terminoBuscado})`, 'gi'); 
+
+    const regex = new RegExp(`(${terminoBuscado})`, 'gi');
     return texto.replace(regex, `<b>$1</b>`);
   }
 

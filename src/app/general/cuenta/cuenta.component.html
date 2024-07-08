@@ -1,0 +1,77 @@
+<header class="header"
+    [ngClass]="{'vendedor vendedor__header': isVendedor, 'proveedor proveedor__header': !isVendedor}">
+    <div class="header__logo"></div>
+    <div class="header__botones"
+        [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
+        <button [routerLink]="[isVendedor? '': '/proveedor']">Inicio</button>
+    </div>
+</header>
+<main>
+    <div class="cuenta"
+        [ngClass]="{'vendedor vendedor__cuenta': isVendedor, 'proveedor proveedor__cuenta': !isVendedor}">
+        <div class="cuenta__encabezado">
+            <h1>Mi cuenta</h1>
+            <button
+                [routerLink]="[isVendedor? '': '/proveedor']">Volver</button>
+        </div>
+        <div class="cuenta__info">
+            <img class="cuenta__info__imagen" alt="imagen-usuario"
+                src="{{ usuario?.img }}">
+            <div class="cuenta__info__principal">
+                <div>
+                    <h3>{{ usuario?.name }}</h3>
+                </div>
+                <div>
+                    <h3>{{ usuario?.email }}</h3>
+                </div>
+                <div>
+                    <h3>{{ usuario?.cuit }}</h3>
+                </div>
+                <div>
+                    <h3>{{ usuario?.phone }}</h3>
+                </div>
+            </div>
+            <button class="cuenta__info__editar"> Editar datos</button>
+        </div>
+        <div class="cuenta__adicional">
+            <div class="cuenta__adicional__adicionales">
+                <h2>Datos adicionales</h2>
+                <div>
+                    <h3>{{ usuario?.additionalData?.username }}</h3>
+                </div>
+                <div>
+                    <h3> ******** </h3>
+                </div>
+                <div>
+                    <h3>{{ usuario?.additionalData?.address }}</h3>
+                </div>
+                <div>
+                    <h3>{{ usuario?.additionalData?.recoveryEmail
+                        }}</h3>
+                </div>
+                <button> Editar datos</button>
+            </div>
+            <div class="cuenta__adicional__seguridad">
+                <h2>Seguridad</h2>
+                <div class="cuenta__adicional__container"
+                    [ngClass]="{'completo': usuario?.security?.twoStepVerification, 'incompleto': !usuario?.security?.twoStepVerification}">
+                    <h3>Verificación en dos pasos</h3>
+                    <i class="fa-solid fa-check"
+                        *ngIf="usuario?.security?.twoStepVerification"></i>
+                    <i class="fas fa-times-circle"
+                        *ngIf="!usuario?.security?.twoStepVerification"></i>
+
+                </div>
+                <div class="cuenta__adicional__container"
+                    [ngClass]="{'completo': usuario?.security?.trustedUsers, 'incompleto': !usuario?.security?.trustedUsers}">
+                    <h3>Usuarios de confianza</h3>
+                    <i class="fa-solid fa-check"
+                        *ngIf="usuario?.security?.trustedUsers"></i>
+                    <i class="fas fa-times-circle"
+                        *ngIf="!usuario?.security?.trustedUsers"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-logros [isVendedor]=isVendedor></app-logros>
+</main>

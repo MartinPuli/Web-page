@@ -1,7 +1,7 @@
 <header class="header">
     <div class="header__logo"></div>
     <div class="header__botones">
-        <button>Mi Cuenta</button>
+        <button [routerLink]="['/proveedor/cuenta/']">Mi Cuenta</button>
     </div>
 </header>
 <div class="ventas">
@@ -69,7 +69,7 @@
     <div>
         <h2>Ventas finalizadas</h2>
         <form class="ventas__form"
-            [formGroup]="inputProceso" (ngSubmit)="filtrar('completa')">
+            [formGroup]="inputCompleto" (ngSubmit)="filtrar('completa')">
             <input title="Busqueda" class="form-control"
                 placeholder="Buscá por palabra clave ..."
                 formControlName="busqueda">

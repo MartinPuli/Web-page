@@ -4,6 +4,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { DetalleProductoComponent } from './vendedores/detalle-producto/detalle-producto.component';
 import { HomeProveedorComponent } from './proveedores/home-proveedor/home-proveedor.component';
 import { VentasProcesoComponent } from './proveedores/ventas-proceso/ventas-proceso.component';
+import { CuentaComponent } from './general/cuenta/cuenta.component';
 
 export const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -11,5 +12,6 @@ export const routes: Routes = [
     {path: "proveedor/ventas", component: VentasProcesoComponent},
     {path: "products", component: ProductosComponent},
     {path: "products/:productId", component: DetalleProductoComponent },
+    {path: ':tipo/cuenta', component: CuentaComponent},
     {path: '**', redirectTo: '', pathMatch: 'full'}
   ];
