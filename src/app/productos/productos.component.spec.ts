@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ApiProductosService } from '../services/api-productos.service';
+import { ApiProductosService } from '../shares/services/api-productos.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Category, IProduct } from '../modelos/producto.model';
 import { By } from '@angular/platform-browser';

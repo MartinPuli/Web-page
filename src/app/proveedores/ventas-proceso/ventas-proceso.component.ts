@@ -1,10 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { Venta, VentaProceso } from '../../models/sales-model';
-import { VentasService } from '../../services/ventas.service';
+import { Venta, VentaProceso } from '../../shares/models/sales-model';
+import { VentasService } from '../../shares/services/ventas.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormatoFechaPipe } from '../../pipes/formato-fecha.pipe';
-import { FormatoFechaVentasPipe } from '../../pipes/formato-fecha-ventas.pipe';
+import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
+import { FormatoFechaVentasPipe } from '../../shares/pipes/formato-fecha-ventas.pipe';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({

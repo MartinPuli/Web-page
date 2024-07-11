@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { Actualizacion } from '../../models/actualizacion-model';
+import { Actualizacion } from '../../shares/models/actualizacion-model';
 import { DetallesComponent } from '../detalles/detalles.component';
-import { FormatoFechaPipe } from '../../pipes/formato-fecha.pipe';
+import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({

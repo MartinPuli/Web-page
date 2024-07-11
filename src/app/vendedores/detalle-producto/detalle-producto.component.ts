@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { IProduct} from '../../models/producto-model'; 
-import { ApiProductosService } from '../../services/api-productos.service';
+import { IProduct} from '../../shares/models/producto-model'; 
+import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 

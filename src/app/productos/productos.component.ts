@@ -1,8 +1,8 @@
 import { Component, OnInit, signal, inject, computed, OnDestroy, Signal } from '@angular/core';
-import { IProduct} from '../models/producto-model'; // Asegúrate de que el modelo esté correctamente importado
+import { IProduct} from '../shares/models/producto-model'; // Asegúrate de que el modelo esté correctamente importado
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ApiProductosService } from '../services/api-productos.service';
+import { ApiProductosService } from '../shares/services/api-productos.service';
 import { RouterLink } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';

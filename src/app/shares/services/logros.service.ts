@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Logros } from '../models/logros-model';
+import { Logros } from '../../shares/models/logros-model';
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { DetallesComponent } from './detalles.component';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { FormatoFechaPipe } from '../../pipes/formato-fecha.pipe';
+import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { Actualizacion } from '../../modelos/actualizacion.model';
 
 describe('DetallesComponent', () => {

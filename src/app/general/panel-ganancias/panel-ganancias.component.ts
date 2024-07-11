@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { FormatoFechaPipe } from '../../pipes/formato-fecha.pipe';
-import { LimiteCaracteresPipe } from '../../pipes/limite-caracteres.pipe';
-import { VentasService } from '../../services/ventas.service';
-import { Venta } from '../../models/sales-model';
+import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
+import { LimiteCaracteresPipe } from '../../shares/pipes/limite-caracteres.pipe';
+import { VentasService } from '../../shares/services/ventas.service';
+import { Venta } from '../../shares/models/sales-model';
 
 @Component({
   selector: 'app-panel-ganancias',

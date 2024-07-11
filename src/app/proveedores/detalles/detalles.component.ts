@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { Actualizacion } from '../../models/actualizacion-model';
-import { FormatoFechaPipe } from '../../pipes/formato-fecha.pipe';
+import { Actualizacion } from '../../shares/models/actualizacion-model';
+import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 
 @Component({
   selector: 'app-detalles',

@@ -1,16 +1,16 @@
 import { Component, Output, Signal, ViewChild, computed, inject, signal, viewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { Actualizacion } from '../../models/actualizacion-model';
+import { Actualizacion } from '../../shares/models/actualizacion-model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { DetallesComponent } from '../detalles/detalles.component';
 import { TodasActualizacionesComponent } from '../todas-actualizaciones/todas-actualizaciones.component';
-import { FormatoFechaPipe } from '../../pipes/formato-fecha.pipe';
+import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { LogrosComponent } from '../../general/logros/logros.component';
-import { VentasService } from '../../services/ventas.service';
-import { Venta } from '../../models/sales-model';
-import { LimiteCaracteresPipe } from '../../pipes/limite-caracteres.pipe';
+import { VentasService } from '../../shares/services/ventas.service';
+import { Venta } from '../../shares/models/sales-model';
+import { LimiteCaracteresPipe } from '../../shares/pipes/limite-caracteres.pipe';
 import { EventEmitter } from 'stream';
 import { PanelGananciasComponent } from '../../general/panel-ganancias/panel-ganancias.component';
 

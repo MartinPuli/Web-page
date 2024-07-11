@@ -1,9 +1,9 @@
 import { Component, inject, input, output } from '@angular/core';
-import { UsuariosService } from '../../services/usuarios.service';
+import { UsuariosService } from '../../shares/services/usuarios.service';
 import { ActivatedRoute, Params, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Router } from 'express';
-import { User } from '../../models/usuario-model';
+import { User } from '../../shares/models/usuario-model';
 import { LogrosComponent } from '../logros/logros.component';
 import { ValueChangeEvent } from '@angular/forms';
 

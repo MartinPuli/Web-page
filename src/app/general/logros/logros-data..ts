@@ -1,4 +1,4 @@
-import { Logros } from "../../models/logros-model";
+import { Logros } from "../../shares/models/logros-model";
 
 export const logros:Logros[] = [
     { descripcion: "Tu publicación consiguió", logro: "100 visitas", estado: true },

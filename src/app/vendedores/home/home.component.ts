@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Signal, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IProduct} from '../../models/producto-model'; 
-import { ApiProductosService } from '../../services/api-productos.service';
+import { IProduct} from '../../shares/models/producto-model'; 
+import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 

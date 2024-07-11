@@ -1,0 +1,49 @@
+@import '../../../styles.scss';
+
+button {
+    background-color: $vendedores-botones;
+}
+
+.header {
+  @extend .header;
+  background-color: $header-vendedores-background;
+
+  &__botones {
+    @extend .botones;
+
+    button {
+      @extend .botones__boton;
+      margin-left: 25px;
+      height: 35px;
+      font: 17px 500;
+    }
+  }
+}
+
+.actualizaciones{
+    padding: 2% 18%;
+    background-color: #EEF2FE;
+
+    &__encabezado {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        margin-bottom: 10px;
+
+        h2 {
+            font-weight: 900;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        button {
+            @extend .botones__boton;
+            height: 36px;
+            font: 16px 500;
+            margin-right: 20px;
+            height: 36px;
+        }
+    }
+}
