@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ActualizacionesVendedorService } from './actualizaciones-vendedor.service';
+import { ActualizacionesService } from './actualizaciones.service';
 
 describe('ActualizacionesVendedorService', () => {
-  let service: ActualizacionesVendedorService;
+  let service: ActualizacionesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ActualizacionesVendedorService);
+    service = TestBed.inject(ActualizacionesService);
   });
 
   it('should be created', () => {

@@ -1,0 +1,62 @@
+<header class="header"
+    [ngClass]="{'vendedor vendedor__header': isVendedor, 'proveedor proveedor__header': !isVendedor}">
+    <div class="header__logo"></div>
+    <div class="header__botones"
+        [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
+        <button [routerLink]="[isVendedor? '': '/proveedor']">Inicio</button>
+    </div>
+</header>
+<main
+    [ngClass]="{'vendedor': isVendedor, 'proveedor': !isVendedor}">
+    <div class="actualizaciones">
+        <div class="actualizaciones__encabezado">
+            <h2>Actualizaciones</h2>
+            <button
+                [routerLink]="[isVendedor? '': '/proveedor']">Volver</button>
+        </div>
+        <div class="actualizaciones__container">
+            @for (actualizacion of actualizaciones; track $index) {
+            <mat-accordion>
+                <mat-expansion-panel class="actualizacion"
+                    (opened)="panelOpenState.set(true)"
+                    (closed)="panelOpenState.set(false)">
+                    <mat-expansion-panel-header class="actualizacion__header">
+                        <mat-panel-title>
+                            @switch (actualizacion.actualizacion.tipo) {
+                            @case(0){
+                            ¡Han respondido tu pregunta!
+                            }
+                            @case(1){
+                            ¡Has seleccionado un producto!
+                            }
+                            @case(2){
+                            ¡Has vendido un producto!
+                            }
+                            }
+                        </mat-panel-title>
+                        <mat-panel-description> {{
+                            actualizacion.actualizacion.fecha
+                            | formatoFecha }}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="actualizacion__contenido">
+                        <div class="actualizacion__contenido__producto">
+                            <div class="actualizacion__contenido__producto__imagen">
+                                <img src="{{ actualizacion.producto.image }}" alt="imagen-producto">
+                            </div>
+                            <div class="actualizacion__contenido__producto__texto">
+                                <h4>{{ actualizacion.producto.title }}</h4>
+                                <h5>#{{ actualizacion.producto.id }}</h5>
+                            </div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            }
+        </div>
+
+    </div>
+</main>

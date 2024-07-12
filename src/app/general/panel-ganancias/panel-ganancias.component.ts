@@ -4,7 +4,9 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { LimiteCaracteresPipe } from '../../shares/pipes/limite-caracteres.pipe';
 import { VentasService } from '../../shares/services/ventas.service';
-import { Venta } from '../../shares/models/sales-model';
+import { Venta, VentaProducto } from '../../shares/models/sales-model';
+import { ApiProductosService } from '../../shares/services/api-productos.service';
+import { IProduct } from '../../shares/models/producto-model';
 
 @Component({
   selector: 'app-panel-ganancias',
@@ -15,18 +17,39 @@ import { Venta } from '../../shares/models/sales-model';
 })
 export class PanelGananciasComponent {
   private _apiVentas = inject(VentasService)
-  simulacroVentas: Venta[] = []
-  ventas = signal(this.simulacroVentas)
+  private _apiProductos = inject(ApiProductosService)
+
+  ventasArray: VentaProducto[] = []
+  ventas = signal(this.ventasArray)
 
   ngOnInit(): void {
-    this.simulacroVentas = this._apiVentas.getVentas()
-    this.ventas.set(this.simulacroVentas)
+    let ventasTraidas: Venta[] = this._apiVentas.getVentas()
+    
+    ventasTraidas.forEach(venta => {
+      let productoRecibido!: IProduct 
+
+      this._apiProductos.getProduct(venta.idProduct).subscribe({
+        next: (data: IProduct) => {
+          productoRecibido = data
+        },
+        error: (error: any) => {
+          console.log(error)
+        }
+      })
+
+      this.ventasArray.push({
+        venta: venta,
+        producto: productoRecibido
+      })
+    });
+
+    this.ventas.set(this.ventasArray)
   }
 
   cantidadVentasProceso = computed(()=>{
     let contador: number = 0
     this.ventas().forEach(venta => {
-      if(venta.state == 'proceso') contador ++;
+      if(venta.venta.state == 'proceso') contador ++;
     });
     return contador
   })
@@ -34,7 +57,7 @@ export class PanelGananciasComponent {
   cantidadVentasCompletadas = computed(()=>{
     let contador: number = 0
     this.ventas().forEach(venta => {
-      if(venta.state == 'completa') contador ++;
+      if(venta.venta.state == 'completa') contador ++;
     });
     return contador
   })
@@ -42,7 +65,7 @@ export class PanelGananciasComponent {
   gananciasTotales = computed(()=>{
     let ganancias: number = 0
     this.ventas().forEach(venta => {
-      if(venta.state == 'completa') ganancias += venta.price;
+      if(venta.venta.state == 'completa') ganancias += venta.producto.price;
     });
     return ganancias
   })

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Venta } from '../models/sales-model';
+import { IProduct } from '../models/producto-model';
 
 @Pipe({
   name: 'limiteCaracteres',
@@ -7,7 +7,7 @@ import { Venta } from '../models/sales-model';
 })
 export class LimiteCaracteresPipe implements PipeTransform {
 
-  transform(cadena: Venta['product']): string {
+  transform(cadena: IProduct['title']): string {
     return cadena.length > 28 ? cadena.slice(0,25) + '...' : cadena
   }
 

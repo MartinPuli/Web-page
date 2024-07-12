@@ -30,22 +30,22 @@
             </div>
         </div>
         @for (venta of ventas(); track $index) {
-        @if (venta.state == "completa") {
+        @if (venta.venta.state == "completa") {
         <div class="panel__historial__venta">
             <h4 class="panel__historial__producto"> {{
-                venta.product | limiteCaracteres }} </h4>
-            @if (venta.correo) {
+                venta.producto.title| limiteCaracteres }} </h4>
+            @if (venta.venta.correo) {
             <h4 class="panel__historial__venta__entrega">
-                Entregado por {{ venta.correo }} el {{ venta.fechaEntrega |
+                Entregado por {{ venta.venta.correo }} el {{ venta.venta.fechaEntrega |
                 formatoFecha }} </h4>
             }
             @else {
             <h4 class="panel__historial__venta__entrega">
-                Entregado por el vendedor el {{ venta.fechaEntrega |
+                Entregado por el vendedor el {{ venta.venta.fechaEntrega |
                 formatoFecha }} </h4>
             }
             <h4 class="panel__historial__venta__precio"> {{
-                venta.price | currency }} </h4>
+                venta.producto.price | currency }} </h4>
         </div>
         }
         }

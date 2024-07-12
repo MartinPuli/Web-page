@@ -6,6 +6,7 @@ import { HomeProveedorComponent } from './proveedores/home-proveedor/home-provee
 import { VentasProcesoComponent } from './proveedores/ventas-proceso/ventas-proceso.component';
 import { CuentaComponent } from './general/cuenta/cuenta.component';
 import { VentasComponent } from './vendedores/ventas/ventas.component';
+import { ActualizacionesComponent } from './general/actualizaciones/actualizaciones.component';
 
 export const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: "products", component: ProductosComponent},
     {path: "products/:productId", component: DetalleProductoComponent },
     {path: ':tipo/cuenta', component: CuentaComponent},
+    {path: ':tipo/actualizaciones', component: ActualizacionesComponent},
     {path: 'vendedor/ventas', component: VentasComponent},
     {path: '**', redirectTo: '', pathMatch: 'full'}
   ];

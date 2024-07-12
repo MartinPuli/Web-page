@@ -4,6 +4,7 @@
     <div class="header__botones"
         [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
         <button [routerLink]="[isVendedor? '': '/proveedor']">Inicio</button>
+        <button [routerLink]="[isVendedor? '/vendedor/actualizaciones': '/proveedor/actualizaciones']">Actualizaciones</button>
     </div>
 </header>
 <main>

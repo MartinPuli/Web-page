@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ApiProductosService } from './api-productos.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Category, IProduct } from '../../models/producto-model';
+import { Category, IProduct } from '../models/producto-model';
 
 describe('ApiProductosService', () => {
   let service: ApiProductosService;

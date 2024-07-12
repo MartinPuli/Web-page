@@ -1,55 +1,52 @@
-type VendedorActualizacion = 
-  | VendedorActualizacionTipo0
-  | VendedorActualizacionTipo1
-  | VendedorActualizacionTipo2;
+import { IProduct } from "./producto-model";
+import { pregunta, respuesta } from "./preguntas-model";
+import { Subscription } from "rxjs";
 
-interface VendedorActualizacionBase {
-  tipo: number;
-  idProducto: number;
-  fechaHora: Date;
-  vendedor: string;
+export type Actualizacion =
+    | ActualizacionBase
+    | VendedorActualizacionTipo0
+    | ProveedorActualizacionTipo0
+
+interface ActualizacionBase {
+    tipo: number;
+    idProducto: number;
+    fecha: Date;
+    idUsuario: number;
+    isVendedor: boolean
 }
 
-interface VendedorActualizacionTipo0 extends VendedorActualizacionBase {
-  tipo: 0;
-  contenidoPregunta: string;
-  contenidoRespuesta: string;
+export interface VendedorActualizacionTipo0 extends ActualizacionBase {
+    isVendedor: true
+    tipo: 0;
+    idPregunta: number;
+    idRespuesta: number;
 }
 
-interface VendedorActualizacionTipo1 extends VendedorActualizacionBase {
-  tipo: 1;
+export interface ProveedorActualizacionTipo0 extends ActualizacionBase {
+    isVendedor: false
+    tipo: 0;
+    idPregunta: number;
 }
 
-interface VendedorActualizacionTipo2 extends VendedorActualizacionBase {
-  tipo: 2;
+// Vendedores: 0-Pregunta respondida    1-Producto agregado para vender   2-Venta
+
+//Proveedores: 0-Pregunta agregada    1-Producto agregado    2-Producto agregado para vender   3-Venta por vendedor
+
+
+export interface ActualizacionCompleta {
+    actualizacion: Actualizacion
+    producto: IProduct;
+    pregunta?: pregunta;
+    respuesta?: respuesta;
 }
 
-type ProveedorActualizacion = 
-  | ProveedorActualizacionTipo0
-  | ProveedorActualizacionTipo1
-  | ProveedorActualizacionTipo2
-  | ProveedorActualizacionTipo3;
 
-interface ProveedorActualizacionBase {
-  tipo: number;
-  idProducto: number;
-  fechaHora: Date;
-  proveedor: string;
+//Type Guards
+
+export function isVendedorActualizacionTipo0(actualizacion: Actualizacion): actualizacion is VendedorActualizacionTipo0 {
+    return actualizacion.isVendedor && actualizacion.tipo === 0;
 }
 
-interface ProveedorActualizacionTipo0 extends ProveedorActualizacionBase {
-  tipo: 0;
-}
-
-interface ProveedorActualizacionTipo1 extends ProveedorActualizacionBase {
-  tipo: 1;
-  contenidoPregunta: string;
-}
-
-interface ProveedorActualizacionTipo2 extends ProveedorActualizacionBase {
-  tipo: 2;
-}
-
-interface ProveedorActualizacionTipo3 extends ProveedorActualizacionBase {
-  tipo: 3;
+export function isProveedorActualizacionTipo0(actualizacion: Actualizacion): actualizacion is ProveedorActualizacionTipo0 {
+    return !actualizacion.isVendedor && actualizacion.tipo === 0;
 }

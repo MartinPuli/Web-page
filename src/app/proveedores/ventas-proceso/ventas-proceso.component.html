@@ -23,39 +23,39 @@
         <div class="ventas__card">
             <div class="ventas__card__producto">
                 <div class="ventas__card__producto__imagen">
-                    <img src="{{ venta.imageUrl }}" alt="imagen_producto">
+                    <img src="{{ venta.producto.image }}" alt="imagen_producto">
                 </div>
                 <div class="ventas__card__producto__detalles">
-                    <h3 [innerHTML]="destacarTermino(venta.product, valorFiltradoProceso())"></h3>
-                    <h3>Unidades: {{ venta.quantity }}</h3>
+                    <h3 [innerHTML]="destacarTermino(venta.producto.title, valorFiltradoProceso())"></h3>
+                    <h3>Unidades: {{ venta.venta.quantity }}</h3>
                 </div>
             </div>
             <div class="ventas__card__info"
-                [style.background-color]="venta.state == 'proceso' ? '#6965B3' : '#3E3B7D'">
+                [style.background-color]="venta.venta.state == 'proceso' ? '#6965B3' : '#3E3B7D'">
                 <div class="ventas__card__info__precio">
                     <h3>Precio establecido:</h3>
-                    <h2>{{ venta.price | currency }}</h2>
+                    <h2>{{ venta.producto.price | currency }}</h2>
                 </div>
                 <div class="ventas__card__info__entrega">
-                    @if (venta.method == "mano") {
+                    @if (venta.venta.method == "mano") {
                         <h3>Tenés tiempo de
-                            entregar el paquete al correo hasta el {{ venta.deadline |
+                            entregar el paquete al correo hasta el {{ venta.venta.deadline |
                             formatoFechaVentas }}</h3>
                         }
                         @else {
-                        <h3>El {{ venta.method }}
-                            pasará a recoger el producto el {{ venta.deadline |
+                        <h3>El {{ venta.venta.method }}
+                            pasará a recoger el producto el {{ venta.venta.deadline |
                             formatoFechaVentas }}</h3>
                         }
                 </div>
                 <div  class="ventas__card__info__costo">
-                    @if (venta.costo == "proveedor") {
+                    @if (venta.venta.costo == "proveedor") {
                     <h3>Costo del envío a cargo
                         suyo</h3>
                     }
                     @else {
                     <h3>Costo del envío a cargo
-                        del {{ venta.costo }}</h3>
+                        del {{ venta.venta.costo }}</h3>
                     }
                 </div>
             </div>
@@ -81,27 +81,27 @@
         <div class="ventas__card">
             <div class="ventas__card__producto">
                 <div class="ventas__card__producto__imagen">
-                    <img src="{{ venta.imageUrl }}" alt="imagen_producto">
+                    <img src="{{ venta.producto.image }}" alt="imagen_producto">
                 </div>
                 <div class="ventas__card__producto__detalles">
-                    <h3 [innerHTML]="destacarTermino(venta.product, valorFiltradoCompleto())"></h3>
-                    <h3>Unidades: {{ venta.quantity }}</h3>
+                    <h3 [innerHTML]="destacarTermino(venta.producto.title, valorFiltradoCompleto())"></h3>
+                    <h3>Unidades: {{ venta.venta.quantity }}</h3>
                 </div>
             </div>
             <div class="ventas__card__info"
-                [style.background-color]="venta.state == 'proceso' ? '#6965B3' : '#3E3B7D'">
+                [style.background-color]="venta.venta.state == 'proceso' ? '#6965B3' : '#3E3B7D'">
                 <div class="ventas__card__info__precio">
                     <h3>Precio establecido:</h3>
-                    <h2>{{ venta.price | currency }}</h2>
+                    <h2>{{ venta.producto.price | currency }}</h2>
                 </div>
                 <div class="ventas__card__info__entrega">
-                    @if (venta.method == "mano") {
+                    @if (venta.venta.method == "mano") {
                     <h3>Llevaste el paquete
-                        al correo el {{ venta.deadline | formatoFechaVentas }}</h3>
+                        al correo el {{ venta.venta.deadline | formatoFechaVentas }}</h3>
                     }
                     @else {
-                    <h3>El {{ venta.method }}
-                        recogió el producto el {{ venta.deadline |
+                    <h3>El {{ venta.venta.method }}
+                        recogió el producto el {{ venta.venta.deadline |
                         formatoFechaVentas }}</h3>
                     }
                 </div>

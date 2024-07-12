@@ -1,7 +1,19 @@
 <div class="detalle-dialog">
     <div>
-        <h2>{{ data.titulo }}</h2>
+        @switch (data.tipo) {
+            @case(0){
+                <h5>¡Te han hecho una pregunta!</h5>
+            } 
+            @case(1){
+                <h5>¡Producto agregado!</h5>
+            }
+            @case(2){
+                <h5>¡Producto seleccionado por vendedor!</h5>
+            }       
+            @case(3){
+                <h5>¡Producto vendido!</h5>
+            }
+        }
         <p>{{ data.fecha | formatoFecha }}</p>
     </div>
-    <p>{{ data.descripcion }}</p>
 </div>

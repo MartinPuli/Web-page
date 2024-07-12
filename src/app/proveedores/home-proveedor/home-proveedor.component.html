@@ -27,7 +27,7 @@
         <div class="proveedor__paneles__actualizaciones">
             <div class="proveedor__paneles__actualizaciones__header">
                 <h2>Actualizaciones</h2>
-                <button (click)="abrirTodasActualizaciones()">Ver Todas</button>
+                <button [routerLink]="['/proveedor/actualizaciones']">Ver Todas</button>
             </div>
             <div class="proveedor__paneles__actualizaciones__contenido">
                 <div
@@ -37,12 +37,27 @@
                     {
                     <div
                         class="proveedor__paneles__actualizaciones__contenido__recientes__notificacion">
-
-                        <h5>{{ actualizacion.titulo }}</h5>
+                        @switch (actualizacion.tipo) {
+                            @case(0){
+                                <h5>¡Te han hecho una pregunta!</h5>
+                            } 
+                            @case(1){
+                                <h5>¡Producto agregado!</h5>
+                            }
+                            @case(2){
+                                <h5>¡Producto seleccionado por vendedor!</h5>
+                            }       
+                            @case(3){
+                                <h5>¡Producto vendido!</h5>
+                            }
+                        }
                         <button
                             (click)="abrirDetalle(actualizacion)">Más
                             Detalles</button>
                     </div>
+                    }
+                    @empty {
+                        <h4>¡Aún no tienes actualizaciones!</h4>
                     }
                 </div>
                 <div

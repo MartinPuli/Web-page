@@ -20,7 +20,13 @@ export interface Rating {
     count: number;
 }
 
-export type Usuario ={
-    name:string
-    email:string
+export interface productoCompleto{
+    IProduct: IProduct
+    info: informacion
+}
+
+export interface informacion {
+    idUsuario:  number;
+    stock: number;
+    agregados: number
 }

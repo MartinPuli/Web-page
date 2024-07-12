@@ -1,8 +1,11 @@
+import { IProduct, productoCompleto } from "./producto-model";
+
 export interface VentaBase {
-    product: string;
-    price: number;
+    idVenta: number
+    idProduct: number;
+    idProveedor: number;
+    idVendedor: number;
     quantity: number;
-    imageUrl: string;
     method: 'repartidor' | 'mano' | 'retirar';
     deadline: Date;
     correo: "Correo Argentino" | "Mercado Envios" | "Envios Flex" | null;
@@ -18,4 +21,15 @@ export interface VentaCompleta extends VentaBase {
     fechaEntrega: Date;
 }
 
-export type Venta = VentaProceso | VentaCompleta;
+export type Venta = VentaProceso | VentaCompleta ;
+
+export interface VentaProducto{
+    venta: Venta
+    producto: IProduct
+}
+
+export interface VentaVendedor extends VentaProducto{
+    precioVenta: number
+}
+
+

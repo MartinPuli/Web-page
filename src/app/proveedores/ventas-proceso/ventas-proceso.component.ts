@@ -1,11 +1,13 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { Venta, VentaProceso } from '../../shares/models/sales-model';
+import { Venta, VentaCompleta, VentaProducto } from '../../shares/models/sales-model';
 import { VentasService } from '../../shares/services/ventas.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { FormatoFechaVentasPipe } from '../../shares/pipes/formato-fecha-ventas.pipe';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ApiProductosService } from '../../shares/services/api-productos.service';
+import { IProduct } from '../../shares/models/producto-model';
 
 @Component({
   selector: 'app-ventas-proceso',
@@ -17,24 +19,26 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 export class VentasProcesoComponent {
 
   private _apiVentas = inject(VentasService)
+  private _apiProductos = inject(ApiProductosService)
 
   inputProceso: FormGroup
   inputCompleto: FormGroup
 
-  ventasTraidas: Venta[] = []
-  signalVentas = signal(this.ventasTraidas)
+  ventasArray: VentaProducto[] = []
+  signalVentas = signal(this.ventasArray)
+
   valorFiltradoProceso = signal("")
   valorFiltradoCompleto = signal("")
 
   ventasProceso = computed(() => {
     return this.signalVentas().filter((venta) => {
-      return venta.state == "proceso" && venta.product.toLowerCase().includes(this.valorFiltradoProceso())
+      return venta.venta.state == "proceso" && venta.producto.title.toLowerCase().includes(this.valorFiltradoProceso())
     })
   })
 
   ventasCompleto = computed(() => {
     return this.signalVentas().filter((venta) => {
-      return venta.state == "completa" && venta.product.toLowerCase().includes(this.valorFiltradoCompleto())
+      return venta.venta.state == "completa" && venta.producto.title.toLowerCase().includes(this.valorFiltradoCompleto())
     })
   })
 
@@ -49,8 +53,28 @@ export class VentasProcesoComponent {
   }
 
   ngOnInit(): void {
-    this.ventasTraidas = this._apiVentas.getVentas()
-    this.signalVentas.set(this.ventasTraidas)
+
+    let ventasTraidas: Venta[] = this._apiVentas.getVentas()
+    
+    ventasTraidas.forEach(venta => {
+      let productoRecibido!: IProduct 
+
+      this._apiProductos.getProduct(venta.idProduct).subscribe({
+        next: (data: IProduct) => {
+          productoRecibido = data
+        },
+        error: (error: any) => {
+          console.log(error)
+        }
+      })
+
+      this.ventasArray.push({
+        venta: venta,
+        producto: productoRecibido
+      })
+    });
+
+    this.signalVentas.set(this.ventasArray)
   }
 
   filtrar(input: 'proceso' | 'completa') {

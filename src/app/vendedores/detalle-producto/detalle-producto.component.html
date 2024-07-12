@@ -1,47 +1,47 @@
 <header class="header">
     <div class="header__logo"></div>
     <div class="header__botones">
-        <button>Mis Ventas</button>
+        <button [routerLink]="['/vendedor/ventas/']">Mis Ventas</button>
         <button [routerLink]="['/vendedores/cuenta/']">Mi Cuenta</button>
     </div>
 </header>
 
-<main class="detalle">
-    <div class="detalle__encabezado">
-        <button type="button" [routerLink]="['']" > Volver</button>
-        <p> {{ producto?.category}}</p>
+<main>
+    <div class="encabezado">
+        <button type="button" [routerLink]="['']"> Volver</button>
+        <p> {{ producto.category}}</p>
     </div>
-    <div class="detalle__contenido">
-        <div class="detalle__contenido__imagen">
-            <img src="{{ producto?.image }}" alt="imagen-producto">
+    <div class="contenido">
+        <div class="contenido__imagen">
+            <img src="{{ producto.image }}" alt="imagen-producto">
         </div>
-        <h1 class="detalle__contenido__titulo">{{producto?.title}}</h1>
-        <h2 class="detalle__contenido__precio">{{producto?.price |
+        <h1 class="contenido__titulo">{{producto.title}}</h1>
+        <h2 class="contenido__precio">{{producto.price |
             currency}}</h2>
-        <div class="detalle__contenido__botones">
+        <div class="contenido__botones">
             <button type="button">Añadir a mis ventas</button>
             <button type="button">Descargar flyer de venta</button>
         </div>
-        <div class="detalle__contenido__imagenes">
-            <div class="detalle__contenido__imagenes__imagen">
+        <div class="contenido__imagenes">
+            <div class="contenido__imagenes__imagen">
             </div>
-            <div class="detalle__contenido__imagenes__imagen">
+            <div class="contenido__imagenes__imagen">
             </div>
-            <div class="detalle__contenido__imagenes__imagen">
+            <div class="contenido__imagenes__imagen">
             </div>
-            <div class="detalle__contenido__imagenes__imagen">
+            <div class="contenido__imagenes__imagen">
             </div>
         </div>
-        <div class="detalle__contenido__descripcion">
+        <div class="contenido__descripcion">
             <h4>Descipción: </h4>
-            <p>{{producto?.description}}</p>
+            <p>{{producto.description}}</p>
         </div>
-        <div class="detalle__contenido__especificaciones">
+        <div class="contenido__especificaciones">
             <h4>Descipción: </h4>
             <p>-Tamaño: xxx</p>
             <p>-Altura: xxx</p>
         </div>
-        <div class="detalle__contenido__claves">
+        <div class="contenido__claves">
             <h4>Palabras Clave:</h4>
             <button type="button">Electrónica</button>
             <button type="button">Negro</button>
@@ -51,9 +51,9 @@
             <button type="button">Noblex</button>
         </div>
     </div>
-    <div class="detalle__preguntas">
+    <div class="preguntas">
         <h3>Preguntas y Respuestas</h3>
-        <form class="detalle__preguntas__form"
+        <form class="preguntas__form"
             [formGroup]="preguntar" (ngSubmit)="hacerPregunta()">
             <input title="Pregunta" class="form-control"
                 list="datalistOptions" id="exampleDataList"
@@ -61,6 +61,31 @@
                 formControlName="pregunta">
             <button class="btn btn-primary" type="submit">Enviar</button>
         </form>
-        <h5></h5>
+        @if (preguntas.length == 0) {
+        <h4>Todavía no hay preguntas</h4>
+        }
+        @else{
+        <h4>Preguntas realizadas</h4>
+        @for (pregunta of preguntas; track $index) {
+        <div class="preguntas__container">
+            <div class="preguntas__container__pregunta">
+                <h3> {{ pregunta.pregunta }} </h3>
+            </div>
+            @for (respuesta of respuestas[$index]; track $index) {
+            <div class="preguntas__container__respuesta">
+                <div class="preguntas__container__respuesta__flechas">
+                    <h5>↳</h5>
+                    @if($index + 1 < respuestas.length){
+                        <div class="union"></div>
+                    }
+                </div>
+                <div class="preguntas__container__respuesta__contenido">
+                    <h3>{{ respuesta.respuesta }}</h3>
+                </div>
+            </div>
+            }
+        </div>
+        }
+        }
     </div>
 </main>
