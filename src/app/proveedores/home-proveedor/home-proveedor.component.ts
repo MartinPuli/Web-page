@@ -30,7 +30,7 @@ export class HomeProveedorComponent {
 
   @ViewChild(PanelGananciasComponent) child!: PanelGananciasComponent;
 
-  ngAfterViewInit(): void {
+  ngAfterViewChecked(): void {
     this.ganancias.set(this.child.gananciasTotales())
   }
 

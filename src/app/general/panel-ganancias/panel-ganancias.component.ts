@@ -7,6 +7,7 @@ import { VentasService } from '../../shares/services/ventas.service';
 import { Venta, VentaProducto } from '../../shares/models/sales-model';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { IProduct } from '../../shares/models/producto-model';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-panel-ganancias',
@@ -21,29 +22,35 @@ export class PanelGananciasComponent {
 
   ventasArray: VentaProducto[] = []
   ventas = signal(this.ventasArray)
+  cargado = signal(false)
 
   ngOnInit(): void {
     let ventasTraidas: Venta[] = this._apiVentas.getVentas()
     
-    ventasTraidas.forEach(venta => {
-      let productoRecibido!: IProduct 
+    const requests = ventasTraidas.map(venta =>
+      this._apiProductos.getProduct(venta.idProduct).pipe(
+        map(producto => ({
+          venta,
+          producto
+        }))
+      )
+    );
 
-      this._apiProductos.getProduct(venta.idProduct).subscribe({
-        next: (data: IProduct) => {
-          productoRecibido = data
-        },
-        error: (error: any) => {
-          console.log(error)
-        }
-      })
-
-      this.ventasArray.push({
-        venta: venta,
-        producto: productoRecibido
-      })
+    forkJoin(requests).subscribe({
+      next: (result: VentaProducto[]) => {
+        this.ventasArray = result;
+        this.ventas.set(this.ventasArray);
+        this.cargado.set(true)
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.cargado.set(true) // Establecer en true incluso si hay errores para evitar bloqueo de la interfaz
+      }
     });
+  }
 
-    this.ventas.set(this.ventasArray)
+  ngOnDestroy(): void {
+    this.cargado.set(false)
   }
 
   cantidadVentasProceso = computed(()=>{

@@ -21,6 +21,7 @@
             <h3>Historial de Ventas</h3>
             <button [routerLink]="['/proveedor/ventas']">Ver todas</button>
         </div>
+        @defer(when cargado){
         @if (cantidadVentasCompletadas()) {
         <div class="panel__historial__lista">
             <div class="panel__historial__indices">
@@ -36,7 +37,8 @@
                 venta.producto.title| limiteCaracteres }} </h4>
             @if (venta.venta.correo) {
             <h4 class="panel__historial__venta__entrega">
-                Entregado por {{ venta.venta.correo }} el {{ venta.venta.fechaEntrega |
+                Entregado por {{ venta.venta.correo }} el {{
+                venta.venta.fechaEntrega |
                 formatoFecha }} </h4>
             }
             @else {
@@ -51,7 +53,9 @@
         }
         }
         @else {
-            <h4 class="panel__historial__vacio">Todavía no has completado ninguna venta</h4>
+        <h4 class="panel__historial__vacio">Todavía no has completado ninguna
+            venta</h4>
+        }
         }
     </div>
 </div>

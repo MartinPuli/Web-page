@@ -36,8 +36,8 @@ export interface ProveedorActualizacionTipo0 extends ActualizacionBase {
 export interface ActualizacionCompleta {
     actualizacion: Actualizacion
     producto: IProduct;
-    pregunta?: pregunta;
-    respuesta?: respuesta;
+    pregunta: pregunta | undefined;
+    respuesta: respuesta | undefined;
 }
 
 

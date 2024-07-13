@@ -4,10 +4,11 @@ import { ActivatedRoute, Params, RouterLink, RouterModule, RouterOutlet } from '
 import { ActualizacionesService } from '../../shares/services/actualizaciones.service';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { PreguntasService } from '../../shares/services/preguntas.service';
-import { ActualizacionCompleta, isProveedorActualizacionTipo0, isVendedorActualizacionTipo0 } from '../../shares/models/actualizacion-model';
+import { Actualizacion, ActualizacionCompleta, isProveedorActualizacionTipo0, isVendedorActualizacionTipo0 } from '../../shares/models/actualizacion-model';
 import { IProduct } from '../../shares/models/producto-model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-actualizaciones',
@@ -26,6 +27,7 @@ export class ActualizacionesComponent {
   
   isVendedor!: Boolean
   user!: number
+  cargado = signal(false)
   readonly panelOpenState = signal(false);
 
   ngOnInit(): void {
@@ -43,25 +45,33 @@ export class ActualizacionesComponent {
   }
 
   ngAfterViewInit(): void {
-    this._apiActualizaciones.getActualizacionesUsuario(this.user).forEach((actualizacion, index) => {
-      let productoObtenido!: IProduct
-      this._apiProductos.getProduct(actualizacion.idProducto).subscribe({
-        next: (data: IProduct) => {
-          productoObtenido = data
-        },
-        error: (error: any) => {
-          console.log(error)
-        }
-      })
-      
-      let actualizacionEntrante = {
-        actualizacion: actualizacion,
-        producto: productoObtenido,
-        pregunta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : isProveedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : undefined,
-        respuesta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getRespuestasPorId(actualizacion.idRespuesta) : undefined
-      }
+    let actualizacionesTraidad: Actualizacion[] = this._apiActualizaciones.getActualizacionesUsuario(this.user)
+    
+    const requests = actualizacionesTraidad.map(actualizacion =>
+      this._apiProductos.getProduct(actualizacion.idProducto).pipe(
+        map(producto => ({
+          actualizacion,
+          producto,
+          pregunta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : isProveedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : undefined,
+          respuesta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getRespuestasPorId(actualizacion.idRespuesta) : undefined
+        }))
+      )
+    );
 
-      this.actualizaciones.push(actualizacionEntrante)
-    })
+    forkJoin(requests).subscribe({
+      next: (result: ActualizacionCompleta[]) => {
+        this.actualizaciones = result
+        this.cargado.set(true)
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.cargado.set(true) // Establecer en true incluso si hay errores para evitar bloqueo de la interfaz
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.cargado.set(false)
+    
   }
 }

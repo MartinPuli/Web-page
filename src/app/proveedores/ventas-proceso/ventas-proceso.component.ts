@@ -8,6 +8,7 @@ import { FormatoFechaVentasPipe } from '../../shares/pipes/formato-fecha-ventas.
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { IProduct } from '../../shares/models/producto-model';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-ventas-proceso',
@@ -26,6 +27,7 @@ export class VentasProcesoComponent {
 
   ventasArray: VentaProducto[] = []
   signalVentas = signal(this.ventasArray)
+  cargado: Boolean = false
 
   valorFiltradoProceso = signal("")
   valorFiltradoCompleto = signal("")
@@ -55,26 +57,30 @@ export class VentasProcesoComponent {
   ngOnInit(): void {
 
     let ventasTraidas: Venta[] = this._apiVentas.getVentas()
-    
-    ventasTraidas.forEach(venta => {
-      let productoRecibido!: IProduct 
+    const requests = ventasTraidas.map(venta =>
+      this._apiProductos.getProduct(venta.idProduct).pipe(
+        map(producto => ({
+          venta,
+          producto
+        }))
+      )
+    );
 
-      this._apiProductos.getProduct(venta.idProduct).subscribe({
-        next: (data: IProduct) => {
-          productoRecibido = data
-        },
-        error: (error: any) => {
-          console.log(error)
-        }
-      })
-
-      this.ventasArray.push({
-        venta: venta,
-        producto: productoRecibido
-      })
+    forkJoin(requests).subscribe({
+      next: (result: VentaProducto[]) => {
+        this.ventasArray = result;
+        this.signalVentas.set(this.ventasArray);
+        this.cargado = true;
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.cargado = true; // Establecer en true incluso si hay errores para evitar bloqueo de la interfaz
+      }
     });
+  }
 
-    this.signalVentas.set(this.ventasArray)
+  ngOnDestroy(): void {
+    this.cargado = false
   }
 
   filtrar(input: 'proceso' | 'completa') {
