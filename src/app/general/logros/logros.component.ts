@@ -1,5 +1,4 @@
 import { Component, inject, Input, input } from '@angular/core';
-import { logros } from './logros-data.';
 import { Logros } from '../../shares/models/logros-model';
 import { CommonModule } from '@angular/common';
 import { LogrosService } from '../../shares/services/logros.service';

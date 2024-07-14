@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, Input, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { LimiteCaracteresPipe } from '../../shares/pipes/limite-caracteres.pipe';
@@ -20,12 +20,14 @@ export class PanelGananciasComponent {
   private _apiVentas = inject(VentasService)
   private _apiProductos = inject(ApiProductosService)
 
+  @Input () isVendedor!: Boolean
+
   ventasArray: VentaProducto[] = []
   ventas = signal(this.ventasArray)
   cargado = signal(false)
 
   ngOnInit(): void {
-    let ventasTraidas: Venta[] = this._apiVentas.getVentas()
+    let ventasTraidas: Venta[] = this.isVendedor? this._apiVentas.getVentasPorVendedor(1) : this._apiVentas.getVentasPorProveedor(2)
     
     const requests = ventasTraidas.map(venta =>
       this._apiProductos.getProduct(venta.idProduct).pipe(
@@ -73,6 +75,14 @@ export class PanelGananciasComponent {
     let ganancias: number = 0
     this.ventas().forEach(venta => {
       if(venta.venta.state == 'completa') ganancias += venta.producto.price;
+    });
+    return ganancias
+  })
+
+  gananciasVendedorTotales = computed(()=>{
+    let ganancias: number = 0
+    this.ventas().forEach(venta => {
+      if(venta.venta.state == 'completa') ganancias += venta.venta.precioVenta - venta.producto.price;
     });
     return ganancias
   })

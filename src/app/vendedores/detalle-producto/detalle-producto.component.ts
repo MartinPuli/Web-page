@@ -44,7 +44,7 @@ export class DetalleProductoComponent implements OnInit{
         })
 
         this.preguntas = this._apiPreguntas.getPreguntasPorProducto(Number(params['productId']))
-
+        
         this.preguntas.forEach((pregunta)=>{
           this.respuestas.push(this._apiPreguntas.getRespuestasPorPregunta(pregunta.idPregunta))
         })

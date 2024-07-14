@@ -1,10 +1,15 @@
-<div class="panel">
+<div class="panel" [ngClass]="{'vendedor': isVendedor, 'proveedor': !isVendedor}">
     <div class="panel__ganancias">
         <h3>Panel de Ganancias</h3>
         <div class="panel__ganancias__paneles">
             <div>
                 <h3>Ganancia</h3>
-                <h2>{{ gananciasTotales() | currency }}</h2>
+                @if(isVendedor){
+                    <h2>{{ gananciasVendedorTotales() | currency }}</h2>
+                }
+                @else {
+                    <h2>{{ gananciasTotales() | currency }}</h2>
+                }
             </div>
             <div>
                 <h3>Ventas Completadas</h3>
@@ -46,8 +51,16 @@
                 Entregado por el vendedor el {{ venta.venta.fechaEntrega |
                 formatoFecha }} </h4>
             }
-            <h4 class="panel__historial__venta__precio"> {{
-                venta.producto.price | currency }} </h4>
+            <h4 class="panel__historial__venta__precio">
+                @if(isVendedor){
+                {{
+                    venta.venta.precioVenta - venta.producto.price | currency }}
+                }
+                @else{
+                    {{
+                        venta.producto.price | currency }}
+                }
+            </h4>
         </div>
         }
         }

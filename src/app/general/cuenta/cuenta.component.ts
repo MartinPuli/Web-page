@@ -6,11 +6,12 @@ import { Router } from 'express';
 import { User } from '../../shares/models/usuario-model';
 import { LogrosComponent } from '../logros/logros.component';
 import { ValueChangeEvent } from '@angular/forms';
+import { PanelGananciasComponent } from '../panel-ganancias/panel-ganancias.component';
 
 @Component({
   selector: 'app-cuenta',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, LogrosComponent],
+  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, LogrosComponent, PanelGananciasComponent],
   templateUrl: './cuenta.component.html',
   styleUrl: './cuenta.component.scss'
 })

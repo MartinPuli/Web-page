@@ -1,5 +1,13 @@
 @import '../../../styles.scss';
 
+.proveedor{
+    background-color: #CCCAF6;
+}
+
+.vendedor{
+    background-color: #CDD8FD;
+}
+
 .panel {
     background-color: #E5E4FA;
     padding: 2% 18%;
@@ -19,7 +27,7 @@
             div {
                 width: 32.5%;
                 border: 1px #1F1D3E solid;
-                background-color: $color-claros-proveedor;
+                background-color: $color-claro;
                 border-radius: 10px;
                 padding: 5px 15px;
 
@@ -92,7 +100,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            background-color: $color-claros-proveedor;
+            background-color: $color-claro;
             border: 1px solid #1F1D3E;
             border-radius: 4.44px;
             align-items: center;

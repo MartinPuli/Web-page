@@ -6,10 +6,12 @@ export interface VentaBase {
     idProveedor: number;
     idVendedor: number;
     quantity: number;
-    method: 'repartidor' | 'mano' | 'retirar';
+    method: 'repartidor' | 'mano' | 'vendedor';
     deadline: Date;
     correo: "Correo Argentino" | "Mercado Envios" | "Envios Flex" | null;
     costo: 'vendedor' | 'comprador' | 'proveedor'
+    precioVenta: number,
+    link: string
 }
 
 export interface VentaProceso extends VentaBase {
@@ -26,10 +28,6 @@ export type Venta = VentaProceso | VentaCompleta ;
 export interface VentaProducto{
     venta: Venta
     producto: IProduct
-}
-
-export interface VentaVendedor extends VentaProducto{
-    precioVenta: number
 }
 
 

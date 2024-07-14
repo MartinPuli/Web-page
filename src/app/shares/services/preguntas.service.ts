@@ -48,6 +48,18 @@ export class PreguntasService {
       idProducto: 11,
       idConsultador: 3,
       pregunta: "Donde se fabricaron?"
+    },
+    {
+      idPregunta: 8,
+      idProducto: 2,
+      idConsultador: 3,
+      pregunta: "Cual es tu nombre?"
+    },
+    {
+      idPregunta: 9,
+      idProducto: 2,
+      idConsultador: 3,
+      pregunta: "Polimardo buenardopolis breeeeother?"
     }
   ]
 
@@ -61,6 +73,16 @@ export class PreguntasService {
       idRespuesta: 2,
       idPregunta: 1,
       respuesta: "En China"
+    },
+    {
+      idRespuesta: 3,
+      idPregunta: 8,
+      respuesta: "Lucas"
+    },
+    {
+      idRespuesta: 4,
+      idPregunta: 8,
+      respuesta: "Juan"
     }
   ]
 
