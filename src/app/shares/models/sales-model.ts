@@ -10,8 +10,7 @@ export interface VentaBase {
     deadline: Date;
     correo: "Correo Argentino" | "Mercado Envios" | "Envios Flex" | null;
     costo: 'vendedor' | 'comprador' | 'proveedor'
-    precioVenta: number,
-    link: string
+    precioVenta: number
 }
 
 export interface VentaProceso extends VentaBase {

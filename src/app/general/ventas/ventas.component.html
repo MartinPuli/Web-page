@@ -16,6 +16,62 @@
         <button
             [routerLink]="[isVendedor? '': '/proveedor']">Volver</button>
     </div>
+    @if (isVendedor) {
+    <div class="links">
+        <h2>Ventas en proceso</h2>
+        <form class="form"
+            [formGroup]="inputLinks" (ngSubmit)="filtrar('links')">
+            <input title="Busqueda" class="form-control"
+                placeholder="Buscá por palabra clave ..."
+                formControlName="busqueda">
+            <button type="submit">Filtrar</button>
+        </form>
+        @defer (when cargado) {
+        @if(linksVendedorFiltrados().length != 0)
+        {
+        @for (link of linksVendedorFiltrados(); track $index) {
+        <div class="card">
+            <div class="card__producto">
+                <div class="card__producto__imagen">
+                    <img src="{{ link.producto.image }}" alt="imagen_producto">
+                </div>
+                <div class="card__producto__detalles">
+                    <h3
+                        [innerHTML]="destacarTermino(link.producto.title, valorFiltradoLinks())"></h3>
+                    <h3>Rating: {{ link.producto.rating.rate }}/10</h3>
+                </div>
+            </div>
+            <div class="card__info">
+                <div class="card__info__precio">
+                    <h3>Precio establecido:</h3>
+                    <h2>
+                        {{ link.link.precio | currency }}
+                    </h2>
+                </div>
+                <div class="card__info__botones">
+                    <button>Generar Nuevo Link</button>
+                    <button>Descargar Flyer</button>
+                </div>
+                <div class="card__info__costo">
+                    @if (link.link.costo == "vendedor"){
+                    <h3>Costo del envío a cargo
+                        suyo</h3>
+                    }
+                    @else {
+                    <h3>Costo del envío a cargo
+                        del {{ link.link.costo }}</h3>
+                    }
+                </div>
+            </div>
+        </div>
+        }
+        }
+        @else {
+        <h3 id="vacio">Todavía no tienes links activos todavía</h3>
+        }
+        }
+    </div>
+    }
     <div class="proceso">
         <h2>Ventas en proceso</h2>
         <form class="form"

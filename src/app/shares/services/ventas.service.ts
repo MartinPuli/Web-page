@@ -18,8 +18,7 @@ export class VentasService {
       deadline: new Date('December 17, 2024 16:24:00'),
       correo: "Mercado Envios",
       costo: 'comprador',
-      precioVenta: 1000,
-      link: "https://linkejemplo.com"
+      precioVenta: 1000
     },
     {
       idVenta: 2, 
@@ -32,8 +31,7 @@ export class VentasService {
       deadline: new Date('December 16, 2024 18:00:00'),
       correo: "Envios Flex",
       costo: 'proveedor',
-      precioVenta: 600,
-      link: "https://linkejemplo.com"
+      precioVenta: 600
     },
     {
       idVenta: 3, 
@@ -47,8 +45,7 @@ export class VentasService {
       correo: "Mercado Envios",
       fechaEntrega: new Date('December 19, 2024 00:00:00'),
       costo: 'proveedor',
-      precioVenta: 750,
-      link: "https://linkejemplo.com"
+      precioVenta: 750
     },
     {
       idVenta: 4, 
@@ -62,8 +59,7 @@ export class VentasService {
       correo: null,
       fechaEntrega: new Date('December 20, 2024 00:00:00'),
       costo: 'vendedor',
-      precioVenta: 500,
-      link: "https://linkejemplo.com"
+      precioVenta: 500
     }
   ];
 

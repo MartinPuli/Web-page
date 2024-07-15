@@ -197,6 +197,14 @@ h2 {
             height: 40%;
         }
 
+        &__botones{
+            justify-content: space-around;
+            border-bottom: #1F1D3E 1px solid;
+            border-top: #1F1D3E 1px solid;
+            height: 40%;
+            padding: 3%;
+        }
+
         &__costo {
             height: 25%;
         }
@@ -218,4 +226,21 @@ h2 {
 .resaltado {
     background-color: #1F1D3E;
     line-height: 50px;
+}
+
+.links{
+    margin-bottom: 60px;
+
+    .card__info{
+        color: black;
+        background-color: #ABBEFB;
+    }
+
+    button {
+        @extend .botones__boton;
+        background-color: $vendedores-botones;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 5px 25px;
+    }
 }
