@@ -29,7 +29,16 @@ export class LinksService {
       link: "https://linkEjemplo.com"
     }]
 
-    getLinksPorVendedor(id: Number): link[]{
-      return this.ventasLink.filter(venta => venta.idVendedor === id)
-    }
+  getLinksPorVendedor(id: Number): link[] {
+    return this.ventasLink.filter(venta => venta.idVendedor === id)
+  }
+
+  getCantidadLinksProducto(id: number): number {
+    let contador = 0
+    this.ventasLink.forEach((link) => {
+      if (link.idProduct === id) contador++
+    })
+    return contador
+  }
+  
 }

@@ -50,3 +50,7 @@ body {
         font-family: $letra-principal;
     }
 }
+
+div.mat-expansion-panel-body {
+    padding: 0 !important;
+}

@@ -9,11 +9,13 @@ import { IProduct } from '../../shares/models/producto-model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { forkJoin, map } from 'rxjs';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LinksService } from '../../shares/services/links.service';
 
 @Component({
   selector: 'app-actualizaciones',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, MatExpansionModule, FormatoFechaPipe],
+  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, MatExpansionModule, FormatoFechaPipe, ReactiveFormsModule],
   templateUrl: './actualizaciones.component.html',
   styleUrl: './actualizaciones.component.scss'
 })
@@ -22,13 +24,22 @@ export class ActualizacionesComponent {
   private _apiActualizaciones = inject(ActualizacionesService)
   private _apiProductos = inject(ApiProductosService)
   private _apiPreguntas = inject(PreguntasService)
+  private _apiLinks = inject(LinksService)
 
   actualizaciones: ActualizacionCompleta[] = []
+
+  respuestaForm: FormGroup
   
   isVendedor!: Boolean
   user!: number
   cargado = signal(false)
   readonly panelOpenState = signal(false);
+
+  constructor(private form: FormBuilder){
+    this.respuestaForm = this.form.group({
+      respuesta: ["", Validators.required]
+    })
+  }
 
   ngOnInit(): void {
     this._route.params.subscribe({
@@ -65,7 +76,7 @@ export class ActualizacionesComponent {
       },
       error: (error: any) => {
         console.error(error);
-        this.cargado.set(true) // Establecer en true incluso si hay errores para evitar bloqueo de la interfaz
+        this.cargado.set(true) 
       }
     });
   }
@@ -73,5 +84,13 @@ export class ActualizacionesComponent {
   ngOnDestroy(): void {
     this.cargado.set(false)
     
+  }
+
+  linksAsociados(id: number){
+    return this._apiLinks.getCantidadLinksProducto(id)
+  }
+
+  responder(){
+
   }
 }

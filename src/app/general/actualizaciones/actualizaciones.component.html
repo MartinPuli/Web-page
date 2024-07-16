@@ -23,6 +23,7 @@
                     (closed)="panelOpenState.set(false)">
                     <mat-expansion-panel-header class="actualizacion__header">
                         <mat-panel-title>
+                            @if(isVendedor){
                             @switch (actualizacion.actualizacion.tipo) {
                             @case(0){
                             ¡Han respondido tu pregunta!
@@ -32,6 +33,23 @@
                             }
                             @case(2){
                             ¡Has vendido un producto!
+                            }
+                            }
+                            }
+                            @else{
+                            @switch (actualizacion.actualizacion.tipo) {
+                            @case(0){
+                            ¡Te han hecho una pregunta!
+                            }
+                            @case(1){
+                            ¡Has agregado un producto!
+                            }
+                            @case(2){
+                            ¡Se han afiliado a tu producto!
+                            }
+                            @case(3){
+                            ¡Se ha vendido tu producto!
+                            }
                             }
                             }
                         </mat-panel-title>
@@ -53,8 +71,92 @@
                                 <h5>#{{ actualizacion.producto.id }}</h5>
                             </div>
                         </div>
-                        <div>
+                        <div class="actualizacion__contenido__informacion">
+                            @if(isVendedor){
+                            @switch (actualizacion.actualizacion.tipo) {
+                            @case(0){
+                            <div
+                                class="actualizacion__contenido__informacion__pregunta">
+                                <h4
+                                    class="actualizacion__contenido__informacion__pregunta__texto">
+                                    {{ actualizacion.pregunta?.pregunta }} </h4>
+                            </div>
+                            <div
+                                class="actualizacion__contenido__informacion__respuesta">
+                                <h5>↳</h5>
+                                <div
+                                    class="actualizacion__contenido__informacion__respuesta__contenido">
+                                    <h4
+                                        class="actualizacion__contenido__informacion__respuesta__contenido__texto">{{
+                                        actualizacion.respuesta?.respuesta
+                                        }}</h4>
+                                </div>
+                            </div>
+                            }
+                            @case(1){
+                            ¡Has seleccionado un producto!
+                            }
+                            @case(2){
+                            ¡Has vendido un producto!
+                            }
+                            }
+                            }
+                            @else{
+                            @switch (actualizacion.actualizacion.tipo) {
+                            @case(0){
+                            <div class="actualizacion__contenido__informacion__container">
+                                <div
+                                    class="actualizacion__contenido__informacion__pregunta">
+                                    <h4
+                                        class="actualizacion__contenido__informacion__pregunta__texto">
+                                        {{ actualizacion.pregunta?.pregunta }}
+                                    </h4>
+                                </div>
+                                <div
+                                    class="actualizacion__contenido__informacion__respuesta">
+                                    <h5>↳</h5>
+                                    <form
+                                        class="actualizacion__contenido__informacion__respuesta__form"
+                                        [formGroup]="respuestaForm"
+                                        (ngSubmit)="responder()">
+                                        <input title="Respuesta"
+                                            class="form-control"
+                                            placeholder="Responder ..."
+                                            formControlName="Respuesta">
+                                        <button type="submit">Enviar</button>
+                                    </form>
+                                </div>
+                            </div>
+                            }
+                            @case(1){
+                            ¡Has agregado un producto!
+                            }
+                            @case(2){
+                            <div
+                                class="actualizacion__contenido__informacion__afiliacion">
+                                <h4>Actualmente hay:</h4>
+                                <h3>{{ linksAsociados(actualizacion.producto.id)
+                                    }} links</h3>
+                                <h4>que se han afiliado a tu producto</h4>
+                                <button>Ir al estado de venta</button>
 
+                            </div>
+                            }
+                            @case(3){
+                            <div
+                                class="actualizacion__contenido__informacion__venta">
+                                <div class="actualizacion__contenido__informacion__venta__arriba">
+                                    <h4>Obtuviste por la venta:</h4>
+                                    <h3>{{ actualizacion.producto.price | currency }}</h3>
+                                </div>
+                                <div class="actualizacion__contenido__informacion__venta__abajo">
+                                    <h4>Te sugerimos revisar los pasos a seguir para finalizar la venta</h4>
+                                    <button>Estado de venta</button>
+                                </div>
+                            </div>
+                            }
+                            }
+                            }
                         </div>
                     </div>
                 </mat-expansion-panel>
