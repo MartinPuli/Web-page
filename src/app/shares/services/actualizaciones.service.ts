@@ -28,23 +28,26 @@ export class ActualizacionesService {
     {
       isVendedor: true,
       tipo: 1,
-      idProducto: 4,
+      idProducto: 2,
       fecha: new Date('2023-03-01T12:00:00Z'),
-      idUsuario: 1
+      idUsuario: 1,
+      idVenta: 3
     },
     {
       isVendedor: true,
       tipo: 2,
-      idProducto: 4,
+      idProducto: 6,
       fecha: new Date('2023-04-01T13:00:00Z'),
-      idUsuario: 1
+      idUsuario: 1,
+      idVenta: 4
     },
     {
       isVendedor: true,
       tipo: 2,
-      idProducto: 5,
+      idProducto: 1,
       fecha: new Date('2023-05-01T14:00:00Z'),
-      idUsuario: 1
+      idUsuario: 1,
+      idVenta: 2
     },
     {
       isVendedor: false,

@@ -4,13 +4,14 @@ import { ActivatedRoute, Params, RouterLink, RouterModule, RouterOutlet } from '
 import { ActualizacionesService } from '../../shares/services/actualizaciones.service';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { PreguntasService } from '../../shares/services/preguntas.service';
-import { Actualizacion, ActualizacionCompleta, isProveedorActualizacionTipo0, isVendedorActualizacionTipo0 } from '../../shares/models/actualizacion-model';
+import { Actualizacion, ActualizacionCompleta, isProveedorActualizacionTipo0, isVendedorActualizacionTipo0, isVendedorActualizacionTipo1o2 } from '../../shares/models/actualizacion-model';
 import { IProduct } from '../../shares/models/producto-model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { forkJoin, map } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LinksService } from '../../shares/services/links.service';
+import { VentasService } from '../../shares/services/ventas.service';
 
 @Component({
   selector: 'app-actualizaciones',
@@ -25,6 +26,7 @@ export class ActualizacionesComponent {
   private _apiProductos = inject(ApiProductosService)
   private _apiPreguntas = inject(PreguntasService)
   private _apiLinks = inject(LinksService)
+  private _apiVentas = inject(VentasService)
 
   actualizaciones: ActualizacionCompleta[] = []
 
@@ -64,7 +66,8 @@ export class ActualizacionesComponent {
           actualizacion,
           producto,
           pregunta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : isProveedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : undefined,
-          respuesta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getRespuestasPorId(actualizacion.idRespuesta) : undefined
+          respuesta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getRespuestasPorId(actualizacion.idRespuesta) : undefined,
+          venta: isVendedorActualizacionTipo1o2(actualizacion)? this._apiVentas.getVentasPorId(actualizacion.idVenta) : undefined
         }))
       )
     );

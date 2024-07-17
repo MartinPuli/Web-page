@@ -69,6 +69,10 @@ export class VentasService {
     return this.ventas;
   }
 
+  getVentasPorId(id:number): Venta{
+    return this.ventas.filter(venta => venta.idVenta === id)[0]
+  }
+
   getVentasPorProveedor(id:number): Venta[]{
     return this.ventas.filter(venta => venta.idProveedor === id)
   }

@@ -76,35 +76,79 @@
                             @switch (actualizacion.actualizacion.tipo) {
                             @case(0){
                             <div
-                                class="actualizacion__contenido__informacion__pregunta">
-                                <h4
-                                    class="actualizacion__contenido__informacion__pregunta__texto">
-                                    {{ actualizacion.pregunta?.pregunta }} </h4>
-                            </div>
-                            <div
-                                class="actualizacion__contenido__informacion__respuesta">
-                                <h5>↳</h5>
+                                class="actualizacion__contenido__informacion__container">
                                 <div
-                                    class="actualizacion__contenido__informacion__respuesta__contenido">
+                                    class="actualizacion__contenido__informacion__pregunta">
                                     <h4
-                                        class="actualizacion__contenido__informacion__respuesta__contenido__texto">{{
-                                        actualizacion.respuesta?.respuesta
-                                        }}</h4>
+                                        class="actualizacion__contenido__informacion__pregunta__texto">
+                                        {{ actualizacion.pregunta?.pregunta }}
+                                    </h4>
+                                </div>
+                                <div
+                                    class="actualizacion__contenido__informacion__respuesta">
+                                    <h5>↳</h5>
+                                    <div
+                                        class="actualizacion__contenido__informacion__respuesta__contenido">
+                                        <h4
+                                            class="actualizacion__contenido__informacion__respuesta__contenido__texto">{{
+                                            actualizacion.respuesta?.respuesta
+                                            }}</h4>
+                                    </div>
                                 </div>
                             </div>
                             }
                             @case(1){
-                            ¡Has seleccionado un producto!
+                            <div
+                                class="actualizacion__contenido__informacion__venta">
+                                <div
+                                    class="actualizacion__contenido__informacion__venta__arriba">
+                                    <h4>Precio establecido:</h4>
+                                    <h3>{{ actualizacion.venta?.precioVenta|
+                                        currency }}</h3>
+                                </div>
+                                <div
+                                    class="actualizacion__contenido__informacion__venta__abajo">
+                                    @if(actualizacion.venta?.costo ===
+                                    'vendedor'){
+                                    <h4>!Envío a cargo tuyo!</h4>
+                                    }
+                                    @else {
+                                    <h4>!Envío a cargo del {{
+                                        actualizacion.venta?.costo }}!</h4>
+                                    }
+                                    <button>Descargar flyer</button>
+                                </div>
+                            </div>
                             }
                             @case(2){
-                            ¡Has vendido un producto!
+                            <div
+                                class="actualizacion__contenido__informacion__venta">
+                                <div
+                                    class="actualizacion__contenido__informacion__venta__arriba">
+                                    <h4>Obtuviste por la venta de {{
+                                        actualizacion.venta?.quantity }}
+                                        productos:</h4>
+                                    @if (actualizacion.venta) {
+                                    <h3>{{ actualizacion.venta.precioVenta *
+                                        actualizacion.venta.quantity | currency
+                                        }}</h3>
+                                    }
+                                </div>
+                                <div
+                                    class="actualizacion__contenido__informacion__venta__abajo">
+                                    <h4>Te sugerimos revisar los pasos a seguir
+                                        para finalizar la venta</h4>
+                                    <button>Estado de venta</button>
+                                </div>
+                            </div>
                             }
                             }
                             }
                             @else{
                             @switch (actualizacion.actualizacion.tipo) {
                             @case(0){
-                            <div class="actualizacion__contenido__informacion__container">
+                            <div
+                                class="actualizacion__contenido__informacion__container">
                                 <div
                                     class="actualizacion__contenido__informacion__pregunta">
                                     <h4
@@ -129,7 +173,7 @@
                             </div>
                             }
                             @case(1){
-                            ¡Has agregado un producto!
+                            HACER CUANDO SE HAGA EL ESTADO DE VENTA
                             }
                             @case(2){
                             <div
@@ -145,12 +189,16 @@
                             @case(3){
                             <div
                                 class="actualizacion__contenido__informacion__venta">
-                                <div class="actualizacion__contenido__informacion__venta__arriba">
+                                <div
+                                    class="actualizacion__contenido__informacion__venta__arriba">
                                     <h4>Obtuviste por la venta:</h4>
-                                    <h3>{{ actualizacion.producto.price | currency }}</h3>
+                                    <h3>{{ actualizacion.producto.price |
+                                        currency }}</h3>
                                 </div>
-                                <div class="actualizacion__contenido__informacion__venta__abajo">
-                                    <h4>Te sugerimos revisar los pasos a seguir para finalizar la venta</h4>
+                                <div
+                                    class="actualizacion__contenido__informacion__venta__abajo">
+                                    <h4>Te sugerimos revisar los pasos a seguir
+                                        para finalizar la venta</h4>
                                     <button>Estado de venta</button>
                                 </div>
                             </div>
