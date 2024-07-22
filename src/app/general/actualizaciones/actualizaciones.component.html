@@ -3,7 +3,7 @@
     <div class="header__logo"></div>
     <div class="header__botones"
         [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
-        <button [routerLink]="[isVendedor? '': '/proveedor']">Inicio</button>
+        <button [routerLink]="isVendedor? ['/vendedor/', idUsuario]: ['/proveedor/', idUsuario]">Inicio</button>
     </div>
 </header>
 <main
@@ -11,8 +11,7 @@
     <div class="actualizaciones">
         <div class="actualizaciones__encabezado">
             <h2>Actualizaciones</h2>
-            <button
-                [routerLink]="[isVendedor? '': '/proveedor']">Volver</button>
+            <button (click)="goBack()">Volver</button>
         </div>
         @defer (when cargado) {
         <div class="actualizaciones__container">
@@ -67,7 +66,7 @@
                             </div>
                             <div
                                 class="actualizacion__contenido__producto__texto">
-                                <h4>{{ actualizacion.producto.title }}</h4>
+                                <h4>{{ actualizacion.producto.nombre }}</h4>
                                 <h5>#{{ actualizacion.producto.id }}</h5>
                             </div>
                         </div>
@@ -192,7 +191,7 @@
                                 <div
                                     class="actualizacion__contenido__informacion__venta__arriba">
                                     <h4>Obtuviste por la venta:</h4>
-                                    <h3>{{ actualizacion.producto.price |
+                                    <h3>{{ actualizacion.producto.precio |
                                         currency }}</h3>
                                 </div>
                                 <div

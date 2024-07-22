@@ -1,3 +1,5 @@
+import { Atributo } from "./atributo-model";
+
 export interface IProduct {
     id:          number;
     title:       string;
@@ -29,4 +31,14 @@ export interface informacion {
     idUsuario:  number;
     stock: number;
     agregados: number
+}
+
+export interface producto{
+    id:          number;
+    nombre:       string;
+    stock:       number;
+    precio: number;
+    descripcion:    string;
+    image:       string;
+    idProveedor: number;
 }

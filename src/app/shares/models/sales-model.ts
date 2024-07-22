@@ -1,4 +1,4 @@
-import { IProduct, productoCompleto } from "./producto-model";
+import { IProduct, producto, productoCompleto } from "./producto-model";
 
 export interface VentaBase {
     idVenta: number
@@ -26,7 +26,7 @@ export type Venta = VentaProceso | VentaCompleta ;
 
 export interface VentaProducto{
     venta: Venta
-    producto: IProduct
+    producto: producto
 }
 
 

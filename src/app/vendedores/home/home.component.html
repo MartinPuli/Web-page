@@ -1,9 +1,9 @@
 <header class="header">
     <div class="header__logo"></div>
     <div class="header__botones">
-        <button [routerLink]="['vendedor/ventas']">Mis Ventas</button>
-        <button [routerLink]="['/proveedor']">Cambiar a Perfil Proveedor</button>
-        <button [routerLink]="['/vendedor/cuenta/']">Mi Cuenta</button>
+        <button [routerLink]="['/vendedor/ventas/', idVendedor]">Mis Ventas</button>
+        <button [routerLink]="['/proveedor/1']">Cambiar a Perfil Proveedor</button>
+        <button [routerLink]="['/vendedor/cuenta/', idVendedor]">Mi Cuenta</button>
     </div>
 </header>
 <main class="home">
@@ -26,7 +26,7 @@
                     <img
                         src="{{ producto.image }}"
                         alt="producto-imagen">
-                    <p> {{ producto.title }}</p>
+                    <p> {{ producto.nombre }}</p>
                 </div>
                 <button type="button" [routerLink]="['/products', producto.id]"> Ver Publicación </button>
             </div>
@@ -43,8 +43,8 @@
             </div>
             <div class="home__ultimo__container__info">
                 <div>
-                    <h4> {{ productoParecido().title }} </h4>
-                    <p> {{ productoParecido().description }}</p>
+                    <h4> {{ productoParecido().nombre }} </h4>
+                    <p> {{ productoParecido().descripcion }}</p>
                 </div>
                 <div class="home__ultimo__container__info__botones">
                     <button type="button" [routerLink]="['/products', productoParecido().id]"> Ver Publicación </button>
@@ -62,7 +62,7 @@
                     <img
                         src="{{ producto.image }}"
                         alt="producto-imagen">
-                    <p> {{ producto.title }}</p>
+                    <p> {{ producto.nombre }}</p>
                 </div>
                 <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
             </div>
@@ -78,7 +78,7 @@
                     <img
                         src="{{ producto.image }}"
                         alt="producto-imagen">
-                    <p> {{ producto.title }}</p>
+                    <p> {{ producto.nombre }}</p>
                 </div>
                 <div class="home__oportunidad__container__producto__botones">
                     <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
@@ -97,7 +97,7 @@
                     <img
                         src="{{ producto.image }}"
                         alt="producto-imagen">
-                    <p> {{ producto.title }}</p>
+                    <p> {{ producto.nombre }}</p>
                 </div>
                 <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
             </div>

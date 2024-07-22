@@ -8,15 +8,15 @@
 
 <main>
     <div class="encabezado">
-        <button type="button" [routerLink]="['']"> Volver</button>
-        <p> {{ producto.category}}</p>
+        <button (click)="goBack()"> Volver</button>
+        <!-- <p> {{ producto.category}}</p> -->
     </div>
     <div class="contenido">
         <div class="contenido__imagen">
             <img src="{{ producto.image }}" alt="imagen-producto">
         </div>
-        <h1 class="contenido__titulo">{{producto.title}}</h1>
-        <h2 class="contenido__precio">{{producto.price |
+        <h1 class="contenido__titulo">{{producto.nombre}}</h1>
+        <h2 class="contenido__precio">{{producto.precio|
             currency}}</h2>
         <div class="contenido__botones">
             <button type="button">Añadir a mis ventas</button>
@@ -34,7 +34,7 @@
         </div>
         <div class="contenido__descripcion">
             <h4>Descipción: </h4>
-            <p>{{producto.description}}</p>
+            <p>{{producto.descripcion}}</p>
         </div>
         <div class="contenido__especificaciones">
             <h4>Descipción: </h4>

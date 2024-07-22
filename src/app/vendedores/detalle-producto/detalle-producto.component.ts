@@ -1,8 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { IProduct} from '../../shares/models/producto-model'; 
+import { IProduct, producto} from '../../shares/models/producto-model'; 
 import { ApiProductosService } from '../../shares/services/api-productos.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PreguntasService } from '../../shares/services/preguntas.service';
 import { pregunta, respuesta } from '../../shares/models/preguntas-model';
@@ -19,13 +19,13 @@ export class DetalleProductoComponent implements OnInit{
   private _apiService = inject(ApiProductosService)
   private _apiPreguntas = inject(PreguntasService)
 
-  producto!: IProduct
+  producto!: producto
   preguntas!: pregunta[]
   respuestas: respuesta[][] = []
 
   preguntar: FormGroup
 
-  constructor(private form: FormBuilder){
+  constructor(private form: FormBuilder, private _location: Location){
     this.preguntar= this.form.group({
       pregunta: ["", Validators.required]
     })
@@ -34,21 +34,14 @@ export class DetalleProductoComponent implements OnInit{
   ngOnInit(): void {
     this._route.params.subscribe({
       next: (params: Params) => {
-        this._apiService.getProduct(Number(params['productId'])).subscribe({
-          next: (data: IProduct) => {
-            this.producto = data
-          },
-          error: (error: any) => {
-            console.log(error)
-          }
-        })
+        
+        this.producto = this._apiService.getProduct(Number(params['productId']))  
 
         this.preguntas = this._apiPreguntas.getPreguntasPorProducto(Number(params['productId']))
         
         this.preguntas.forEach((pregunta)=>{
           this.respuestas.push(this._apiPreguntas.getRespuestasPorPregunta(pregunta.idPregunta))
         })
-
       },
       error: (error: any) => {
         console.log(error)
@@ -59,4 +52,8 @@ export class DetalleProductoComponent implements OnInit{
   hacerPregunta(){
 
   }
+
+  goBack(){
+    this._location.back();
+  } 
 }

@@ -1,4 +1,4 @@
-import { IProduct } from "./producto-model"
+import { IProduct, producto } from "./producto-model"
 
 export interface link{
     idVendedor: number,
@@ -10,5 +10,5 @@ export interface link{
 
 export interface linkCompleto{
     link: link,
-    producto: IProduct
+    producto: producto
 }

@@ -20,69 +20,57 @@ export class PanelGananciasComponent {
   private _apiVentas = inject(VentasService)
   private _apiProductos = inject(ApiProductosService)
 
-  @Input () isVendedor!: Boolean
+  @Input() isVendedor!: Boolean
+  @Input() idUsuario!: number
 
   ventasArray: VentaProducto[] = []
   ventas = signal(this.ventasArray)
   cargado = signal(false)
 
   ngOnInit(): void {
-    let ventasTraidas: Venta[] = this.isVendedor? this._apiVentas.getVentasPorVendedor(1) : this._apiVentas.getVentasPorProveedor(2)
-    
-    const requests = ventasTraidas.map(venta =>
-      this._apiProductos.getProduct(venta.idProduct).pipe(
-        map(producto => ({
-          venta,
-          producto
-        }))
-      )
-    );
+    let ventasTraidas: Venta[] = this.isVendedor ? this._apiVentas.getVentasPorVendedor(this.idUsuario) : this._apiVentas.getVentasPorProveedor(this.idUsuario)
 
-    forkJoin(requests).subscribe({
-      next: (result: VentaProducto[]) => {
-        this.ventasArray = result;
-        this.ventas.set(this.ventasArray);
-        this.cargado.set(true)
-      },
-      error: (error: any) => {
-        console.error(error);
-        this.cargado.set(true) // Establecer en true incluso si hay errores para evitar bloqueo de la interfaz
+    this.ventas.set(ventasTraidas.map(venta => {
+      return {
+        venta,
+        producto: this._apiProductos.getProduct(venta.idProduct)
       }
-    });
+    }))
+    this.cargado.set(true)
   }
 
   ngOnDestroy(): void {
     this.cargado.set(false)
   }
 
-  cantidadVentasProceso = computed(()=>{
+  cantidadVentasProceso = computed(() => {
     let contador: number = 0
     this.ventas().forEach(venta => {
-      if(venta.venta.state == 'proceso') contador ++;
+      if (venta.venta.state == 'proceso') contador++;
     });
     return contador
   })
 
-  cantidadVentasCompletadas = computed(()=>{
+  cantidadVentasCompletadas = computed(() => {
     let contador: number = 0
     this.ventas().forEach(venta => {
-      if(venta.venta.state == 'completa') contador ++;
+      if (venta.venta.state == 'completa') contador++;
     });
     return contador
   })
 
-  gananciasTotales = computed(()=>{
+  gananciasTotales = computed(() => {
     let ganancias: number = 0
     this.ventas().forEach(venta => {
-      if(venta.venta.state == 'completa') ganancias += venta.producto.price;
+      if (venta.venta.state == 'completa') ganancias += venta.producto.precio;
     });
     return ganancias
   })
 
-  gananciasVendedorTotales = computed(()=>{
+  gananciasVendedorTotales = computed(() => {
     let ganancias: number = 0
     this.ventas().forEach(venta => {
-      if(venta.venta.state == 'completa') ganancias += venta.venta.precioVenta - venta.producto.price;
+      if (venta.venta.state == 'completa') ganancias += venta.venta.precioVenta - venta.producto.precio;
     });
     return ganancias
   })

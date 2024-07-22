@@ -92,11 +92,51 @@ export class ActualizacionesService {
       idProducto: 10,
       fecha: new Date('2023-09-01T18:00:00Z'),
       idUsuario: 2
+    }, 
+    {
+      isVendedor: false,
+      tipo: 3,
+      idProducto: 5,
+      fecha: new Date('2023-09-01T18:00:00Z'),
+      idUsuario: 1
+    },
+    {
+      isVendedor: false,
+      tipo: 3,
+      idProducto: 2,
+      fecha: new Date('2023-09-01T18:00:00Z'),
+      idUsuario: 1
+    },
+    {
+      isVendedor: false,
+      tipo: 2,
+      idProducto: 10,
+      fecha: new Date('2023-09-01T18:00:00Z'),
+      idUsuario: 1
+    },
+    {
+      isVendedor: false,
+      tipo: 1,
+      idProducto: 10,
+      fecha: new Date('2023-09-01T18:00:00Z'),
+      idUsuario: 2
+    },
+    {
+      isVendedor: true,
+      tipo: 1,
+      idProducto: 10,
+      fecha: new Date('2023-09-01T18:00:00Z'),
+      idUsuario: 2
     }
   ]
 
-  getActualizacionesUsuario(id:number){
-    return this.actualizaciones.filter(actualizacion =>actualizacion.idUsuario === id)
+  getActualizacionesVendedor(id: number) {
+    return this.actualizaciones.filter(actualizacion => actualizacion.idUsuario === id && actualizacion.isVendedor)
   }
+
+  getActualizacionesProveedor(id: number) {
+    return this.actualizaciones.filter(actualizacion => actualizacion.idUsuario === id && !actualizacion.isVendedor)
+  }
+
 
 }

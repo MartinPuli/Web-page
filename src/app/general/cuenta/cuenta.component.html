@@ -3,8 +3,9 @@
     <div class="header__logo"></div>
     <div class="header__botones"
         [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
-        <button [routerLink]="[isVendedor? '': '/proveedor']">Inicio</button>
-        <button [routerLink]="[isVendedor? '/vendedor/actualizaciones': '/proveedor/actualizaciones']">Actualizaciones</button>
+        <button [routerLink]="isVendedor? ['/vendedor/', idUsuario]: ['/proveedor/', idUsuario]">Inicio</button>
+        <button
+            [routerLink]="isVendedor? ['/vendedor/actualizaciones/', idUsuario]: ['/proveedor/actualizaciones/', idUsuario]">Actualizaciones</button>
     </div>
 </header>
 <main>
@@ -12,15 +13,18 @@
         [ngClass]="{'vendedor vendedor__cuenta': isVendedor, 'proveedor proveedor__cuenta': !isVendedor}">
         <div class="cuenta__encabezado">
             <h1>Mi cuenta</h1>
-            <button
-                [routerLink]="[isVendedor? '': '/proveedor']">Volver</button>
+            <button (click)="goBack()">Volver</button>
         </div>
         <div class="cuenta__info">
             <img class="cuenta__info__imagen" alt="imagen-usuario"
                 src="{{ usuario?.img }}">
             <div class="cuenta__info__principal">
                 <div>
-                    <h3>{{ usuario?.name }}</h3>
+                    <h3>@if(tipoUsuario(usuario)){
+                        {{ usuario.name }}
+                        }@else {
+                        {{ usuario?.brandName }}
+                        }</h3>
                 </div>
                 <div>
                     <h3>{{ usuario?.email }}</h3>
@@ -38,16 +42,16 @@
             <div class="cuenta__adicional__adicionales">
                 <h2>Datos adicionales</h2>
                 <div>
-                    <h3>{{ usuario?.additionalData?.username }}</h3>
+                    <h3>{{ usuario?.username }}</h3>
                 </div>
                 <div>
                     <h3> ******** </h3>
                 </div>
                 <div>
-                    <h3>{{ usuario?.additionalData?.address }}</h3>
+                    <h3>{{ usuario?.address }}</h3>
                 </div>
                 <div>
-                    <h3>{{ usuario?.additionalData?.recoveryEmail
+                    <h3>{{ usuario?.recoveryEmail
                         }}</h3>
                 </div>
                 <button> Editar datos</button>
@@ -55,25 +59,25 @@
             <div class="cuenta__adicional__seguridad">
                 <h2>Seguridad</h2>
                 <div class="cuenta__adicional__container"
-                    [ngClass]="{'completo': usuario?.security?.twoStepVerification, 'incompleto': !usuario?.security?.twoStepVerification}">
+                    [ngClass]="{'completo': usuario?.twoStepVerification, 'incompleto': !usuario?.twoStepVerification}">
                     <h3>Verificación en dos pasos</h3>
                     <i class="fa-solid fa-check"
-                        *ngIf="usuario?.security?.twoStepVerification"></i>
+                        *ngIf="usuario?.twoStepVerification"></i>
                     <i class="fas fa-times-circle"
-                        *ngIf="!usuario?.security?.twoStepVerification"></i>
+                        *ngIf="!usuario?.twoStepVerification"></i>
 
                 </div>
                 <div class="cuenta__adicional__container"
-                    [ngClass]="{'completo': usuario?.security?.trustedUsers, 'incompleto': !usuario?.security?.trustedUsers}">
+                    [ngClass]="{'completo': usuario?.trustedUsers, 'incompleto': !usuario?.trustedUsers}">
                     <h3>Usuarios de confianza</h3>
                     <i class="fa-solid fa-check"
-                        *ngIf="usuario?.security?.trustedUsers"></i>
+                        *ngIf="usuario?.trustedUsers"></i>
                     <i class="fas fa-times-circle"
-                        *ngIf="!usuario?.security?.trustedUsers"></i>
+                        *ngIf="!usuario?.trustedUsers"></i>
                 </div>
             </div>
         </div>
     </div>
-    <app-panel-ganancias [isVendedor]=isVendedor></app-panel-ganancias>
-    <app-logros [isVendedor]=isVendedor></app-logros>
+    <app-panel-ganancias [isVendedor]=isVendedor [idUsuario]=idUsuario></app-panel-ganancias>
+    <app-logros [isVendedor]=isVendedor [idUsuario]=idUsuario></app-logros>
 </main>

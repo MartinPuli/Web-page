@@ -1,12 +1,13 @@
 import { Component, inject, input, output } from '@angular/core';
 import { UsuariosService } from '../../shares/services/usuarios.service';
 import { ActivatedRoute, Params, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Router } from 'express';
-import { User } from '../../shares/models/usuario-model';
+import { Usuario, Vendedor } from '../../shares/models/usuario-model';
 import { LogrosComponent } from '../logros/logros.component';
 import { ValueChangeEvent } from '@angular/forms';
 import { PanelGananciasComponent } from '../panel-ganancias/panel-ganancias.component';
+import { producto } from '../../shares/models/producto-model';
 
 @Component({
   selector: 'app-cuenta',
@@ -19,7 +20,10 @@ export class CuentaComponent {
   private _apiUsuarios = inject(UsuariosService)
   private _route = inject(ActivatedRoute)
   isVendedor!: Boolean
-  usuario!: User | null
+  usuario!: Usuario | null
+  idUsuario!: number
+
+  constructor(private _location: Location){}
 
   ngOnInit(): void {
     this._route.params.subscribe({
@@ -27,11 +31,21 @@ export class CuentaComponent {
         this.isVendedor = params['tipo'] == 'vendedor'
           ? true
           : false
+        this.idUsuario = Number(params['idUsuario'])
+        this.usuario = this.isVendedor ? this._apiUsuarios.getVendedor(this.idUsuario) : this._apiUsuarios.getProveedor(this.idUsuario)
       },
       error: (error: any) => {
         console.log(error)
       }
     })
-    this.usuario = this.isVendedor? this._apiUsuarios.getUsuario(1) : this._apiUsuarios.getUsuario(2)
   }
+
+  tipoUsuario(user: Usuario | null): user is Vendedor {
+    return this.isVendedor? true : false;
+  }
+
+  goBack(){
+    this._location.back();
+  } 
+
 }

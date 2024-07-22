@@ -1,6 +1,6 @@
 import { Component, Output, Signal, ViewChild, computed, inject, signal, viewChild } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Actualizacion } from '../../shares/models/actualizacion-model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
@@ -23,23 +23,12 @@ import { ActualizacionesService } from '../../shares/services/actualizaciones.se
 })
 export class HomeProveedorComponent {
 
+  private _route = inject(ActivatedRoute)
   ganancias = signal(0)
   simulacroActualizaciones: Actualizacion[] = []
   actualizaciones = signal(this.simulacroActualizaciones)
   _apiActualizaciones = inject(ActualizacionesService)
-
-  @ViewChild(PanelGananciasComponent) child!: PanelGananciasComponent;
-
-  ngAfterViewChecked(): void {
-    this.ganancias.set(this.child.gananciasTotales())
-  }
-
-  constructor(private dialog: MatDialog) { }
-
-  ngOnInit(): void {
-    this.simulacroActualizaciones = this._apiActualizaciones.getActualizacionesUsuario(2)
-    this.actualizaciones.set(this.simulacroActualizaciones)
-  }
+  idUsuario!: number
 
   actualizacionesMostradas = computed(() => {
     const arrayParcial: Actualizacion[] = this.actualizaciones()
@@ -47,6 +36,30 @@ export class HomeProveedorComponent {
       ? arrayParcial.sort((a, b) => b.fecha.getTime() - a.fecha.getTime()).slice(0, 3)
       : arrayParcial
   })
+
+  @ViewChild(PanelGananciasComponent) child!: PanelGananciasComponent;
+
+  constructor(private dialog: MatDialog) { }
+
+  ngOnInit(): void {
+    this._route.params.subscribe({
+      next: (params: Params) => {
+        this.idUsuario = Number(params['idUsuario'])
+      },
+      error: (error: any) => {
+        console.log(error)
+      }
+    })
+  }
+  ngAfterViewInit(): void {
+    this.simulacroActualizaciones = this._apiActualizaciones.getActualizacionesProveedor(this.idUsuario)
+    this.actualizaciones.set(this.simulacroActualizaciones)
+  }
+
+  ngAfterViewChecked(): void {
+    this.ganancias.set(this.child.gananciasTotales())
+  }
+
 
   abrirDetalle(actualizacion: Actualizacion): void {
     this.dialog.open(DetallesComponent, {

@@ -1,9 +1,9 @@
 <header class="header">
     <div class="header__logo"></div>
     <div class="header__botones">
-        <button [routerLink]="['/proveedor/ventas']">Publicaciones en Proceso</button>
+        <button [routerLink]="['/proveedor/ventas/',idUsuario]">Publicaciones en Proceso</button>
         <button [routerLink]="['']">Cambiar a Perfil Vendedor</button>
-        <button [routerLink]="['/proveedor/cuenta/']">Mi Cuenta</button>
+        <button [routerLink]="['/proveedor/cuenta/', idUsuario]">Mi Cuenta</button>
     </div>
 </header>
 <main class="proveedor">
@@ -27,7 +27,7 @@
         <div class="proveedor__paneles__actualizaciones">
             <div class="proveedor__paneles__actualizaciones__header">
                 <h2>Actualizaciones</h2>
-                <button [routerLink]="['/proveedor/actualizaciones']">Ver Todas</button>
+                <button [routerLink]="['/proveedor/actualizaciones/', idUsuario]">Ver Todas</button>
             </div>
             <div class="proveedor__paneles__actualizaciones__contenido">
                 <div
@@ -73,6 +73,6 @@
         </div>
     </div>
     <div class="provisional"></div>
-    <app-panel-ganancias></app-panel-ganancias>
-    <app-logros [isVendedor]=false></app-logros>
+    <app-panel-ganancias [isVendedor]=false [idUsuario]=idUsuario></app-panel-ganancias>
+    <app-logros [isVendedor]=false [idUsuario]=idUsuario></app-logros>
 </main>

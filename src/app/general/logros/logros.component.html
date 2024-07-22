@@ -1,10 +1,10 @@
 <div class="logros">
     <h2>Logros y Recompensas</h2>
     <div class="logros__container">
-        @for (logro of logrosObtenidos; track $index) {
+        @for (logro of logros; track $index) {
         <div class="logros__container__logro"
-            [ngClass]="logro.estado? 'obtenido' : 'no-obtenido'">
-            <div class="">
+            [ngClass]="arrayObtenidos.includes(logro.id)? 'obtenido' : 'no-obtenido'">
+            <div>
                 <p>{{ logro.descripcion}}</p>
                 <h4 class="card-title"><b>{{ logro.logro }}</b></h4>
             </div>

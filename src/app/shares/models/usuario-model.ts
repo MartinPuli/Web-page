@@ -1,19 +1,22 @@
-export interface User {
+export type Usuario = Vendedor | Proveedor
+
+interface User {
     id: number
-    name: string;
     email: string;
     cuit: string;
     phone: string;
     img: string;
-    tipo: 'vendedor' | 'proveedor';
-    additionalData: {
-        username: string;
-        password: string;
-        address: string;
-        recoveryEmail: string;
-    };
-    security: {
-        twoStepVerification: boolean;
-        trustedUsers: boolean;
-    }
+    username: string;
+    address: string;
+    recoveryEmail: string;
+    twoStepVerification: boolean;
+    trustedUsers: boolean;
+}
+
+export interface Vendedor extends User {
+    name: string
+}
+
+export interface Proveedor extends User {
+    brandName: string
 }

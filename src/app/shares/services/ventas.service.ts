@@ -60,6 +60,20 @@ export class VentasService {
       fechaEntrega: new Date('December 20, 2024 00:00:00'),
       costo: 'vendedor',
       precioVenta: 500
+    },
+    {
+      idVenta: 6, 
+      idProduct: 6,
+      idProveedor: 1,
+      idVendedor: 2,
+      quantity: 6,
+      state: 'completa',
+      method: "vendedor",
+      deadline: new Date('December 18, 2024 00:00:00'),
+      correo: null,
+      fechaEntrega: new Date('December 20, 2024 00:00:00'),
+      costo: 'vendedor',
+      precioVenta: 500
     }
   ];
 

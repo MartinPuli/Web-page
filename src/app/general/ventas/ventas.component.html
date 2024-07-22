@@ -3,7 +3,7 @@
     <div class="header__logo"></div>
     <div class="header__botones"
         [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
-        <button [routerLink]="[isVendedor? '': '/proveedor']">Inicio</button>
+        <button [routerLink]="isVendedor? ['/vendedor/', idUsuario]: ['/proveedor/', idUsuario]">Inicio</button>
         <button
             [routerLink]="[isVendedor? '/vendedor/cuenta': '/proveedor/cuenta']">Mi
             cuenta</button>
@@ -13,8 +13,7 @@
     [ngClass]="{'vendedor vendedor__cuenta': isVendedor, 'proveedor proveedor__cuenta': !isVendedor}">
     <div class="encabezado">
         <h1>Mis ventas</h1>
-        <button
-            [routerLink]="[isVendedor? '': '/proveedor']">Volver</button>
+        <button (click)="goBack()">Volver</button>
     </div>
     @if (isVendedor) {
     <div class="links">
@@ -26,7 +25,7 @@
                 formControlName="busqueda">
             <button type="submit">Filtrar</button>
         </form>
-        @defer (when cargado) {
+        @defer (when linksCargado) {
         @if(linksVendedorFiltrados().length != 0)
         {
         @for (link of linksVendedorFiltrados(); track $index) {
@@ -37,8 +36,8 @@
                 </div>
                 <div class="card__producto__detalles">
                     <h3
-                        [innerHTML]="destacarTermino(link.producto.title, valorFiltradoLinks())"></h3>
-                    <h3>Rating: {{ link.producto.rating.rate }}/10</h3>
+                        [innerHTML]="destacarTermino(link.producto.nombre , valorFiltradoLinks())"></h3>
+                    <h3>Rating: 3/10</h3>
                 </div>
             </div>
             <div class="card__info">
@@ -92,7 +91,7 @@
                 </div>
                 <div class="card__producto__detalles">
                     <h3
-                        [innerHTML]="destacarTermino(venta.producto.title, valorFiltradoProceso())"></h3>
+                        [innerHTML]="destacarTermino(venta.producto.nombre , valorFiltradoProceso())"></h3>
                     <h3>Unidades: {{ venta.venta.quantity }}</h3>
                 </div>
             </div>
@@ -105,7 +104,7 @@
                         {{ venta.venta.precioVenta | currency }}
                         }
                         @else {
-                        {{ venta.producto.price | currency }}
+                        {{ venta.producto.precio| currency }}
                         }</h2>
                 </div>
                 <div class="card__info__entrega">
@@ -199,7 +198,7 @@
                 </div>
                 <div class="card__producto__detalles">
                     <h3
-                        [innerHTML]="destacarTermino(venta.producto.title, valorFiltradoCompleto())"></h3>
+                        [innerHTML]="destacarTermino(venta.producto.nombre , valorFiltradoCompleto())"></h3>
                     <h3>Unidades: {{ venta.venta.quantity }}</h3>
                 </div>
             </div>
@@ -212,7 +211,7 @@
                         {{ venta.venta.precioVenta | currency }}
                         }
                         @else {
-                        {{ venta.producto.price | currency }}
+                        {{ venta.producto.precio| currency }}
                         }</h2>
                 </div>
                 <div class="card__info__entrega">

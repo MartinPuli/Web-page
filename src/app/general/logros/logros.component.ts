@@ -2,6 +2,8 @@ import { Component, inject, Input, input } from '@angular/core';
 import { Logros } from '../../shares/models/logros-model';
 import { CommonModule } from '@angular/common';
 import { LogrosService } from '../../shares/services/logros.service';
+import { RelLogro } from '../../shares/models/relacion_logro_usuario';
+import { LogrosRelacionService } from '../../shares/services/logros-relacion.service';
 
 @Component({
   selector: 'app-logros',
@@ -11,16 +13,22 @@ import { LogrosService } from '../../shares/services/logros.service';
   styleUrl: './logros.component.scss'
 })
 export class LogrosComponent {
-  @Input () isVendedor!: Boolean
+  @Input() isVendedor!: Boolean
+  @Input() idUsuario!: number
 
   private _apiLogros = inject(LogrosService)
+  private _apiLogrosObtenidos = inject(LogrosRelacionService)
+  arrayObtenidos: string[] = []
 
-  logrosObtenidos!:Logros[]
+  logros!: Logros[]
 
   ngOnInit(): void {
-    this.logrosObtenidos = this.isVendedor
+    this.logros = this.isVendedor
       ? this._apiLogros.getLogrosVendedor()
       : this._apiLogros.getLogrosProveedor()
-    
+    this.isVendedor
+      ? this._apiLogrosObtenidos.getLogrosConseguidosVendedor(this.idUsuario).forEach((logro) => this.arrayObtenidos.push(logro.idLogro))
+      : this._apiLogrosObtenidos.getLogrosConseguidosProveedor(this.idUsuario).forEach((logro) => this.arrayObtenidos.push(logro.idLogro))
+
   }
 }

@@ -1,7 +1,7 @@
 import { Component, computed, inject, Signal, signal } from '@angular/core';
 import { Venta, VentaCompleta, VentaProducto } from '../../shares/models/sales-model';
 import { VentasService } from '../../shares/services/ventas.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { FormatoFechaVentasPipe } from '../../shares/pipes/formato-fecha-ventas.pipe';
@@ -30,12 +30,14 @@ export class VentasComponent {
   inputCompleto: FormGroup
   inputLinks: FormGroup
 
-  ventasArray!: VentaProducto[]
+  ventasArray: VentaProducto[] = []
   signalVentas = signal(this.ventasArray)
-  linksTraidos!: linkCompleto[]
+  linksTraidos: linkCompleto[] = []
   linksVendedor = signal(this.linksTraidos)
   cargado: Boolean = false
+  linksCargado: Boolean = false
   isVendedor!: Boolean
+  idUsuario!: number
 
   valorFiltradoProceso = signal("")
   valorFiltradoCompleto = signal("")
@@ -43,24 +45,24 @@ export class VentasComponent {
 
   ventasProceso = computed(() => {
     return this.signalVentas().filter((venta) => {
-      return venta.venta.state == "proceso" && venta.producto.title.toLowerCase().includes(this.valorFiltradoProceso())
+      return venta.venta.state == "proceso" && venta.producto.nombre.toLowerCase().includes(this.valorFiltradoProceso())
     })
   })
 
   ventasCompleto = computed(() => {
     return this.signalVentas().filter((venta) => {
-      return venta.venta.state == "completa" && venta.producto.title.toLowerCase().includes(this.valorFiltradoCompleto())
+      return venta.venta.state == "completa" && venta.producto.nombre.toLowerCase().includes(this.valorFiltradoCompleto())
     })
   })
 
   linksVendedorFiltrados = computed(() => {
     return this.linksVendedor().filter((link) => {
-      return link.producto.title.toLowerCase().includes(this.valorFiltradoLinks())
+      return link.producto.nombre.toLowerCase().includes(this.valorFiltradoLinks())
     })
   })
 
 
-  constructor(private form: FormBuilder) {
+  constructor(private form: FormBuilder, private _location: Location) {
     this.inputProceso = this.form.group({
       busqueda: ["", Validators.required]
     })
@@ -76,66 +78,67 @@ export class VentasComponent {
     this._route.params.subscribe({
       next: (params: Params) => {
         this.isVendedor = params['tipo'] == 'vendedor' ? true : false;
-        console.log('isVendedor:', this.isVendedor);
+        this.idUsuario = Number(params['idUsuario'])
 
-        let ventasTraidas: Venta[] = this.isVendedor ? this._apiVentas.getVentasPorVendedor(1) : this._apiVentas.getVentasPorProveedor(2);
+        let ventasTraidas: Venta[] = this.isVendedor ? this._apiVentas.getVentasPorVendedor(this.idUsuario) : this._apiVentas.getVentasPorProveedor(this.idUsuario);
 
-        const requests = ventasTraidas.map(venta =>
-          this._apiProductos.getProduct(venta.idProduct).pipe(
-            map(producto => ({
+        if (ventasTraidas.length) {
+          this.signalVentas.set(ventasTraidas.map(venta => {
+            return {
               venta,
-              producto
-            }))
-          )
-        )
-        
-
-        forkJoin(requests).subscribe({
-          next: (result) => {
-            this.ventasArray = result
-            this.signalVentas.set(this.ventasArray)
-            if(!this.isVendedor)this.cargado = true;
-          },
-          error: (error: any) => {
-            console.error(error);
-            this.cargado = true;
-          }
-        });
-
-        if(this.isVendedor){
-          let links = this._links.getLinksPorVendedor(1)
-
-          const requestsLinks = links.map(link =>
-            this._apiProductos.getProduct(link.idProduct).pipe(
-              map(producto => ({
-                link,
-                producto
-              }))
-            )
-          )
-
-          forkJoin(requestsLinks).subscribe({
-            next: (result) => {
-              this.linksTraidos = result
-              this.linksVendedor.set(this.linksTraidos)
-              this.cargado = true;
-            },
-            error: (error: any) => {
-              console.error(error);
-              this.cargado = true;
+              producto: this._apiProductos.getProduct(venta.idProduct)
             }
-          });
+          }
+          ))
+          this.cargado = true
+
+        } else {
+          this.cargado = true
+        }
+
+        if (this.isVendedor) {
+          let links: link[] = this._links.getLinksPorVendedor(this.idUsuario)
+
+          if (links.length) {
+            this.linksVendedor.set(links.map(link => {
+              return {
+                link,
+                producto: this._apiProductos.getProduct(link.idProduct)
+              }
+            }
+            ))
+            this.linksCargado = true;
+
+            // forkJoin(requestsLinks).subscribe({
+            //   next: (result) => {
+            //     this.linksTraidos = result
+            //     this.linksVendedor.set(this.linksTraidos)
+            //     this.linksCargado = true;
+            //   },
+            //   error: (error: any) => {
+            //     console.error(error);
+            //     this.linksCargado = true;
+            //   }
+            // });
+          } else {
+            this.linksCargado = true
+          }
+        } else {
+          this.linksCargado = true
         }
 
       },
       error: (error: any) => {
         console.log(error);
+        this.cargado = true
+        this.linksCargado = true
       }
     });
   }
 
   ngOnDestroy(): void {
     this.cargado = false
+    this.linksCargado = false
   }
 
 
@@ -153,4 +156,7 @@ export class VentasComponent {
     return texto.replace(regex, `<b>$1</b>`);
   }
 
+  goBack() {
+    this._location.back();
+  }
 }

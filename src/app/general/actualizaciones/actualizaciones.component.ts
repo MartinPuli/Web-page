@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, inject, Input, input, signal } from '@angular/core';
 import { ActivatedRoute, Params, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { ActualizacionesService } from '../../shares/services/actualizaciones.service';
@@ -31,13 +31,13 @@ export class ActualizacionesComponent {
   actualizaciones: ActualizacionCompleta[] = []
 
   respuestaForm: FormGroup
-  
+
   isVendedor!: Boolean
-  user!: number
+  idUsuario!: number
   cargado = signal(false)
   readonly panelOpenState = signal(false);
 
-  constructor(private form: FormBuilder){
+  constructor(private form: FormBuilder, private _location: Location) {
     this.respuestaForm = this.form.group({
       respuesta: ["", Validators.required]
     })
@@ -49,7 +49,7 @@ export class ActualizacionesComponent {
         this.isVendedor = params['tipo'] == 'vendedor'
           ? true
           : false
-        this.user = this.isVendedor? 1 : 2
+        this.idUsuario = Number(params['idUsuario'])
       },
       error: (error: any) => {
         console.log(error)
@@ -58,42 +58,46 @@ export class ActualizacionesComponent {
   }
 
   ngAfterViewInit(): void {
-    let actualizacionesTraidad: Actualizacion[] = this._apiActualizaciones.getActualizacionesUsuario(this.user)
-    
-    const requests = actualizacionesTraidad.map(actualizacion =>
-      this._apiProductos.getProduct(actualizacion.idProducto).pipe(
-        map(producto => ({
-          actualizacion,
-          producto,
-          pregunta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : isProveedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : undefined,
-          respuesta: isVendedorActualizacionTipo0(actualizacion)? this._apiPreguntas.getRespuestasPorId(actualizacion.idRespuesta) : undefined,
-          venta: isVendedorActualizacionTipo1o2(actualizacion)? this._apiVentas.getVentasPorId(actualizacion.idVenta) : undefined
-        }))
-      )
-    );
+    let actualizacionesTraidas: Actualizacion[] = this.isVendedor ? this._apiActualizaciones.getActualizacionesVendedor(this.idUsuario) : this._apiActualizaciones.getActualizacionesProveedor(this.idUsuario)
 
-    forkJoin(requests).subscribe({
-      next: (result: ActualizacionCompleta[]) => {
-        this.actualizaciones = result
-        this.cargado.set(true)
-      },
-      error: (error: any) => {
-        console.error(error);
-        this.cargado.set(true) 
+    this.actualizaciones = actualizacionesTraidas.map(actualizacion => {
+      return {
+        actualizacion,
+        producto: this._apiProductos.getProduct(actualizacion.idProducto),
+        pregunta: isVendedorActualizacionTipo0(actualizacion) ? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : isProveedorActualizacionTipo0(actualizacion) ? this._apiPreguntas.getPreguntaPorId(actualizacion.idPregunta) : undefined,
+        respuesta: isVendedorActualizacionTipo0(actualizacion) ? this._apiPreguntas.getRespuestasPorId(actualizacion.idRespuesta) : undefined,
+        venta: isVendedorActualizacionTipo1o2(actualizacion) ? this._apiVentas.getVentasPorId(actualizacion.idVenta) : undefined
       }
     });
+
+    this.cargado.set(true)
+
+    // forkJoin(requests).subscribe({
+    //   next: (result: ActualizacionCompleta[]) => {
+    //     this.actualizaciones = result
+    //     this.cargado.set(true)
+    //   },
+    //   error: (error: any) => {
+    //     console.error(error);
+    //     this.cargado.set(true) 
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {
     this.cargado.set(false)
-    
+
   }
 
-  linksAsociados(id: number){
+  linksAsociados(id: number) {
     return this._apiLinks.getCantidadLinksProducto(id)
   }
 
-  responder(){
+  responder() {
 
+  }
+
+  goBack() {
+    this._location.back();
   }
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Signal, computed, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IProduct} from '../../shares/models/producto-model'; 
+import { producto} from '../../shares/models/producto-model'; 
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
@@ -15,44 +15,45 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 })
 export class HomeComponent {
 
-  private _apiProductos = inject(ApiProductosService)
+  private _apiproductos = inject( ApiProductosService )
 
   valorFiltrado:string = ''
-  productos: IProduct[] = []
+  productos: producto[] = []
   productosMostrados = signal(this.productos)
 
   inputBusqueda: FormGroup
+  idVendedor: null | number = 2
 
-  productosInspirados:Signal<IProduct[]> = computed(()=>{
-    let arrayParcial: IProduct[] = []
+  productosInspirados:Signal<producto[]> = computed(()=>{
+    let arrayParcial: producto[] = []
     for(let i = 0; i < 5; i++){
       arrayParcial.push(this.productosMostrados()[i])
     }
     return arrayParcial
   }) 
 
-  productoParecido: Signal<IProduct> = computed(()=>{
+  productoParecido:Signal<producto> = computed(()=>{
     return this.productosMostrados()[6]
   })
 
-  productosVendidos:Signal<IProduct[]> = computed(()=>{
-    let arrayParcial: IProduct[] = []
+  productosVendidos:Signal<producto[]> = computed(()=>{
+    let arrayParcial: producto[] = []
     for(let i = 0; i < 10; i++){
       arrayParcial.push(this.productosMostrados()[i])
     }
     return arrayParcial
   }) 
 
-  productosOportunidad:Signal<IProduct[]> = computed(()=>{
-    let arrayParcial: IProduct[] = []
+  productosOportunidad:Signal<producto[]> = computed(()=>{
+    let arrayParcial: producto[] = []
     for(let i = 10; i < 14; i++){
       arrayParcial.push(this.productosMostrados()[i])
     }
     return arrayParcial
   }) 
 
-  productosVendidosMes:Signal<IProduct[]> = computed(()=>{
-    let arrayParcial: IProduct[] = []
+  productosVendidosMes:Signal<producto[]> = computed(()=>{
+    let arrayParcial: producto[] = []
     for(let i = 0; i < 13; i++){
       arrayParcial.push(this.productosMostrados()[i])
     }
@@ -68,10 +69,7 @@ export class HomeComponent {
   }
   
   ngOnInit(): void {
-    this._apiProductos.getProducts().subscribe((data)=>{
-      this.productos = data
-      this.productosMostrados.set(this.productos)
-    })
+      this.productosMostrados.set(this._apiproductos.getProducts())
   } 
 
   filtrar(){}
