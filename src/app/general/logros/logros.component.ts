@@ -2,7 +2,7 @@ import { Component, inject, Input, input } from '@angular/core';
 import { Logros } from '../../shares/models/logros-model';
 import { CommonModule } from '@angular/common';
 import { LogrosService } from '../../shares/services/logros.service';
-import { RelLogro } from '../../shares/models/relacion_logro_usuario';
+import { RelLogro } from '../../shares/models/relacion-logro-usuario-model';
 import { LogrosRelacionService } from '../../shares/services/logros-relacion.service';
 
 @Component({

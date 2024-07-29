@@ -1,4 +1,5 @@
-import { IProduct, producto } from "./producto-model"
+import { IProduct, producto, Rating } from "./producto-model"
+import { Rates } from "./rates-model"
 
 export interface link{
     idVendedor: number,
@@ -11,4 +12,5 @@ export interface link{
 export interface linkCompleto{
     link: link,
     producto: producto
+    rating: number | null
 }

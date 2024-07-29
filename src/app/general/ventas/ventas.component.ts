@@ -11,6 +11,7 @@ import { IProduct } from '../../shares/models/producto-model';
 import { forkJoin, map, Observable } from 'rxjs';
 import { LinksService } from '../../shares/services/links.service';
 import { link, linkCompleto } from '../../shares/models/links-model';
+import { RatesService } from '../../shares/services/rates.service';
 
 @Component({
   selector: 'app-ventas-proceso',
@@ -23,6 +24,7 @@ export class VentasComponent {
 
   private _apiVentas = inject(VentasService)
   private _apiProductos = inject(ApiProductosService)
+  private _apiRates = inject(RatesService)
   private _route = inject(ActivatedRoute)
   private _links = inject(LinksService)
 
@@ -98,12 +100,16 @@ export class VentasComponent {
 
         if (this.isVendedor) {
           let links: link[] = this._links.getLinksPorVendedor(this.idUsuario)
+          let ratingParcial = 0
 
           if (links.length) {
             this.linksVendedor.set(links.map(link => {
               return {
                 link,
-                producto: this._apiProductos.getProduct(link.idProduct)
+                producto: this._apiProductos.getProduct(link.idProduct),
+                rating: this._apiRates.getRatesProducto(link.idProduct).length
+                  ? this._apiRates.getRatesProducto(link.idProduct).reduce((a,b)=> a + b, 0) / this._apiRates.getRatesProducto(link.idProduct).length
+                  : null
               }
             }
             ))

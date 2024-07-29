@@ -19,7 +19,8 @@ export class ApiProductosService {
       precio: 440,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 1
     },
     {
       id: 2,
@@ -28,7 +29,8 @@ export class ApiProductosService {
       precio: 576,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 13
     },
     {
       id: 3,
@@ -37,7 +39,8 @@ export class ApiProductosService {
       precio: 655,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 4
     },
     {
       id: 4,
@@ -46,7 +49,8 @@ export class ApiProductosService {
       precio: 553,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 5
     },
     {
       id: 5,
@@ -55,7 +59,8 @@ export class ApiProductosService {
       precio: 265,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 6
     },
     {
       id: 6,
@@ -64,7 +69,8 @@ export class ApiProductosService {
       precio: 337,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 8
     },
     {
       id: 7,
@@ -73,7 +79,8 @@ export class ApiProductosService {
       precio: 167,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 13
     },
     {
       id: 8,
@@ -82,7 +89,8 @@ export class ApiProductosService {
       precio: 158,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 15
     },
     {
       id: 9,
@@ -91,7 +99,8 @@ export class ApiProductosService {
       precio: 462,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 1
     },
     {
       id: 10,
@@ -100,7 +109,8 @@ export class ApiProductosService {
       precio: 476,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 1
     },
     {
       id: 11,
@@ -109,7 +119,8 @@ export class ApiProductosService {
       precio: 732,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 3
     },
     {
       id: 12,
@@ -118,7 +129,8 @@ export class ApiProductosService {
       precio: 633,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 4
     },
     {
       id: 13,
@@ -127,7 +139,8 @@ export class ApiProductosService {
       precio: 143,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 6
     },
     {
       id: 14,
@@ -136,7 +149,8 @@ export class ApiProductosService {
       precio: 625,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 18
     },
     {
       id: 15,
@@ -145,7 +159,8 @@ export class ApiProductosService {
       precio: 862,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 20
     },
     {
       id: 16,
@@ -154,7 +169,8 @@ export class ApiProductosService {
       precio: 341,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 9
     },
     {
       id: 17,
@@ -163,7 +179,8 @@ export class ApiProductosService {
       precio: 295,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 20
     },
     {
       id: 18,
@@ -172,7 +189,8 @@ export class ApiProductosService {
       precio: 758,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 20
     },
     {
       id: 19,
@@ -181,7 +199,8 @@ export class ApiProductosService {
       precio: 571,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 19
     },
     {
       id: 20,
@@ -190,7 +209,8 @@ export class ApiProductosService {
       precio: 257,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 1
     },
     {
       id: 21,
@@ -199,7 +219,8 @@ export class ApiProductosService {
       precio: 894,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 2
     },
     {
       id: 22,
@@ -208,7 +229,8 @@ export class ApiProductosService {
       precio: 732,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 5
     },
     {
       id: 23,
@@ -217,7 +239,8 @@ export class ApiProductosService {
       precio: 296,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 13
     },
     {
       id: 24,
@@ -226,7 +249,8 @@ export class ApiProductosService {
       precio: 327,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 15
     },
     {
       id: 25,
@@ -235,7 +259,8 @@ export class ApiProductosService {
       precio: 824,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 15
     },
     {
       id: 26,
@@ -244,7 +269,8 @@ export class ApiProductosService {
       precio: 212,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 14
     },
     {
       id: 27,
@@ -253,7 +279,8 @@ export class ApiProductosService {
       precio: 262,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 19
     },
     {
       id: 28,
@@ -262,7 +289,8 @@ export class ApiProductosService {
       precio: 258,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 18
     },
     {
       id: 29,
@@ -271,7 +299,8 @@ export class ApiProductosService {
       precio: 573,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 17
     },
     {
       id: 30,
@@ -280,7 +309,8 @@ export class ApiProductosService {
       precio: 686,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 16
     },
     {
       id: 31,
@@ -289,7 +319,8 @@ export class ApiProductosService {
       precio: 470,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 15
     },
     {
       id: 32,
@@ -298,7 +329,8 @@ export class ApiProductosService {
       precio: 643,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 15
     },
     {
       id: 33,
@@ -307,7 +339,8 @@ export class ApiProductosService {
       precio: 141,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 14
     },
     {
       id: 34,
@@ -316,7 +349,8 @@ export class ApiProductosService {
       precio: 268,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria:10
     },
     {
       id: 35,
@@ -325,7 +359,8 @@ export class ApiProductosService {
       precio: 190,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 10
     },
     {
       id: 36,
@@ -334,7 +369,8 @@ export class ApiProductosService {
       precio: 520,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 9
     },
     {
       id: 37,
@@ -343,7 +379,8 @@ export class ApiProductosService {
       precio: 546,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 13
     },
     {
       id: 38,
@@ -352,7 +389,8 @@ export class ApiProductosService {
       precio: 195,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 1
+      idProveedor: 1,
+      idCategoria: 20
     },
     {
       id: 39,
@@ -361,7 +399,8 @@ export class ApiProductosService {
       precio: 792,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 18
     },
     {
       id: 40,
@@ -370,7 +409,8 @@ export class ApiProductosService {
       precio: 453,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-      idProveedor: 2
+      idProveedor: 2,
+      idCategoria: 1
     }
   ];
 

@@ -9,7 +9,7 @@
 <main>
     <div class="encabezado">
         <button (click)="goBack()"> Volver</button>
-        <!-- <p> {{ producto.category}}</p> -->
+        <p> {{ categoria }}</p>
     </div>
     <div class="contenido">
         <div class="contenido__imagen">
@@ -22,33 +22,36 @@
             <button type="button">Añadir a mis ventas</button>
             <button type="button">Descargar flyer de venta</button>
         </div>
+        @if (imagenesAdicionales.length != 0) {
         <div class="contenido__imagenes">
+            @for (imagen of imagenesAdicionales; track $index) {
             <div class="contenido__imagenes__imagen">
+                <img src="{{ imagen }}" alt="imagen-adicional-{{ $index }}-producto">
             </div>
-            <div class="contenido__imagenes__imagen">
-            </div>
-            <div class="contenido__imagenes__imagen">
-            </div>
-            <div class="contenido__imagenes__imagen">
-            </div>
+            }
         </div>
+        }
+        @else {
+            <div class="separador"></div>
+        }
         <div class="contenido__descripcion">
             <h4>Descipción: </h4>
             <p>{{producto.descripcion}}</p>
         </div>
         <div class="contenido__especificaciones">
-            <h4>Descipción: </h4>
-            <p>-Tamaño: xxx</p>
-            <p>-Altura: xxx</p>
+            <h4>Atributos: </h4>
+            @for (atributo of atributos; track $index) {
+            <p>{{ atributo[0] }}: {{ atributo[1] }}</p>
+            }
+            @empty {
+            <p>No hay atributos enlistados</p>
+            }
         </div>
         <div class="contenido__claves">
             <h4>Palabras Clave:</h4>
-            <button type="button">Electrónica</button>
-            <button type="button">Negro</button>
-            <button type="button">Monitor Led</button>
-            <button type="button">Video</button>
-            <button type="button">Nuevo</button>
-            <button type="button">Noblex</button>
+            @for (palabra of palabrasClave; track $index) {
+            <button type="button">{{ palabra }}</button>
+            }
         </div>
     </div>
     <div class="preguntas">
@@ -76,7 +79,7 @@
                 <div class="preguntas__container__respuesta__flechas">
                     <h5>↳</h5>
                     @if($index + 1 < respuestas[$index].length){
-                        <div class="union"></div>
+                    <div class="union"></div>
                     }
                 </div>
                 <div class="preguntas__container__respuesta__contenido">

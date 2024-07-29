@@ -41,4 +41,5 @@ export interface producto{
     descripcion:    string;
     image:       string;
     idProveedor: number;
+    idCategoria: number;
 }

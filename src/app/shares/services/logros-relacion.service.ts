@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RelLogro } from '../models/relacion_logro_usuario';
+import { RelLogro } from '../models/relacion-logro-usuario-model';
 
 @Injectable({
   providedIn: 'root'
