@@ -1,4 +1,4 @@
-import { IProduct, producto, Rating } from "./producto-model"
+import { Producto } from "./producto-model"
 import { Rates } from "./rates-model"
 
 export interface link{
@@ -11,6 +11,6 @@ export interface link{
 
 export interface linkCompleto{
     link: link,
-    producto: producto
+    producto: Producto
     rating: number | null
 }

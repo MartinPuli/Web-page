@@ -1,0 +1,340 @@
+@import '../../../styles.scss';
+@import '../../general/ventas/ventas.component.scss';
+@import '../../vendedores/detalle-producto/detalle-producto.component.scss';
+@import '../../general/actualizaciones/actualizaciones.component.scss';
+
+button {
+    @extend .botones__boton;
+    background-color: $proveedores-botones;
+    font-size: 16px;
+    font-weight: 500;
+    height: 36px;
+    padding: 5px 25px;
+}
+
+.estado {
+    background-color: #CCCAF6;
+    padding: 5% 18% 2% 18%;
+
+    &__encabezado {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+
+        &__botones{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 40px;
+            padding-top: 2px;
+            width: 50%;
+        }
+
+        button {
+            margin-bottom: 20px;
+            margin-right: 35px;
+        }
+    }
+}
+
+h2 {
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 500;
+    margin: 0%
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    width: 50% !important;
+
+    input {
+        width: 60% !important;
+        padding: 10px 20px;
+        border: 1px solid #1F1D3E;
+        background-color: $color-claro;
+        border-radius: 3.46px;
+        height: 40px;
+        font-size: 14px;
+        color: #918DCE;
+    }
+
+}
+
+.ultimo-boton {
+    margin-right: 0px !important;
+}
+
+.producto{
+    background-color: #F2F2FD;
+    border: 1px #1F1D3E solid;
+    border-radius: 10px;
+    margin-bottom: 30px;
+
+    &__arriba{
+        border-bottom: 1px #1F1D3E solid;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        z-index: 900;
+
+        &__izquierda{
+            width: 50%;
+            padding: 2%;
+            display: flex;
+            flex-direction: column;
+
+            &__info{
+                display: flex;
+                flex-direction: row;
+
+                &__imagen{
+                    @extend .card__producto__imagen;
+                    padding: 0;
+                    margin-right: 20px;
+                }
+
+                &__texto{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 2% 0;
+
+                    h4{
+                        font-weight: 800;
+                        font-size: 20px;
+                        line-height: 25px;
+                        margin: 0;
+                    }
+
+                    h5{
+                        font-size: 14px;
+                        line-height: 18px;
+                        margin: 0;
+                    }
+                }
+            }
+
+            &__botones{
+                display: flex;
+                margin-top: 10px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+
+                button{
+                    font-size: 14px;
+                    height: 36px;
+                    padding: 5px 15px;
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+        &__derecha{
+            width: 50%;
+            border-left: 1px #1F1D3E solid;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0 10px 0px 0;
+
+            h3 {
+                font-size: 18px;
+                line-height: 28px;
+                font-weight: 550;
+                text-align: left;
+                margin: 0;
+            }
+    
+            h2 {
+                padding: 0;
+                font-weight: 700;
+                font-size: 48px;
+                text-align: right;
+                margin: 0;
+            }
+
+            &__precio{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px #1F1D3E solid;
+                padding: 2% 5%;
+                height: 25%;
+            }
+
+            &__ventas{
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                border-bottom: 1px #1F1D3E solid;
+                height: 27%;
+
+                div{
+                    padding: 5%;
+                    width: 50%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                }
+
+                &__proceso{
+                    border-left: 1px #1F1D3E solid;
+                }
+            }
+
+            &__costo{
+                border-bottom: 1px #1F1D3E solid;
+                padding: 2% 5%;
+                height: 15%;
+
+                h3{
+                    text-align: center;
+                }
+            }
+
+            &__claves{
+                padding: 2% 5%;
+                display: flex;
+                flex-direction: row;
+                justify-content: left;
+                flex-wrap: wrap;
+                height: 33%;
+
+                button{
+                    margin-right: 10px;
+                    margin-top: 3px;
+                    margin-bottom: 3px;
+                    font-size: 14px;
+                    padding: 3px 15px;
+                }
+            }
+        }
+    }
+
+    &__abajo{
+        background-color: #eeedfa;
+        border-radius: 0px 0px 10px 10px;
+
+        
+        &__botones{
+            display: flex;
+            flex-direction: row;
+            z-index: 100;
+
+            button{
+                width: 50%;
+                padding: 10px;
+                border-bottom: #1F1D3E 1px solid;
+                border-radius: 0px;
+                color: black;
+                background-color: #cfdddd;
+                height: auto;
+                font-size: 18px;
+                margin-right: 0px;
+            }
+
+            :first-child{
+                border-right: #1F1D3E 1px solid;
+                border-radius: 0 0 10px 0;
+            }
+            :last-child{
+                border-left: #1F1D3E 1px solid;
+                border-radius: 0 0 0 10px;
+            }
+        }
+
+        &__interacciones{
+            padding: 1% 2.5%;
+            display: flex;
+            flex-direction: column;
+
+            div{
+                background-color: #E5E4FA;
+                border-radius: 3.46px;
+                border: 1px solid #1F1D3E;
+                padding: 1.5%;
+                margin-bottom: 8px;
+                margin-top: 8px;
+            }
+
+            h3{
+                font-size: 19px;
+                line-height: 24px;
+                font-weight: 800;
+                margin: 0;
+            }
+        }
+
+        .preguntas {
+            padding: 1% 2.5%;
+            margin-top: 10px;
+        
+            &__container {
+        
+                &__respuesta {
+                    
+                    &__form{
+                        margin-top: 15px;
+                        input{
+                            font-size: 18px;
+                            padding: 10px 20px;
+                            border-radius: 3.46px;
+                        }
+
+                        button{
+                            margin-top: 2px;
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+                
+    }
+}
+
+.clave-normal{
+    background-color: #E5E4FA;
+    border: #1F1D3E 1px solid;
+    color: #1F1D3E;
+}
+
+.clave-proceso{
+    background-color: #6965B3;
+    border: #F2F2F2 1px solid;
+    color: #F2F2F2
+}
+
+.clave-completo{
+    background-color: #3E3B7D;
+    border: #F2F2F2 1px solid;
+    color: #F2F2F2
+}
+
+.vacio{
+    font-size: 25px;
+    font-weight: 300;
+    color: #1f1d3e;
+    margin: 10px 0 40px 0;
+}
+
+.sinPreguntas{
+    font-size: 25px !important;
+    font-weight: 700;
+    margin-bottom: 40px !important;
+}
+
+.activo{
+    background-color: #eeedfa !important;
+    border: 0px !important;
+    font-weight: 650;
+    cursor: default;
+}

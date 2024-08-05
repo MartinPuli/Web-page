@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { IProduct, producto} from '../../shares/models/producto-model'; 
+import { Producto} from '../../shares/models/producto-model'; 
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { CommonModule, Location } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -27,7 +27,7 @@ export class DetalleProductoComponent implements OnInit{
   private _apiAtributos = inject(AtributosRelacionService)
   private _apiImagenes = inject(ImagenesAdicionalesService)
 
-  producto!: producto
+  producto!: Producto
   preguntas!: pregunta[]
   respuestas: respuesta[][] = []
   categoria!: string | undefined

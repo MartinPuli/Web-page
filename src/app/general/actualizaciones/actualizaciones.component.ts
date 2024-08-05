@@ -5,7 +5,6 @@ import { ActualizacionesService } from '../../shares/services/actualizaciones.se
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { PreguntasService } from '../../shares/services/preguntas.service';
 import { Actualizacion, ActualizacionCompleta, isProveedorActualizacionTipo0, isVendedorActualizacionTipo0, isVendedorActualizacionTipo1o2 } from '../../shares/models/actualizacion-model';
-import { IProduct } from '../../shares/models/producto-model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { forkJoin, map } from 'rxjs';

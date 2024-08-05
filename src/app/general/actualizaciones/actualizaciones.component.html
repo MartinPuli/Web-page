@@ -107,13 +107,13 @@
                                 </div>
                                 <div
                                     class="actualizacion__contenido__informacion__venta__abajo">
-                                    @if(actualizacion.venta?.costo ===
+                                    @if(actualizacion.producto.costo ===
                                     'vendedor'){
                                     <h4>!Envío a cargo tuyo!</h4>
                                     }
                                     @else {
                                     <h4>!Envío a cargo del {{
-                                        actualizacion.venta?.costo }}!</h4>
+                                        actualizacion.producto.costo }}!</h4>
                                     }
                                     <button>Descargar flyer</button>
                                 </div>

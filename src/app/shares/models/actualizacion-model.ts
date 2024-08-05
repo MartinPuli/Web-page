@@ -1,4 +1,4 @@
-import { IProduct, producto } from "./producto-model";
+import { Producto } from "./producto-model";
 import { pregunta, respuesta } from "./preguntas-model";
 import { Subscription } from "rxjs";
 import { Venta } from "./sales-model";
@@ -43,7 +43,7 @@ export interface VendedorActualizacionTipo1o2 extends ActualizacionBase {
 
 export interface ActualizacionCompleta {
     actualizacion: Actualizacion
-    producto: producto;
+    producto: Producto;
     pregunta: pregunta | undefined;
     respuesta: respuesta | undefined;
     venta: Venta | undefined

@@ -6,7 +6,6 @@ import { LimiteCaracteresPipe } from '../../shares/pipes/limite-caracteres.pipe'
 import { VentasService } from '../../shares/services/ventas.service';
 import { Venta, VentaProducto } from '../../shares/models/sales-model';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
-import { IProduct } from '../../shares/models/producto-model';
 import { forkJoin, map } from 'rxjs';
 
 @Component({

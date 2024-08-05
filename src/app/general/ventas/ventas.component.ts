@@ -7,7 +7,6 @@ import { FormatoFechaPipe } from '../../shares/pipes/formato-fecha.pipe';
 import { FormatoFechaVentasPipe } from '../../shares/pipes/formato-fecha-ventas.pipe';
 import { ActivatedRoute, Params, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
-import { IProduct } from '../../shares/models/producto-model';
 import { forkJoin, map, Observable } from 'rxjs';
 import { LinksService } from '../../shares/services/links.service';
 import { link, linkCompleto } from '../../shares/models/links-model';

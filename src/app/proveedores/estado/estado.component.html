@@ -1,0 +1,165 @@
+<div class="estado">
+    <h2>Estado de las ventas</h2>
+    <div class="estado__encabezado">
+        <form class="form"
+            [formGroup]="inputEstado" (ngSubmit)="filtrar()">
+            <input title="Busqueda" class="form-control"
+                placeholder="Buscá por palabra clave ..."
+                formControlName="busqueda">
+            <button type="submit">Filtrar</button>
+        </form>
+        <div class="estado__encabezado__botones">
+            <button [routerLink]>Ventas en proceso</button>
+            <button class="ultimo-boton">Ventas finalizadas</button>
+        </div>
+    </div>
+    @for (productoVenta of estadoVentasMostradas(); track $index) {
+    <div class="producto">
+        <div class="producto__arriba">
+            <div class="producto__arriba__izquierda">
+                <div class="producto__arriba__izquierda__info">
+                    <div class="producto__arriba__izquierda__info__imagen">
+                        <img src="{{ productoVenta.producto.image }}"
+                            alt="imagen-producto">
+                    </div>
+                    <div class="producto__arriba__izquierda__info__texto">
+                        <h4>{{ productoVenta.producto.nombre }}</h4>
+                        <div
+                            class="producto__arriba__izquierda__info__texto__abajo">
+                            <h5>Actualmente en stock: {{
+                                productoVenta.producto.stock }}</h5>
+                            <h5>#{{ productoVenta.producto.id }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="producto__arriba__izquierda__botones">
+                    <button type="button">Ver publicación</button>
+                    <button type="button">Editar datos</button>
+                    <button type="button">Eliminar</button>
+                    <button type="button">Controlar stock</button>
+                    <button type="button">Promocionar</button>
+                </div>
+            </div>
+            <div class="producto__arriba__derecha"
+                [ngStyle]="{'background-color': productoVenta.producto.stock || !productoVenta.cantidadCompletas ? '#A5A1EE' : productoVenta.cantidadProceso? '#6965B3' : '#3E3B7D', 'color': productoVenta.producto.stock || !productoVenta.cantidadCompletas ? '#1F1D3E' : '#F2F2F2'}">
+                <div class="producto__arriba__derecha__precio">
+                    <h3>Precio establecido:</h3>
+                    <h2>{{ productoVenta.producto.precio | currency }}</h2>
+                </div>
+                <div class="producto__arriba__derecha__ventas">
+                    <div class="producto__arriba__derecha__ventas__completas">
+                        <h2>{{ productoVenta.cantidadCompletas | agregar0
+                            }}</h2>
+                        <h3>Vendidas</h3>
+                    </div>
+                    <div class="producto__arriba__derecha__ventas__proceso">
+                        <h2>{{ productoVenta.cantidadProceso| agregar0 }}</h2>
+                        <h3>En proceso</h3>
+                    </div>
+                </div>
+                <div class="producto__arriba__derecha__costo">
+                    @if((!productoVenta.producto.stock &&
+                    productoVenta.cantidadProceso) ||
+                    !productoVenta.cantidadCompletas ||
+                    productoVenta.producto.stock){
+
+                    @if (productoVenta.producto.costo == "proveedor"){
+                    <h3>Costo del envío a cargo
+                        suyo</h3>
+                    }
+                    @else {
+                    <h3>Costo del envío a cargo
+                        del {{ productoVenta.producto.costo }}</h3>
+                    }
+                    }
+                    @else {
+                    <h3>¡Vendiste todo el stock!</h3>
+                    }
+                </div>
+                <div class="producto__arriba__derecha__claves">
+                    @for (palabra of productoVenta.palabrasClaves; track $index)
+                    {
+                    <button
+                        [ngClass]="{'clave-normal': productoVenta.producto.stock || !productoVenta.cantidadCompletas, 'clave-completo': !productoVenta.producto.stock && productoVenta.cantidadCompletas && !productoVenta.cantidadProceso, 'clave-proceso': !productoVenta.producto.stock && productoVenta.cantidadCompletas && productoVenta.cantidadProceso }"
+                        type="button">{{ palabra }}</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="producto__abajo">
+            <div class="producto__abajo__botones">
+                <button [ngClass]="{'activo': productoVenta.interacciones}"
+                    (click)="productoVenta.interacciones = true">Interacciones</button>
+                <button [ngClass]="{'activo': !productoVenta.interacciones}"
+                    (click)="productoVenta.interacciones = false">Preguntas
+                    y
+                    Respuestas</button>
+            </div>
+            @if(productoVenta.interacciones)
+            {
+            <div class="producto__abajo__interacciones">
+                <div>
+                    <h3>Afiliaciones activas: {{ productoVenta.cantidadLinks |
+                        agregar0 }}</h3>
+                </div>
+                <div>
+                    <h3>En proceso: {{ productoVenta.cantidadProceso | agregar0
+                        }}</h3>
+                </div>
+                <div>
+                    <h3>Vendidos: {{ productoVenta.cantidadCompletas | agregar0
+                        }}</h3>
+                </div>
+            </div>
+            }
+            @else {
+            <div class="preguntas">
+                @if (productoVenta.preguntas.length == 0) {
+                <h4 class="sinPreguntas">¡Todavía no hay preguntas!</h4>
+                }
+                @else{
+                @for (pregunta of productoVenta.preguntas; track $index) {
+                <div class="preguntas__container">
+                    <div class="preguntas__container__pregunta">
+                        <h3> {{ pregunta.pregunta }} </h3>
+                    </div>
+                    @for (respuesta of productoVenta.respuestas[$index]; track
+                    $index) {
+                    <div class="preguntas__container__respuesta">
+                        <div class="preguntas__container__respuesta__flechas">
+                            <h5>↳</h5>
+                            <div class="union"></div>
+                        </div>
+                        <div class="preguntas__container__respuesta__contenido">
+                            <h3>{{ respuesta.respuesta }}</h3>
+                        </div>
+                    </div>
+                    }
+                    <div
+                        class="preguntas__container__respuesta">
+                        <div class="preguntas__container__respuesta__flechas">
+                            <h5>↳</h5>
+                        </div>
+                        <form
+                            class="preguntas__container__respuesta__form"
+                            [formGroup]="respuestaForm"
+                            (ngSubmit)="responder(pregunta.idPregunta)">
+                            <input title="Respuesta"
+                                class="form-control"
+                                placeholder="Responder..."
+                                formControlName="respuesta">
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+                }
+                }
+            </div>
+            }
+        </div>
+    </div>
+    }
+    @empty {
+    <h2 class="vacio">¡Todavía no tienes productos para vender!</h2>
+    }
+</div>

@@ -1,4 +1,4 @@
-import { IProduct, producto, productoCompleto } from "./producto-model";
+import { Producto } from "./producto-model";
 
 export interface VentaBase {
     idVenta: number
@@ -9,7 +9,6 @@ export interface VentaBase {
     method: 'repartidor' | 'mano' | 'vendedor';
     deadline: Date;
     correo: "Correo Argentino" | "Mercado Envios" | "Envios Flex" | null;
-    costo: 'vendedor' | 'comprador' | 'proveedor'
     precioVenta: number
 }
 
@@ -26,7 +25,7 @@ export type Venta = VentaProceso | VentaCompleta ;
 
 export interface VentaProducto{
     venta: Venta
-    producto: producto
+    producto: Producto
 }
 
 

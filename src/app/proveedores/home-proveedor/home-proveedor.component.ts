@@ -13,11 +13,12 @@ import { LimiteCaracteresPipe } from '../../shares/pipes/limite-caracteres.pipe'
 import { EventEmitter } from 'stream';
 import { PanelGananciasComponent } from '../../general/panel-ganancias/panel-ganancias.component';
 import { ActualizacionesService } from '../../shares/services/actualizaciones.service';
+import { EstadoComponent } from '../estado/estado.component';
 
 @Component({
   selector: 'app-home-proveedor',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive, MatDialogModule, CommonModule, DetallesComponent, FormatoFechaPipe, LogrosComponent, LimiteCaracteresPipe, PanelGananciasComponent],
+  imports: [ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive, MatDialogModule, CommonModule, DetallesComponent, FormatoFechaPipe, LogrosComponent, LimiteCaracteresPipe, PanelGananciasComponent, EstadoComponent],
   templateUrl: './home-proveedor.component.html',
   styleUrl: './home-proveedor.component.scss'
 })

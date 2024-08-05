@@ -7,7 +7,6 @@ import { Usuario, Vendedor } from '../../shares/models/usuario-model';
 import { LogrosComponent } from '../logros/logros.component';
 import { ValueChangeEvent } from '@angular/forms';
 import { PanelGananciasComponent } from '../panel-ganancias/panel-ganancias.component';
-import { producto } from '../../shares/models/producto-model';
 
 @Component({
   selector: 'app-cuenta',

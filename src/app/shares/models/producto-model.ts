@@ -1,39 +1,6 @@
-import { Atributo } from "./atributo-model";
+import { pregunta, respuesta } from "./preguntas-model";
 
-export interface IProduct {
-    id:          number;
-    title:       string;
-    price:       number;
-    description: string;
-    category:    Category;
-    image:       string;
-    rating:      Rating;
-}
-
-export enum Category {
-    Electronics = "electronics",
-    Jewelery = "jewelery",
-    MenSClothing = "men's clothing",
-    WomenSClothing = "women's clothing",
-}
-
-export interface Rating {
-    rate:  number;
-    count: number;
-}
-
-export interface productoCompleto{
-    IProduct: IProduct
-    info: informacion
-}
-
-export interface informacion {
-    idUsuario:  number;
-    stock: number;
-    agregados: number
-}
-
-export interface producto{
+export interface Producto{
     id:          number;
     nombre:       string;
     stock:       number;
@@ -42,4 +9,16 @@ export interface producto{
     image:       string;
     idProveedor: number;
     idCategoria: number;
+    costo: 'vendedor' | 'comprador' | 'proveedor';
+}
+
+export interface estadoProducto{
+    producto: Producto,
+    cantidadProceso: number,
+    cantidadCompletas: number,
+    palabrasClaves: string[],
+    cantidadLinks: number,
+    interacciones: Boolean,
+    preguntas: pregunta[],
+    respuestas: respuesta[][]
 }

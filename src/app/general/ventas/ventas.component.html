@@ -166,14 +166,14 @@
                     }
                 </div>
                 <div class="card__info__costo">
-                    @if ((venta.venta.costo == "proveedor" && !isVendedor) ||
-                    (venta.venta.costo == "vendedor" && isVendedor)) {
+                    @if ((venta.producto.costo == "proveedor" && !isVendedor) ||
+                    (venta.producto.costo == "vendedor" && isVendedor)) {
                     <h3>Costo del envío a cargo
                         suyo</h3>
                     }
                     @else {
                     <h3>Costo del envío a cargo
-                        del {{ venta.venta.costo }}</h3>
+                        del {{ venta.producto.costo }}</h3>
                     }
                 </div>
             </div>
