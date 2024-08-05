@@ -3,7 +3,8 @@
     <div class="header__logo"></div>
     <div class="header__botones"
         [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
-        <button [routerLink]="isVendedor? ['/vendedor/', idUsuario]: ['/proveedor/', idUsuario]">Inicio</button>
+        <button
+            [routerLink]="isVendedor? ['/vendedor/', idUsuario]: ['/proveedor/', idUsuario]">Inicio</button>
     </div>
 </header>
 <main
@@ -102,7 +103,7 @@
                                 <div
                                     class="actualizacion__contenido__informacion__venta__arriba">
                                     <h4>Precio establecido:</h4>
-                                    <h3>{{ actualizacion.venta?.precioVenta|
+                                    <h3>{{ actualizacion.venta?.precioVenta |
                                         currency }}</h3>
                                 </div>
                                 <div
@@ -165,14 +166,40 @@
                                         <input title="Respuesta"
                                             class="form-control"
                                             placeholder="Responder ..."
-                                            formControlName="Respuesta">
+                                            formControlName="respuesta">
                                         <button type="submit">Enviar</button>
                                     </form>
                                 </div>
                             </div>
                             }
                             @case(1){
-                            HACER CUANDO SE HAGA EL ESTADO DE VENTA
+                            <div class="actualizacion__contenido__informacion__agregar">
+                                <div class="actualizacion__contenido__informacion__agregar__texto">
+                                    <h4>Precio establecido:</h4>
+                                    <h3>{{ actualizacion.producto.precio |
+                                        currency
+                                        }}</h3>
+                                </div>
+                                <div class="actualizacion__contenido__informacion__agregar__texto">
+                                        <h4>Stock:</h4>
+                                        <h3>{{ actualizacion.producto.stock
+                                            }}</h3>
+                                </div>
+                                <div class="actualizacion__contenido__informacion__agregar__costo">
+                                    @if (actualizacion.producto.costo == "proveedor"){
+                                        <h4>Costo del envío a cargo
+                                            suyo</h4>
+                                        }
+                                        @else {
+                                        <h4>Costo del envío a cargo
+                                            del {{ actualizacion.producto.costo }}</h4>
+                                        }
+                                </div>
+                                <div class="actualizacion__contenido__informacion__agregar__botones">
+                                    <button>Editar datos</button>
+                                    <button>Estado de venta</button>
+                                </div>
+                            </div>
                             }
                             @case(2){
                             <div

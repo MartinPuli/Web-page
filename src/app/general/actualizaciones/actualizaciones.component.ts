@@ -56,7 +56,7 @@ export class ActualizacionesComponent {
     })
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     let actualizacionesTraidas: Actualizacion[] = this.isVendedor ? this._apiActualizaciones.getActualizacionesVendedor(this.idUsuario) : this._apiActualizaciones.getActualizacionesProveedor(this.idUsuario)
 
     this.actualizaciones = actualizacionesTraidas.map(actualizacion => {

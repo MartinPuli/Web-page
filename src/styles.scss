@@ -54,3 +54,7 @@ body {
 div.mat-expansion-panel-body {
     padding: 0 !important;
 }
+
+.mat-expansion-panel-spacing:last-child{
+    margin-bottom: 20px !important;
+}
