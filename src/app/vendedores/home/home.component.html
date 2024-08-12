@@ -1,11 +1,4 @@
-<header class="header">
-    <div class="header__logo"></div>
-    <div class="header__botones">
-        <button [routerLink]="['/vendedor/ventas/', idVendedor]">Mis Ventas</button>
-        <button [routerLink]="['/proveedor/2']">Cambiar a Perfil Proveedor</button>
-        <button [routerLink]="['/vendedor/cuenta/', idVendedor]">Mi Cuenta</button>
-    </div>
-</header>
+<app-header [isVendedor]=true  [idUsuario]=idVendedor [ventas]="true" [perProv]="true" [miCuenta]="true"></app-header>
 <main class="home">
     <h1 class="home__title">¡Hola, encontrá ese producto que querés vender!</h1>
     <form class="home__form"

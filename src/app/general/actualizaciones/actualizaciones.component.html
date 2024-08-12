@@ -1,12 +1,4 @@
-<header class="header"
-    [ngClass]="{'vendedor vendedor__header': isVendedor, 'proveedor proveedor__header': !isVendedor}">
-    <div class="header__logo"></div>
-    <div class="header__botones"
-        [ngClass]="{'vendedor__header__botones': isVendedor, 'proveedor__header__botones': !isVendedor}">
-        <button
-            [routerLink]="isVendedor? ['/vendedor/', idUsuario]: ['/proveedor/', idUsuario]">Inicio</button>
-    </div>
-</header>
+<app-header [isVendedor]=isVendedor [idUsuario]=idUsuario [inicio]="true"></app-header>
 <main
     [ngClass]="{'vendedor': isVendedor, 'proveedor': !isVendedor}">
     <div class="actualizaciones">

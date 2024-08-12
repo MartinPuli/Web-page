@@ -28,19 +28,9 @@ body {
     justify-content: center;
 }
 
-.header {
-    height: 75px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0% 15%;
-    align-items: center;
-}
-
 .botones {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
 
     &__boton {
         padding: 5px 20px 5px 20px;

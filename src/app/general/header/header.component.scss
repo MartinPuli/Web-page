@@ -1,0 +1,81 @@
+@import '../../../styles.scss';
+
+.header {
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0% 15%;
+    align-items: center;
+
+    &__botones {
+
+        button {
+            @extend .botones__boton;
+            margin-left: 25px;
+            height: 35px;
+            font: 17px 500;
+        }
+    }
+
+    &__logo {
+        svg {
+            height: 35px !important;
+            width: auto;
+            cursor: pointer;
+        }
+    }
+
+}
+
+.vendedor {
+    &__header {
+        background-color: $header-vendedores-background;
+    }
+
+    button {
+        background-color: $vendedores-botones;
+    }
+}
+
+.proveedor {
+    &__header {
+        background-color: $header-proveedores-background;
+    }
+
+    button {
+        background-color: $proveedores-botones;
+    }
+}
+
+@media (min-width: 992px) {
+    .header {
+        &__botones {
+            display: flex;
+            flex-direction: row;
+            justify-content: right !important;
+        }
+    }
+}
+
+
+@media (min-width: 550px) {
+    .header {
+        &__logo {
+            svg {
+                height: 52px;
+                width: 208px;
+            }
+        }
+    }
+}
+
+@media (min-width: 420px) {
+    .header {
+        &__logo {
+            svg {
+                height: 45px !important;
+            }
+        }
+    }
+}

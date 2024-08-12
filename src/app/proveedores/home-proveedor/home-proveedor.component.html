@@ -1,11 +1,4 @@
-<header class="header">
-    <div class="header__logo"></div>
-    <div class="header__botones">
-        <button [routerLink]="['/proveedor/ventas/',idUsuario]">Publicaciones en Proceso</button>
-        <button [routerLink]="['']">Cambiar a Perfil Vendedor</button>
-        <button [routerLink]="['/proveedor/cuenta/', idUsuario]">Mi Cuenta</button>
-    </div>
-</header>
+<app-header [isVendedor]=false [idUsuario]=idUsuario [publicaciones]="true" [perVend]="true" [miCuenta]="true"></app-header>
 <main class="proveedor">
     <div class="proveedor__encabezado">
         <div class="proveedor__encabezado__sup">

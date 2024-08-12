@@ -4,6 +4,7 @@ import { LogrosComponent } from './general/logros/logros.component';
 import { HomeComponent } from './vendedores/home/home.component';
 import { FooterComponent } from './general/footer/footer.component';
 import { PanelGananciasComponent } from './general/panel-ganancias/panel-ganancias.component';
+import { HeaderComponent } from './general/header/header.component';
 
 @Component({
   selector: 'app-root',

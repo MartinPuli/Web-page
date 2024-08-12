@@ -11,11 +11,12 @@ import { forkJoin, map } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LinksService } from '../../shares/services/links.service';
 import { VentasService } from '../../shares/services/ventas.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-actualizaciones',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, MatExpansionModule, FormatoFechaPipe, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, MatExpansionModule, FormatoFechaPipe, ReactiveFormsModule, HeaderComponent],
   templateUrl: './actualizaciones.component.html',
   styleUrl: './actualizaciones.component.scss'
 })

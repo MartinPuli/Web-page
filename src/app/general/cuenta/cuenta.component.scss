@@ -16,10 +16,6 @@
 }
 
 .vendedor {
-    &__header {
-        background-color: $header-vendedores-background;
-    }
-
     &__cuenta {
         background-color: #EEF2FE;
     }
@@ -30,10 +26,6 @@
 }
 
 .proveedor {
-    &__header {
-        background-color: $header-proveedores-background;
-    }
-
     &__cuenta {
         background-color: $background-proveedores;
     }

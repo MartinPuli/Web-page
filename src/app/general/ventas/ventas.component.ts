@@ -11,11 +11,12 @@ import { forkJoin, map, Observable } from 'rxjs';
 import { LinksService } from '../../shares/services/links.service';
 import { link, linkCompleto } from '../../shares/models/links-model';
 import { RatesService } from '../../shares/services/rates.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-ventas-proceso',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormatoFechaPipe, FormatoFechaVentasPipe, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, ReactiveFormsModule, FormatoFechaPipe, FormatoFechaVentasPipe, RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent],
   templateUrl: './ventas.component.html',
   styleUrl: './ventas.component.scss'
 })

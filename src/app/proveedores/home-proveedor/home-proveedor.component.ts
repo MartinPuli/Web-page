@@ -14,11 +14,12 @@ import { EventEmitter } from 'stream';
 import { PanelGananciasComponent } from '../../general/panel-ganancias/panel-ganancias.component';
 import { ActualizacionesService } from '../../shares/services/actualizaciones.service';
 import { EstadoComponent } from '../estado/estado.component';
+import { HeaderComponent } from '../../general/header/header.component';
 
 @Component({
   selector: 'app-home-proveedor',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive, MatDialogModule, CommonModule, DetallesComponent, FormatoFechaPipe, LogrosComponent, LimiteCaracteresPipe, PanelGananciasComponent, EstadoComponent],
+  imports: [ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive, MatDialogModule, CommonModule, DetallesComponent, FormatoFechaPipe, LogrosComponent, LimiteCaracteresPipe, PanelGananciasComponent, EstadoComponent, HeaderComponent],
   templateUrl: './home-proveedor.component.html',
   styleUrl: './home-proveedor.component.scss'
 })

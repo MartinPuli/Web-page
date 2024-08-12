@@ -7,11 +7,12 @@ import { Usuario, Vendedor } from '../../shares/models/usuario-model';
 import { LogrosComponent } from '../logros/logros.component';
 import { ValueChangeEvent } from '@angular/forms';
 import { PanelGananciasComponent } from '../panel-ganancias/panel-ganancias.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-cuenta',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, LogrosComponent, PanelGananciasComponent],
+  imports: [CommonModule, RouterLink, RouterModule, RouterOutlet, LogrosComponent, PanelGananciasComponent, HeaderComponent],
   templateUrl: './cuenta.component.html',
   styleUrl: './cuenta.component.scss'
 })

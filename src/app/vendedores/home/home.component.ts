@@ -5,12 +5,13 @@ import { Producto } from '../../shares/models/producto-model';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CategoriasService } from '../../shares/services/categorias.service';
+import { HeaderComponent } from '../../general/header/header.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [CommonModule, ReactiveFormsModule, RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -25,7 +26,7 @@ export class HomeComponent {
   categorias!: string[]
 
   inputBusqueda: FormGroup
-  idVendedor: null | number = 2
+  idVendedor: number = 2
 
   productosInspirados: Signal<Producto[]> = computed(() => {
     let arrayParcial: Producto[] = []
