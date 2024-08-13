@@ -32,7 +32,7 @@
   "include": [
     "src/**/*",
     "server.ts"
-  ],
+, "public/assets"  ],
   "files": [
     "src/main.ts",
     "server.ts"

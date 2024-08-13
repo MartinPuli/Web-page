@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { ScriptsService } from '../../shares/services/js/scripts.service';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,9 @@ import { ActivatedRoute, Params, Router, RouterLink, RouterModule, RouterOutlet 
 export class HeaderComponent {
   private _route = inject(ActivatedRoute)
 
+  constructor( private _scripts: ScriptsService){
+    _scripts.loadScript(["menu"])
+  }
   @Input() isVendedor!: Boolean
   @Input() idUsuario!: number
   @Input() inicio: Boolean = false

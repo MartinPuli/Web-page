@@ -6,11 +6,12 @@
     align-items: center;
     background-color: #292753;
     border: 0px;
-    padding: 5% 15%;
+    padding: 4% 9%;
 
     &__logo {
-        height: 90 !important;
-        margin-bottom: 50px;
+        width: 180px;
+        height: 40px;
+        margin-bottom: 40px;
     }
 
     &__botones {
@@ -19,16 +20,38 @@
         flex-wrap: wrap;
         justify-content: space-between;
         button {
-            padding: 3px 16px 3px 16px;
-            height: 36px;
-            margin-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 24px;
+            margin-bottom: 8px;
             background-color: #E4E9FA;
             border-radius: 5px;
             font-family: $letra-principal;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 9px;
             color: #5871BB;
             border: none;
+        }
+    }
+}
+
+@media (min-width: 772px) {
+    .footer {
+        padding: 5% 15%;
+    
+        &__logo {
+            height: 90px;
+            width: 300px;
+            margin-bottom: 50px;
+        }
+    
+        &__botones {
+            button {
+                padding: 3px 16px 3px 16px;
+                height: 36px;
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
         }
     }
 }
