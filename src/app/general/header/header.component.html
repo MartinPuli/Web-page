@@ -126,7 +126,7 @@
             <div class="_layer -bottom"></div>
         </div>
 
-        <i class="fa-solid fa-user"></i>
+        <i [routerLink]="isVendedor? ['/vendedor/cuenta',idUsuario]: ['/proveedor/cuenta', idUsuario]" class="fa-solid fa-user"></i>
     </div>
 
     <nav class="menuppal">

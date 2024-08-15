@@ -1,14 +1,23 @@
-<app-header [isVendedor]=isVendedor [idUsuario]=idUsuario [inicio]="true" [actualizaciones]="true"></app-header>
+<app-header [isVendedor]=isVendedor [idUsuario]=idUsuario [inicio]="true"
+    [actualizaciones]="true"></app-header>
 <main>
     <div class="cuenta"
         [ngClass]="{'vendedor vendedor__cuenta': isVendedor, 'proveedor proveedor__cuenta': !isVendedor}">
+        <i class="cuenta__volver fa-solid fa-chevron-left"></i>
         <div class="cuenta__encabezado">
             <h1>Mi cuenta</h1>
             <button (click)="goBack()">Volver</button>
         </div>
         <div class="cuenta__info">
-            <img class="cuenta__info__imagen" alt="imagen-usuario"
-                src="{{ usuario?.img }}">
+            <div class="cuenta__info__perfil">
+                <img class="cuenta__info__perfil__imagen" alt="imagen-usuario"
+                    src="{{ usuario?.img }}">
+                <span class="cuenta__info__separador"></span>
+                <div>
+                    <i class="fa-regular fa-image"></i>
+                    <i class="fa-solid fa-pencil"></i>
+                </div>
+            </div>
             <div class="cuenta__info__principal">
                 <div>
                     <h3>@if(tipoUsuario(usuario)){
@@ -29,6 +38,7 @@
             </div>
             <button class="cuenta__info__editar"> Editar datos</button>
         </div>
+
         <div class="cuenta__adicional">
             <div class="cuenta__adicional__adicionales">
                 <h2>Datos adicionales</h2>
@@ -45,6 +55,7 @@
                     <h3>{{ usuario?.recoveryEmail
                         }}</h3>
                 </div>
+                <a>Editar datos adicionales</a>
                 <button> Editar datos</button>
             </div>
             <div class="cuenta__adicional__seguridad">
@@ -56,7 +67,6 @@
                         *ngIf="usuario?.twoStepVerification"></i>
                     <i class="fas fa-times-circle"
                         *ngIf="!usuario?.twoStepVerification"></i>
-
                 </div>
                 <div class="cuenta__adicional__container"
                     [ngClass]="{'completo': usuario?.trustedUsers, 'incompleto': !usuario?.trustedUsers}">
@@ -66,6 +76,7 @@
                     <i class="fas fa-times-circle"
                         *ngIf="!usuario?.trustedUsers"></i>
                 </div>
+                <a>Editar datos de seguridad</a>
             </div>
         </div>
     </div>
