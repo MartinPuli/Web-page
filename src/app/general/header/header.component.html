@@ -119,6 +119,12 @@
         </svg>
     </div>
 
+    <form class="search">
+        <input type="search" class="sb" name="q" autocomplete="on"
+            placeholder="Buscar...">
+        <i type="submit" class="sbtn fa fa-search"></i>
+    </form>
+
     <div class="nav-normal">
         <div class="hamburger">
             <div class="_layer -top"></div>
@@ -126,7 +132,9 @@
             <div class="_layer -bottom"></div>
         </div>
 
-        <i [routerLink]="isVendedor? ['/vendedor/cuenta',idUsuario]: ['/proveedor/cuenta', idUsuario]" class="fa-solid fa-user"></i>
+        <i
+            [routerLink]="isVendedor? ['/vendedor/cuenta',idUsuario]: ['/proveedor/cuenta', idUsuario]"
+            class="fa-solid fa-user"></i>
     </div>
 
     <nav class="menuppal">

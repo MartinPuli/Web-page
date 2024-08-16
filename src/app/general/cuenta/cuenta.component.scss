@@ -49,7 +49,7 @@
 
     &__volver {
         position: absolute;
-        top: 102px;
+        top: 69px;
         left: 6%;
         font-size: 20px;
     }
@@ -60,12 +60,14 @@
         justify-content: space-evenly;
         align-items: center;
         align-content: center;
-        margin-bottom: 10px;
+        margin: 7.4px 0px 7px 0px;
 
         h1 {
             font-weight: 900;
-            font-size: 24px;
+            font-size: 21px !important;
             margin: 0;
+            height: 35px;
+            line-height: 35px;
         }
 
         button {
@@ -243,8 +245,20 @@
 
 //Media queries
 
+@media (min-width: 420px) {
+    .cuenta {
+        &__volver {
+            top: 79px;
+        }
+    }
+}
+
 @media (min-width: 440px) {
     .cuenta {
+        &__volver {
+            top: 89px;
+        }
+
         &__info {
             &__perfil {
                 &__imagen {
@@ -284,8 +298,18 @@
     }
 }
 
-@media (min-width: 552px) {
+@media (min-width: 550px) {
     .cuenta {
+        &__encabezado {
+            margin: 5.9px 0px 7px 0px;
+
+            h1 {
+                font-size: 24px !important;
+                height: 40px;
+                line-height: 40px;
+            }
+        }
+
         &__info {
             margin-bottom: 35px;
 
@@ -496,6 +520,8 @@
         &__adicional {
             h2 {
                 font-size: 24px;
+                line-height: 24px;
+                height: 24px;
             }
 
             &__adicionales,
@@ -526,6 +552,8 @@
         &__adicional {
             h2 {
                 font-size: 26px;
+                line-height: 26px;
+                height: 26px;
             }
         }
     }
@@ -561,6 +589,8 @@
         &__adicional {
             h2 {
                 font-size: 28px;
+                height: 28px;
+                line-height: 28px;
             }
 
             &__adicionales,
