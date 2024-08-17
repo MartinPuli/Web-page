@@ -80,7 +80,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "options": {
-              "browserTarget": "web-page:build"
+              "buildTarget": "web-page:build"
             },
             "production": {
               "buildTarget": "web-page:build:production"
@@ -90,7 +90,7 @@
             }
           },
           "options": {
-            "browserTarget": "web-page:build"
+            "buildTarget": "web-page:build"
           },
           "defaultConfiguration": "development"
         },
