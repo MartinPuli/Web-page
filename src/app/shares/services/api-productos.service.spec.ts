@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ApiProductosService } from './api-productos.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Producto } from '../models/producto-model';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('ApiProductosService', () => {
   let service: ApiProductosService;
@@ -10,7 +11,7 @@ describe('ApiProductosService', () => {
   const urlBase = 'https://fakestoreapi.com/products';
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [HttpClientTestingModule], providers: [ApiProductosService]});
+    TestBed.configureTestingModule({ imports: [], providers: [ApiProductosService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()] });
     service = TestBed.inject(ApiProductosService);
     httpMock = TestBed.inject(HttpTestingController)
   });

@@ -2,13 +2,15 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { LogrosComponent } from './general/logros/logros.component';
 import { RouterOutlet } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterOutlet, LogrosComponent,  HttpClientTestingModule],
-    }).compileComponents();
+    imports: [RouterOutlet, LogrosComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   });
 
   it('should create the app', () => {
