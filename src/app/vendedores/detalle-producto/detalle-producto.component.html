@@ -1,57 +1,142 @@
-<header class="header">
-    <div class="header__logo"></div>
-    <div class="header__botones">
-        <button [routerLink]="['/vendedor/ventas/']">Mis Ventas</button>
-        <button [routerLink]="['/vendedores/cuenta/']">Mi Cuenta</button>
-    </div>
-</header>
+<app-header [isVendedor]=true [idUsuario]=2 [inicio]="true" [ventas]="true"
+    [miCuenta]="true"></app-header>
 
 <main>
     <div class="encabezado">
+        <i (click)="goBack()"
+            class="cuenta__volver fa-solid fa-chevron-left"></i>
         <button (click)="goBack()"> Volver</button>
         <p> {{ categoria }}</p>
     </div>
     <div class="contenido">
-        <div class="contenido__imagen">
-            <img src="{{ producto.image }}" alt="imagen-producto">
+        <div class="contenido__arriba__celu">
+            <p>{{ cantLinks }} links activos</p>
+            <h1 class="contenido__titulo">{{producto.nombre}}</h1>
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    @for (imagen of arrayCarrusel; track $index) {
+                    @if ($index == 0) {
+                    <button type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="0" class="active"
+                        aria-current="true" title="slide 1"
+                        aria-label="slide 1"></button>
+                    }
+                    @else {
+                    <button type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="1" title="slide {{$index}}"
+                        aria-label="slide 2"></button>
+                    }
+                    }
+                </div>
+                <div class="carousel-inner">
+                    @for (imagen of arrayCarrusel; track $index) {
+                    @if ($index == 0) {
+                    <div class="carousel-item active">
+                        <img src="{{imagen}}" class="d-block w-100"
+                            alt="imagen principal">
+                    </div>
+                    }
+                    @else {
+                    <div class="carousel-item">
+                        <img src="{{imagen}}" class="d-block w-100"
+                            alt="imagen adicional {{$index}}">
+                    </div>
+                    }
+                    }
+                </div>
+                <button class="carousel-control-prev" type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"
+                        aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"
+                        aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="contenido__medio">
+                <div class="contenido__medio__adic">
+                    @for (imagen of imagenesAdicionales; track $index) {
+                    <img src="{{ imagen }}"
+                        alt="imagen-adicional-{{ $index }}-producto">
+                    }
+                </div>
+                <img class="contenido__medio__princ" src="{{ producto.image }}" alt="imagen-producto">
+            </div>
+            <h2 class="contenido__precio">{{producto.precio|
+                currency}}</h2>
+            <div class="contenido__rates">
+                @if (ratesTraidos.length) {
+                <estrellas [rating]=rating></estrellas>
+                }
+                @else {
+                <estrellas [rating]=0></estrellas>
+                <p>(Sin calificaciones)</p>
+                }
+            </div>
+            <div class="contenido__botones">
+                <button type="button">Añadir a mis ventas</button>
+                <button type="button">Descargar flyer de venta</button>
+            </div>
         </div>
-        <h1 class="contenido__titulo">{{producto.nombre}}</h1>
-        <h2 class="contenido__precio">{{producto.precio|
-            currency}}</h2>
-        <div class="contenido__botones">
-            <button type="button">Añadir a mis ventas</button>
-            <button type="button">Descargar flyer de venta</button>
+        <div class="contenido__arriba">
+            <img src="{{ producto.image }}" alt="imagen-producto">
+            <div class="contenido__info">
+                <div class="contenido__info__texto">
+                    <h1 class="contenido__titulo">{{producto.nombre}}</h1>
+                    <h2 class="contenido__precio">{{producto.precio|
+                        currency}}</h2>
+                </div>
+                <div class="contenido__botones">
+                    <button type="button">Añadir a mis ventas</button>
+                    <button type="button">Descargar flyer de venta</button>
+                </div>
+            </div>
         </div>
         @if (imagenesAdicionales.length != 0) {
         <div class="contenido__imagenes">
             @for (imagen of imagenesAdicionales; track $index) {
             <div class="contenido__imagenes__imagen">
-                <img src="{{ imagen }}" alt="imagen-adicional-{{ $index }}-producto">
+                <img src="{{ imagen }}"
+                    alt="imagen-adicional-{{ $index }}-producto">
             </div>
             }
         </div>
         }
         @else {
-            <div class="separador"></div>
+        <div class="separador"></div>
         }
-        <div class="contenido__descripcion">
-            <h4>Descipción: </h4>
-            <p>{{producto.descripcion}}</p>
-        </div>
-        <div class="contenido__especificaciones">
-            <h4>Atributos: </h4>
-            @for (atributo of atributos; track $index) {
-            <p>{{ atributo[0] }}: {{ atributo[1] }}</p>
-            }
-            @empty {
-            <p>No hay atributos enlistados</p>
-            }
-        </div>
-        <div class="contenido__claves">
-            <h4>Palabras Clave:</h4>
-            @for (palabra of palabrasClave; track $index) {
-            <button type="button">{{ palabra }}</button>
-            }
+        <div class="contenido__abajo">
+            <div class="contenido__descripcion">
+                <h4>Descipción: </h4>
+                <p>{{producto.descripcion}}</p>
+            </div>
+            <div class="contenido__abajo__derecha">
+                <div class="contenido__especificaciones">
+                    <h4>Atributos: </h4>
+                    @for (atributo of atributos; track $index) {
+                    <p>{{ atributo[0] }}: {{ atributo[1] }}</p>
+                    }
+                    @empty {
+                    <p>No hay atributos enlistados</p>
+                    }
+                </div>
+                <div class="contenido__claves">
+                    <h4>Palabras Clave:</h4>
+                    <div>
+                        @for (palabra of palabrasClave; track $index) {
+                        <button type="button">{{ palabra }}</button>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="preguntas">
