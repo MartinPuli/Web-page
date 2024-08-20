@@ -25,7 +25,8 @@
                     @else {
                     <button type="button"
                         data-bs-target="#carouselExampleIndicators"
-                        data-bs-slide-to="1" title="slide {{$index}}"
+                        attr.data-bs-slide-to="{{$index}}"
+                        attr.aria-label="slide {{$index}}"
                         aria-label="slide 2"></button>
                     }
                     }
@@ -68,7 +69,8 @@
                         alt="imagen-adicional-{{ $index }}-producto">
                     }
                 </div>
-                <img class="contenido__medio__princ" src="{{ producto.image }}" alt="imagen-producto">
+                <img class="contenido__medio__princ" src="{{ producto.image }}"
+                    alt="imagen-producto">
             </div>
             <h2 class="contenido__precio">{{producto.precio|
                 currency}}</h2>
@@ -93,6 +95,13 @@
                     <h1 class="contenido__titulo">{{producto.nombre}}</h1>
                     <h2 class="contenido__precio">{{producto.precio|
                         currency}}</h2>
+                    @if (ratesTraidos.length) {
+                    <estrellas [rating]=rating></estrellas>
+                    }
+                    @else {
+                    <estrellas [rating]=0></estrellas>
+                    <p>(Sin calificaciones)</p>
+                    }
                 </div>
                 <div class="contenido__botones">
                     <button type="button">Añadir a mis ventas</button>

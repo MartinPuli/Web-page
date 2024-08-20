@@ -124,10 +124,10 @@
                 }
 
                 i {
-                    width: 23px;
-                    height: 23px;
-                    font-size: 12px;
-                    padding: 4.5px;
+                    width: 26px;
+                    height: 26px;
+                    font-size: 14px;
+                    padding: 4.7px;
                     cursor: pointer;
                     background-color: rgb(203, 245, 51);
                     border-radius: 50%;
@@ -136,8 +136,8 @@
             }
 
             &__imagen {
-                width: 60px;
-                height: 60px;
+                width: 65px;
+                height: 65px;
                 padding: 2%;
                 background-color: white;
                 border: 1px #0D0C20 solid;
@@ -147,18 +147,30 @@
         }
 
         &__casilla {
-            border-radius: 8px;
+            border-radius: 5px;
             background-color: #00000002;
             border: 1px #1F1D3E solid;
             padding: 4px 8px;
             width: 100%;
+            overflow-x: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
             h3 {
-                height: 10px;
-                font-size: 10px;
-                line-height: 10px;
+                overflow-x: scroll;
+                height: 13px;
+                font-size: 13px;
+                line-height: 13px;
                 margin: 0;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
             }
+
+            
         }
 
         &__principal {
@@ -190,10 +202,10 @@
         flex-direction: column;
 
         h2 {
-            height: 16px;
-            font-size: 16px;
-            line-height: 16px;
-            margin: 0;
+            height: 18px;
+            font-size: 18px;
+            line-height: 18px;
+            margin: 0 0 5px 0;
             padding: 0;
         }
 
@@ -201,8 +213,8 @@
         &__seguridad {
             display: flex;
             flex-direction: column;
-            margin-bottom: 7px;
-            margin-top: 7px;
+            margin-bottom: 10px;
+            margin-top: 10px;
 
             div {
                 @extend .cuenta__info__casilla;
@@ -211,9 +223,9 @@
                 padding: 5px 10px;
 
                 h3 {
-                    font-size: 11px;
-                    line-height: 11px;
-                    height: 11px;
+                    font-size: 12px;
+                    line-height: 12px;
+                    height: 12px;
                 }
             }
 
@@ -288,10 +300,10 @@
             &__casilla {
                 padding: 6px 10px;
 
-                h3 {
-                    height: 13px;
-                    font-size: 13px;
-                    line-height: 13px;
+                h3{
+                    font-size: 14px;
+                    line-height: 14px;
+                    height: 14px;
                 }
             }
         }
@@ -446,7 +458,7 @@
 
             h2 {
                 height: 40px;
-                font-size: 20px;
+                font-size: 25px;
                 margin: 0;
             }
 

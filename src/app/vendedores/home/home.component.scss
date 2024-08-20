@@ -1,35 +1,17 @@
 @import '../../../styles.scss';
 
-.header {
-  @extend .header;
-  background-color: $header-vendedores-background;
-
-  &__botones {
-    @extend .botones;
-
-    button {
-      @extend .botones__boton;
-      background-color: $vendedores-botones;
-      margin-left: 25px;
-      height: 35px;
-      font: 17px 500;
-    }
-  }
-}
-
 .home {
   background-color: $background-vendedores;
-  padding: 5% 18%;
+  padding: 5% 6%;
   color: #192959;
   font-family: $letra-principal;
 
   &__title {
     font-weight: 900;
-    font-size: 48px;
-    line-height: 56px;
-    width: 90%;
+    font-size: 30px;
+    line-height: 30px;
+    width: 100%;
     margin-bottom: 10px;
-    font-family: $letra-principal;
   }
 
   h3 {
@@ -42,26 +24,9 @@
   }
 
   &__form {
-    margin: 50px 0px -65px 0px;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-
-    div {
-      width: 60%;
-
-      input {
-        background-color: #F2F5FD;
-        border: 2px solid #192959;
-      }
-    }
-
-    button {
+    display: none;
+    button{
       @extend .botones__boton;
-      background-color: $vendedores-botones;
-      margin-left: 45px;
-      height: 40px;
-      font-size: 18px;
     }
   }
 
@@ -328,5 +293,49 @@
       }
 
     }
+  }
+}
+
+@media (min-width: 772px){
+  .home{
+    padding: 5% 13%;
+    &__title {
+      font-size: 48px;
+      width: 90%;
+      line-height: 56px;
+    }
+  }
+}
+
+@media (min-width:992px) {
+  .home{
+    &__form {
+      margin: 50px 0px -65px 0px;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+  
+      div {
+        width: 60%;
+  
+        input {
+          background-color: #F2F5FD;
+          border: 2px solid #192959;
+        }
+      }
+  
+      button {
+        background-color: $vendedores-botones;
+        margin-left: 45px;
+        height: 40px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1224px){
+  .home{
+    padding: 5% 18%;
   }
 }

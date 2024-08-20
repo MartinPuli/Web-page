@@ -44,7 +44,7 @@ button {
         flex-direction: column;
         width: 100%;
 
-        p{
+        p {
             font-weight: 100;
             margin-bottom: 2px;
         }
@@ -58,13 +58,13 @@ button {
         }
     }
 
-    &__rates{
+    &__rates {
         display: flex;
         flex-direction: column;
         margin-bottom: 20px;
     }
-    
-    &__imagenes{
+
+    &__imagenes {
         display: none;
     }
 
@@ -72,7 +72,7 @@ button {
         display: none;
     }
 
-    &__medio{
+    &__medio {
         display: none;
     }
 
@@ -146,18 +146,19 @@ button {
         }
     }
 
-    &__especificaciones{
+    &__especificaciones {
         margin: 20px 0px;
     }
 
     &__claves {
         margin: 20px 0px 0px 0px;
-        div{
+
+        div {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: flex-start;
-    
+
             button {
                 padding: 2px 14px;
                 font-size: 12px;
@@ -277,18 +278,22 @@ button {
 
 @media (min-width: 420px) {
     .contenido {
-        &__abajo{
-            h4{
+        &__abajo {
+            h4 {
                 font-size: 22px;
             }
-            p{
+
+            p {
                 font-size: 16px;
             }
         }
-        &__claves{
-            button{
-                padding: 4px 18px;
-                font-size: 14px;
+
+        &__claves {
+            div {
+                button {
+                    padding: 4px 18px;
+                    font-size: 14px;
+                }
             }
         }
     }
@@ -296,14 +301,16 @@ button {
 
 @media (min-width: 520px) {
     .contenido {
-        &__medio{
+        &__medio {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            &__adic{
+
+            &__adic {
                 display: flex;
                 flex-direction: column;
-                img{
+
+                img {
                     width: 60px;
                     height: 60px;
                     margin-bottom: 10px;
@@ -311,29 +318,25 @@ button {
                 }
             }
 
-            &__princ{
+            &__princ {
                 width: 500px;
                 height: 500px;
                 padding: 2%;
             }
         }
 
-        &__abajo{
-            h4{
+        &__abajo {
+            h4 {
                 font-size: 22px;
             }
-            p{
+
+            p {
                 font-size: 16px;
             }
         }
-        &__claves{
-            button{
-                padding: 4px 18px;
-                font-size: 14px;
-            }
-        }
     }
-    .carousel{
+
+    .carousel {
         display: none;
     }
 }
@@ -355,7 +358,7 @@ button {
     }
 
     .contenido {
-        &__arriba__celu{
+        &__arriba__celu {
             display: none;
         }
 
@@ -396,6 +399,7 @@ button {
             font-size: 50px;
             font-weight: 600;
             justify-content: center;
+            margin-bottom: 40px;
         }
 
         &__botones {
@@ -466,6 +470,7 @@ button {
             border-radius: 20px;
             background-color: #CDD8FD;
             padding: 2%;
+            margin: 0;
         }
 
         &__especificaciones {
@@ -473,13 +478,15 @@ button {
             border-radius: 20px;
             background-color: #DDE5FD;
             padding: 4%;
-            margin-bottom: 20px;
+            margin: 0px 0px 20px 0px;
         }
 
         &__claves {
-            button {
-                padding: 2px 14px;
-                font-size: 12px;
+            div {
+                button {
+                    padding: 2px 14px;
+                    font-size: 12px;
+                }
             }
         }
     }
@@ -568,9 +575,11 @@ button {
 @media (min-width: 1100px) {
     .contenido {
         &__claves {
-            button {
-                padding: 5px 20px;
-                font-size: 16px;
+            div {
+                button {
+                    padding: 5px 20px;
+                    font-size: 16px;
+                }
             }
         }
     }

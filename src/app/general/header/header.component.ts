@@ -25,5 +25,6 @@ export class HeaderComponent {
   @Input() perVend: Boolean = false
   @Input() actualizaciones: Boolean = false
   @Input() miCuenta: Boolean = false
+  @Input() main: Boolean = false
   
 }

@@ -1,8 +1,8 @@
 <div class="panel" [ngClass]="{'vendedor': isVendedor, 'proveedor': !isVendedor}">
     <div class="panel__ganancias">
-        <h3>Panel de Ganancias</h3>
+        <h2>Panel de Ganancias</h2>
         <div class="panel__ganancias__paneles">
-            <div>
+            <div class="panel__ganancias__paneles__ganancia">
                 <h3>Ganancia</h3>
                 @if(isVendedor){
                     <h2>{{ gananciasVendedorTotales() | currency }}</h2>
@@ -23,8 +23,9 @@
     </div>
     <div class="panel__historial">
         <div class="panel__historial__encabezado">
-            <h3>Historial de Ventas</h3>
+            <h2>Historial de Ventas</h2>
             <button [routerLink]="isVendedor? ['/vendedor/ventas/', idUsuario]: ['/proveedor/ventas/', idUsuario]">Ver todas</button>
+            <i [routerLink]="isVendedor? ['/vendedor/ventas/', idUsuario]: ['/proveedor/ventas/', idUsuario]" class="fa-solid fa-magnifying-glass"></i>
         </div>
         @defer(when cargado){
         @if (cantidadVentasCompletadas()) {
@@ -38,7 +39,7 @@
         @for (venta of ventas(); track $index) {
         @if (venta.venta.state == "completa") {
         <div class="panel__historial__venta">
-            <h4 class="panel__historial__producto"> {{
+            <h4 class="panel__historial__venta__producto"> {{
                 venta.producto.nombre | limiteCaracteres }} </h4>
             @if (venta.venta.correo) {
             <h4 class="panel__historial__venta__entrega">
