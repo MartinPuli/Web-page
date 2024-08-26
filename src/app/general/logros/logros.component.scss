@@ -24,13 +24,13 @@
             border-radius: 5px;
 
             h4 {
-                font-size: 18.1px;
+                font-size: 1.1rem;
                 text-align: right;
                 margin: 0;
             }
 
             p {
-                font-size: 8.8px;
+                font-size: 0.62rem;
                 text-align: right;
                 margin: 0 0 -12px 0;
             }
@@ -52,6 +52,46 @@
 
 
 //Media queries
+
+@media (min-width: 345px) {
+    .logros {
+
+        &__container {
+
+            &__logro {
+
+                h4 {
+                    font-size: 1.3rem;
+                }
+
+                p {
+                    font-size: 0.698rem;
+                    margin: 0 0 -7px 0;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 380px) {
+    .logros {
+
+        &__container {
+
+            &__logro {
+
+                h4 {
+                    font-size: 22px;
+                }
+
+                p {
+                    font-size: 11.4px;
+                    margin: 0 0 -7px 0;
+                }
+            }
+        }
+    }
+}
 
 @media (min-width: 380px) {
     .logros {
@@ -153,7 +193,7 @@
         &__container {
 
             &__logro {
-                width: 24%;
+                width: 24.3%;
                 margin-top: 15px;
                 margin-bottom: 15px;
                 padding: 4px 8px 4px 8px;
@@ -164,7 +204,7 @@
                 }
 
                 p {
-                    font-size: 0.82rem;
+                    font-size: 0.72rem;
                     margin: 0 0 -7px 0;
                 }
             }

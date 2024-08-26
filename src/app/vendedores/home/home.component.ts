@@ -10,7 +10,7 @@ import { EstrellasComponent } from '../../general/estrellas/estrellas.component'
 import { RatesService } from '../../shares/services/rates.service';
 import { LimiteCaracteresPipe } from '../../shares/pipes/limite-caracteres.pipe';
 import { ScriptsService } from '../../shares/services/js/scripts.service';
-
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +25,7 @@ export class HomeComponent {
   private _apiCategorias = inject(CategoriasService)
   private _apiRating = inject(RatesService)
   private _scripts = inject(ScriptsService)
+  private breakpointObserver = inject(BreakpointObserver)
 
   valorFiltrado: string = ''
   productos: Producto[] = []
@@ -41,6 +42,7 @@ export class HomeComponent {
   cargadoVend: Boolean = false
   cargadoOpor: Boolean = false
   cargadoMes: Boolean = false
+  responsiveLimit!: number
 
   constructor(private form: FormBuilder) {
     this.inputBusqueda = this.form.group({
@@ -54,6 +56,16 @@ export class HomeComponent {
   }
 
   ngAfterContentInit(): void {
+
+    switch (true) {
+      case this.breakpointObserver.isMatched('(min-width: 600px)'):
+        this.responsiveLimit = 35
+        break;
+      default:
+        this.responsiveLimit = 33
+        break;
+    }
+
     for (let i = 0; i < 4; i++) {
       let ratesTraidos = this._apiRating.getRatesProducto(this.productos[i].id)
       this.productosInspirados.push({
@@ -98,7 +110,6 @@ export class HomeComponent {
     }
     this.cargadoMes = true;
 
-    this._scripts.loadScript(["line-limits"])
   }
 
   filtrar() { }

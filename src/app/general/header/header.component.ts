@@ -25,8 +25,8 @@ export class HeaderComponent {
   @Input() miCuenta: Boolean = false
   @Input() main: Boolean = false
 
-  ngAfterContentInit(): void {
-    this._scripts.loadScript(["menu"])
+  ngAfterViewInit(): void {
+    if (typeof document !== 'undefined') this._scripts.loadScript(["menu"])
   }
-  
+
 }

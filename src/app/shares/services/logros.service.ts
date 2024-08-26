@@ -22,13 +22,13 @@ export class LogrosService {
     { id: "ven01", descripcion: "LLevas vendiendo por", logro: "1 mes"},
     { id: "ven02", descripcion: "LLevas vendiendo por", logro: "1 año"},
     { id: "ven03", descripcion: "Vendiste de todas las", logro: "Categorías"},
-    { id: "ven04", descripcion: "Encontraste un producto sin", logro: "Vendedores"},
+    { id: "ven04", descripcion: "Linkeaste producto sin", logro: "Vendedores"},
     { id: "ven05", descripcion: "Te convertiste en", logro: "Vendedor"},
     { id: "ven06", descripcion: "Visitaste nuestro", logro: "Instagram"},
     { id: "ven07", descripcion: "Hiciste", logro: "1 pregunta"},
     { id: "ven08", descripcion: "Hiciste", logro: "5 preguntas"},
     { id: "ven09", descripcion: "Vendiste", logro: "3 producto"},
-    { id: "ven10", descripcion: "Vendistes", logro: "10 productos"},
+    { id: "ven10", descripcion: "Vendiste", logro: "10 productos"},
     { id: "ven11", descripcion: "Vendiste", logro: "50 productos"},
     { id: "ven12", descripcion: "Vendiste", logro: "100 pedidos"}
   ];

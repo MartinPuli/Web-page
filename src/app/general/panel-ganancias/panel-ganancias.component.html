@@ -45,7 +45,7 @@
         @if (venta.venta.state == "completa") {
         <div class="panel__historial__venta">
             <h4 class="panel__historial__venta__producto"> {{
-                venta.producto.nombre }} </h4>
+                venta.producto.nombre | limiteCaracteres: responsiveLimit }} </h4>
             @if (venta.venta.correo) {
             @if (isPantallaMas600){
             <h4 class="panel__historial__venta__entrega">

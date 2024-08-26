@@ -24,7 +24,7 @@
                         alt="producto-imagen">
                     <div
                         class="home__inspirado__container__producto__texto__medio">
-                        <p> {{ producto.producto.nombre }} </p>
+                        <p> {{ producto.producto.nombre | limiteCaracteres: responsiveLimit }} </p>
                         <div>
                             <h4>{{ producto.producto.precio | currency }}</h4>
                             @if (producto.cantRates == 0) {
@@ -58,7 +58,7 @@
             </div>
             <div class="home__ultimo__container__info">
                 <div>
-                    <h4> {{ productoParecido.producto.nombre }} </h4>
+                    <h4> {{ productoParecido.producto.nombre | limiteCaracteres: responsiveLimit }} </h4>
                     <p> {{ productoParecido.producto.descripcion }}</p>
                 </div>
                 <div class="home__ultimo__container__info__botones">
@@ -85,7 +85,7 @@
                         alt="producto-imagen">
                     <div
                         class="home__vendido__container__producto__texto__medio">
-                        <p> {{ producto.producto.nombre }}</p>
+                        <p> {{ producto.producto.nombre | limiteCaracteres: responsiveLimit }}</p>
                         <div>
                             <h4>{{ producto.producto.precio | currency }}</h4>
                             @if (producto.cantRates == 0) {
@@ -144,7 +144,7 @@
                         alt="producto-imagen">
                     <div
                         class="home__vendido__container__producto__texto__medio">
-                        <p> {{ producto.producto.nombre }} </p>
+                        <p> {{ producto.producto.nombre | limiteCaracteres: responsiveLimit }} </p>
                         <div>
                             <h4>{{ producto.producto.precio | currency }}</h4>
                             @if (producto.cantRates == 0) {

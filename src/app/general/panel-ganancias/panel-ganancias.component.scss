@@ -24,6 +24,7 @@
 
     &__ganancias {
         margin: 15px 0;
+
         h2 {
             font-size: 18px;
             line-height: 32px;
@@ -104,26 +105,25 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            padding: 0px 6px;
 
             h4 {
-                font-size: 14px;
+                font-size: 12px;
                 color: #1D195999;
                 margin: 0%;
+                text-align: center;
             }
 
             &__izquierda {
-                width: 28%;
-                text-align: center;
+                width: 32%;
             }
 
             &__medio {
-                width: 50%;
-                text-align: center;
+                width: 40%;
             }
 
             &__derecha {
-                width: 15%;
-                text-align: center;
+                width: 25%;
             }
         }
 
@@ -146,17 +146,16 @@
             }
 
             &__producto {
-                width: 28%;
-                text-align: left;
+                width: 32%;
             }
 
             &__entrega {
-                width: 50%;
+                width: 40%;
                 text-align: center;
             }
 
             &__precio {
-                width: 15%;
+                width: 25%;
                 text-align: right;
             }
         }
@@ -170,12 +169,80 @@
     }
 }
 
+@media (min-width: 400px) {
+    .panel {
+        &__historial {
+
+            &__venta {
+                padding: 5px 10px;
+                margin: 0px 0px 20px 0px;
+
+                h4 {
+                    font-size: 13.5px;
+                    line-height: 13.5px;
+                    margin: 0%;
+                }
+            }
+        }
+    }
+}
+
 @media (min-width: 440px) {
     .panel {
         &__historial {
             &__vacio {
                 margin-top: 17px;
                 font-size: 15.5px;
+            }
+
+
+            &__indices {
+                padding: 15px 10px;
+
+                h4 {
+                    font-size: 14px;
+                    line-height: 14px;
+                    text-align: center;
+                }
+
+                &__izquierda {
+                    width: 35%;
+                }
+
+                &__medio {
+                    width: 32%;
+                }
+
+                &__derecha {
+                    width: 30%;
+                }
+
+            }
+
+            &__venta {
+                padding: 8px 10px;
+                margin: 0px 0px 20px 0px;
+
+                h4 {
+                    font-size: 15px;
+                    line-height: 13px;
+                    margin: 0%;
+                }
+
+                &__producto {
+                    width: 35%;
+                    text-align: left;
+                }
+
+                &__entrega {
+                    width: 32%;
+                    text-align: center;
+                }
+
+                &__precio {
+                    width: 30%;
+                    text-align: right;
+                }
             }
         }
     }
@@ -213,13 +280,11 @@
         }
 
         &__historial {
+
             &__encabezado {
 
                 button {
-                    @extend .botones__boton;
-                    display: inline-block;
                     font-size: 18px;
-                    font-weight: 500;
                     height: 36px;
                     padding: 5px 20px 5px 20px;
                 }
@@ -230,6 +295,47 @@
 
                 h2 {
                     font-size: 25px;
+                }
+            }
+
+            &__indices {
+
+                &__izquierda {
+                    width: 34%;
+                }
+
+                &__medio {
+                    width: 45%;
+                }
+
+                &__derecha {
+                    width: 18%;
+                }
+
+            }
+
+            &__venta {
+                padding: 15px 20px;
+
+                h4 {
+                    font-size: 15px;
+                    line-height: 15px;
+                    margin: 0%;
+                }
+
+                &__producto {
+                    width: 34%;
+                    text-align: left;
+                }
+
+                &__entrega {
+                    width: 45%;
+                    text-align: center;
+                }
+
+                &__precio {
+                    width: 18%;
+                    text-align: right;
                 }
             }
 
@@ -286,34 +392,50 @@
             }
 
             &__venta {
-                padding: 10px 12px;
-    
+                padding: 15px 20px;
+
                 h4 {
-                    font-size: 18px;
-                    line-height: 24px;
+                    font-size: 14px;
+                    line-height: 14px;
+                    margin: 0%;
                 }
-    
+
                 &__producto {
                     width: 28%;
                     text-align: left;
                 }
-    
+
                 &__entrega {
                     width: 50%;
                     text-align: center;
                 }
-    
+
                 &__precio {
                     width: 15%;
                     text-align: right;
                 }
             }
-    
+
             &__vacio {
                 margin-top: 12px;
-                font-size: 12.5px;
+                font-size: 15px;
                 color: #1D195999;
                 font-weight: 700;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px){
+    .panel {
+        &__historial {
+            &__venta {
+                padding: 20px 20px;
+
+                h4 {
+                    font-size: 18px;
+                    line-height: 18px;
+                }
             }
         }
     }

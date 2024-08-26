@@ -30,6 +30,7 @@ export class PanelGananciasComponent {
   ventas = signal(this.ventasArray)
   cargado = signal(false)
   isPantallaMas600: boolean = true
+  responsiveLimit!: number
 
   ngOnInit(): void {
     let ventasTraidas: Venta[] = this.isVendedor ? this._apiVentas.getVentasPorVendedor(this.idUsuario) : this._apiVentas.getVentasPorProveedor(this.idUsuario)
@@ -48,7 +49,14 @@ export class PanelGananciasComponent {
   }
 
   ngAfterContentInit(): void {
-    this._scripts.loadScript(["line-limits"])
+    switch (true) {
+      case this.breakpointObserver.isMatched('(min-width: 600px)'):
+        this.responsiveLimit = 27
+        break;
+      default:
+        this.responsiveLimit = 24
+        break;
+    }
     this.isPantallaMas600 = this.breakpointObserver.isMatched('(min-width: 600px)');
   }
 
