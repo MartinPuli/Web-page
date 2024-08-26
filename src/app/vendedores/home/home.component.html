@@ -1,4 +1,5 @@
-<app-header [isVendedor]=true  [idUsuario]=idVendedor [ventas]="true" [perProv]="true" [miCuenta]="true" [main]=true></app-header>
+<app-header [isVendedor]=true [idUsuario]=idVendedor [ventas]="true"
+    [perProv]="true" [miCuenta]="true" [main]=true></app-header>
 <main class="home">
     <h1 class="home__title">¡Hola, encontrá ese producto que querés vender!</h1>
     <form class="home__form"
@@ -12,90 +13,159 @@
     </form>
     <div class="home__inspirado">
         <h3>Inspirado en tus ultimas busquedas</h3>
+        @defer (when cargadoInsp) {
         <div class="home__inspirado__container">
-            @for (producto of productosInspirados(); track $index) {
-            <div class="home__inspirado__container__producto">
-                <div>
+            @for (producto of productosInspirados; track $index) {
+            <div class="home__inspirado__container__producto"
+                [routerLink]="['/products', producto.producto.id]">
+                <div class="home__inspirado__container__producto__texto">
                     <img
-                        src="{{ producto.image }}"
+                        src="{{producto.producto.image}}"
                         alt="producto-imagen">
-                    <p> {{ producto.nombre }}</p>
+                    <div
+                        class="home__inspirado__container__producto__texto__medio">
+                        <p> {{ producto.producto.nombre }} </p>
+                        <div>
+                            <h4>{{ producto.producto.precio | currency }}</h4>
+                            @if (producto.cantRates == 0) {
+                            <estrellas [rating]=producto.rating
+                                [nulo]=true></estrellas>
+                            }
+                            @else {
+                            <estrellas [rating]=producto.rating></estrellas>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <button type="button" [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+                <div
+                    class="home__inspirado__container__producto__iconos">
+                    <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
             </div>
             }
         </div>
+        }
     </div>
     <div class="home__ultimo">
         <h3>Similar a lo último que vendiste</h3>
+        @defer (when cargadoUlt){
         <div class="home__ultimo__container">
             <div class="home__ultimo__container__img">
                 <img
-                    src="{{ productoParecido().image }}"
+                    src="{{ productoParecido.producto.image }}"
                     alt="producto-imagen">
             </div>
             <div class="home__ultimo__container__info">
                 <div>
-                    <h4> {{ productoParecido().nombre }} </h4>
-                    <p> {{ productoParecido().descripcion }}</p>
+                    <h4> {{ productoParecido.producto.nombre }} </h4>
+                    <p> {{ productoParecido.producto.descripcion }}</p>
                 </div>
                 <div class="home__ultimo__container__info__botones">
-                    <button type="button" [routerLink]="['/products', productoParecido().id]"> Ver Publicación </button>
+                    <button type="button"
+                        [routerLink]="['/products', productoParecido.producto.id]">
+                        Ver
+                        Publicación </button>
                     <button> Anadir a Mis Ventas </button>
                 </div>
             </div>
         </div>
+        }
     </div>
     <div class="home__vendido">
         <h3>Más vendidos de Ropa y Calzado esta última semana</h3>
+        @defer (when cargadoVend){
         <div class="home__vendido__container">
-            @for (producto of productosVendidos(); track $index) {
-            <div class="home__vendido__container__producto">
-                <div>
+            @for (producto of productosVendidos; track $index) {
+            <div class="home__vendido__container__producto"
+                [routerLink]="['/products', producto.producto.id]">
+                <div class="home__vendido__container__producto__texto">
                     <img
-                        src="{{ producto.image }}"
+                        src="{{producto.producto.image}}"
                         alt="producto-imagen">
-                    <p> {{ producto.nombre }}</p>
+                    <div
+                        class="home__vendido__container__producto__texto__medio">
+                        <p> {{ producto.producto.nombre }}</p>
+                        <div>
+                            <h4>{{ producto.producto.precio | currency }}</h4>
+                            @if (producto.cantRates == 0) {
+                            <estrellas [rating]=producto.rating
+                                [nulo]=true></estrellas>
+                            }
+                            @else {
+                            <estrellas [rating]=producto.rating></estrellas>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+                <div
+                    class="home__vendido__container__producto__iconos">
+                    <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
             </div>
             }
         </div>
+        }
     </div>
     <div class="home__oportunidad">
         <h3>¡Esta es tu oportunidad! Nadie lo ha tomado aún</h3>
+        @defer (when cargadoOpor){
         <div class="home__oportunidad__container">
-            @for (producto of productosOportunidad(); track $index) {
+            @for (producto of productosOportunidad; track $index) {
             <div class="home__oportunidad__container__producto">
                 <div class="home__oportunidad__container__producto__info">
                     <img
-                        src="{{ producto.image }}"
+                        src="{{ producto.producto.image }}"
                         alt="producto-imagen">
-                    <p> {{ producto.nombre }}</p>
+                    <p> {{ producto.producto.nombre }}</p>
                 </div>
                 <div class="home__oportunidad__container__producto__botones">
-                    <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+                    <button [routerLink]="['/products', producto.producto.id]">
+                        Ver
+                        Publicación </button>
                     <button> Añadir a mis ventas </button>
                 </div>
             </div>
             }
         </div>
+        }
     </div>
     <div class="home__vendido__mes">
         <h3>Más vendidos de Hornos, Parrillas y Accesorios este último mes</h3>
+        @defer (when cargadoMes){
         <div class="home__vendido__container">
-            @for (producto of productosVendidosMes(); track $index) {
-            <div class="home__vendido__container__producto">
-                <div>
+            @for (producto of productosVendidosMes; track $index) {
+                <div class="home__vendido__container__producto"
+                [routerLink]="['/products', producto.producto.id]">
+                <div class="home__vendido__container__producto__texto">
                     <img
-                        src="{{ producto.image }}"
+                        src="{{producto.producto.image}}"
                         alt="producto-imagen">
-                    <p> {{ producto.nombre }}</p>
+                    <div
+                        class="home__vendido__container__producto__texto__medio">
+                        <p> {{ producto.producto.nombre }} </p>
+                        <div>
+                            <h4>{{ producto.producto.precio | currency }}</h4>
+                            @if (producto.cantRates == 0) {
+                            <estrellas [rating]=producto.rating
+                                [nulo]=true></estrellas>
+                            }
+                            @else {
+                            <estrellas [rating]=producto.rating></estrellas>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <button [routerLink]="['/products', producto.id]"> Ver Publicación </button>
+                <div
+                    class="home__vendido__container__producto__iconos">
+                    <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-share-nodes"></i>
+                </div>
             </div>
             }
         </div>
+        }
     </div>
     <div class="home__categorias">
         <div class="home__categorias__encabezado">

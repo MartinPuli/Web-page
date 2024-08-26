@@ -135,13 +135,13 @@
             border: 1px solid #1F1D3E;
             border-radius: 4.44px;
             align-items: center;
-            padding: 10px 12px;
+            padding: 4px 6px;
             margin: 0px 0px 20px 0px;
             width: 100%;
 
             h4 {
-                font-size: 18px;
-                line-height: 24px;
+                font-size: 13px;
+                line-height: 13px;
                 margin: 0%;
             }
 
@@ -283,6 +283,37 @@
                     font-size: 26px;
                     line-height: 36px;
                 }
+            }
+
+            &__venta {
+                padding: 10px 12px;
+    
+                h4 {
+                    font-size: 18px;
+                    line-height: 24px;
+                }
+    
+                &__producto {
+                    width: 28%;
+                    text-align: left;
+                }
+    
+                &__entrega {
+                    width: 50%;
+                    text-align: center;
+                }
+    
+                &__precio {
+                    width: 15%;
+                    text-align: right;
+                }
+            }
+    
+            &__vacio {
+                margin-top: 12px;
+                font-size: 12.5px;
+                color: #1D195999;
+                font-weight: 700;
             }
         }
     }

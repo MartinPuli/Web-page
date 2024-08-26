@@ -12,10 +12,8 @@ import { ScriptsService } from '../../shares/services/js/scripts.service';
 })
 export class HeaderComponent {
   private _route = inject(ActivatedRoute)
+  private _scripts = inject(ScriptsService)
 
-  constructor( private _scripts: ScriptsService){
-    _scripts.loadScript(["menu"])
-  }
   @Input() isVendedor!: Boolean
   @Input() idUsuario!: number
   @Input() inicio: Boolean = false
@@ -26,5 +24,9 @@ export class HeaderComponent {
   @Input() actualizaciones: Boolean = false
   @Input() miCuenta: Boolean = false
   @Input() main: Boolean = false
+
+  ngAfterContentInit(): void {
+    this._scripts.loadScript(["menu"])
+  }
   
 }

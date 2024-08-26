@@ -81,7 +81,6 @@ export class DetalleProductoComponent implements OnInit {
 
         if (this.ratesTraidos.length) {
           this.rating = this.ratesTraidos.reduce((a, b) => a + b, 0) / this.ratesTraidos.length
-          console.log(this.rating)
         }
 
         this.arrayCarrusel = [this.producto.image, ...this.imagenesAdicionales]

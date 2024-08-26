@@ -9,6 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class EstrellasComponent {
   @Input() rating!: number
+  @Input() nulo: Boolean = false;
 
   stringRate!: string
 

@@ -1,14 +1,15 @@
-<div class="panel" [ngClass]="{'vendedor': isVendedor, 'proveedor': !isVendedor}">
+<div class="panel"
+    [ngClass]="{'vendedor': isVendedor, 'proveedor': !isVendedor}">
     <div class="panel__ganancias">
         <h2>Panel de Ganancias</h2>
         <div class="panel__ganancias__paneles">
             <div class="panel__ganancias__paneles__ganancia">
                 <h3>Ganancia</h3>
                 @if(isVendedor){
-                    <h2>{{ gananciasVendedorTotales() | currency }}</h2>
+                <h2>{{ gananciasVendedorTotales() | currency }}</h2>
                 }
                 @else {
-                    <h2>{{ gananciasTotales() | currency }}</h2>
+                <h2>{{ gananciasTotales() | currency }}</h2>
                 }
             </div>
             <div>
@@ -24,8 +25,12 @@
     <div class="panel__historial">
         <div class="panel__historial__encabezado">
             <h2>Historial de Ventas</h2>
-            <button [routerLink]="isVendedor? ['/vendedor/ventas/', idUsuario]: ['/proveedor/ventas/', idUsuario]">Ver todas</button>
-            <i [routerLink]="isVendedor? ['/vendedor/ventas/', idUsuario]: ['/proveedor/ventas/', idUsuario]" class="fa-solid fa-magnifying-glass"></i>
+            <button
+                [routerLink]="isVendedor? ['/vendedor/ventas/', idUsuario]: ['/proveedor/ventas/', idUsuario]">Ver
+                todas</button>
+            <i
+                [routerLink]="isVendedor? ['/vendedor/ventas/', idUsuario]: ['/proveedor/ventas/', idUsuario]"
+                class="fa-solid fa-magnifying-glass"></i>
         </div>
         @defer(when cargado){
         @if (cantidadVentasCompletadas()) {
@@ -40,26 +45,43 @@
         @if (venta.venta.state == "completa") {
         <div class="panel__historial__venta">
             <h4 class="panel__historial__venta__producto"> {{
-                venta.producto.nombre | limiteCaracteres }} </h4>
+                venta.producto.nombre }} </h4>
             @if (venta.venta.correo) {
+            @if (isPantallaMas600){
             <h4 class="panel__historial__venta__entrega">
                 Entregado por {{ venta.venta.correo }} el {{
                 venta.venta.fechaEntrega |
                 formatoFecha }} </h4>
             }
-            @else {
+            @else{
             <h4 class="panel__historial__venta__entrega">
-                Entregado por el vendedor el {{ venta.venta.fechaEntrega |
+                {{ venta.venta.correo }} ({{
+                venta.venta.fechaEntrega |
+                formatoFecha }}) </h4>
+            }
+            }
+            @else {
+            @if (isPantallaMas600){
+            <h4 class="panel__historial__venta__entrega">
+                Entregado por el vendedor el {{
+                venta.venta.fechaEntrega |
                 formatoFecha }} </h4>
+            }
+            @else{
+            <h4 class="panel__historial__venta__entrega">
+                Vendedor ({{
+                venta.venta.fechaEntrega |
+                formatoFecha }}) </h4>
+            }
             }
             <h4 class="panel__historial__venta__precio">
                 @if(isVendedor){
                 {{
-                    venta.venta.precioVenta - venta.producto.precio| currency }}
+                venta.venta.precioVenta - venta.producto.precio| currency }}
                 }
                 @else{
-                    {{
-                        venta.producto.precio| currency }}
+                {{
+                venta.producto.precio | currency }}
                 }
             </h4>
         </div>

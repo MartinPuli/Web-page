@@ -22,3 +22,9 @@ export interface estadoProducto{
     preguntas: pregunta[],
     respuestas: respuesta[][]
 }
+
+export interface objetoProducto{
+    producto: Producto
+    rating: number
+    cantRates: number
+}

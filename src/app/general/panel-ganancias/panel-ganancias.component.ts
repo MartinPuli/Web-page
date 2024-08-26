@@ -7,6 +7,8 @@ import { VentasService } from '../../shares/services/ventas.service';
 import { Venta, VentaProducto } from '../../shares/models/sales-model';
 import { ApiProductosService } from '../../shares/services/api-productos.service';
 import { forkJoin, map } from 'rxjs';
+import { ScriptsService } from '../../shares/services/js/scripts.service';
+import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-panel-ganancias',
@@ -18,6 +20,8 @@ import { forkJoin, map } from 'rxjs';
 export class PanelGananciasComponent {
   private _apiVentas = inject(VentasService)
   private _apiProductos = inject(ApiProductosService)
+  private _scripts = inject(ScriptsService)
+  private breakpointObserver = inject(BreakpointObserver)
 
   @Input() isVendedor!: Boolean
   @Input() idUsuario!: number
@@ -25,6 +29,7 @@ export class PanelGananciasComponent {
   ventasArray: VentaProducto[] = []
   ventas = signal(this.ventasArray)
   cargado = signal(false)
+  isPantallaMas600: boolean = true
 
   ngOnInit(): void {
     let ventasTraidas: Venta[] = this.isVendedor ? this._apiVentas.getVentasPorVendedor(this.idUsuario) : this._apiVentas.getVentasPorProveedor(this.idUsuario)
@@ -40,6 +45,11 @@ export class PanelGananciasComponent {
 
   ngOnDestroy(): void {
     this.cargado.set(false)
+  }
+
+  ngAfterContentInit(): void {
+    this._scripts.loadScript(["line-limits"])
+    this.isPantallaMas600 = this.breakpointObserver.isMatched('(min-width: 600px)');
   }
 
   cantidadVentasProceso = computed(() => {

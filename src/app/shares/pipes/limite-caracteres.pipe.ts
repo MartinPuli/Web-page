@@ -7,8 +7,8 @@ import { Producto } from '../models/producto-model';
 })
 export class LimiteCaracteresPipe implements PipeTransform {
 
-  transform(cadena: Producto['nombre']): string {
-    return cadena.length > 28 ? cadena.slice(0,25) + '...' : cadena  
+  transform(cadena: Producto['nombre'], args: number): string {
+    return cadena.length > args ? cadena.slice(0,args-3) + '...' : cadena  
   }
 
 }

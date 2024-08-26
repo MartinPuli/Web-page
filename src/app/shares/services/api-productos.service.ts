@@ -14,7 +14,7 @@ export class ApiProductosService {
   private productos: Producto[] = [
     {
       id: 1,
-      nombre: "bufanda",
+      nombre: "bufandadsfsdfsdfsdfdfdsfsdsddfkjkjjcj",
       stock: 6,
       precio: 440,
       descripcion: "Descripción del producto aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
