@@ -1,20 +1,5 @@
 @import '../../../styles.scss';
 
-.header {
-    @extend .header;
-
-    &__botones {
-        @extend .botones;
-
-        button {
-            @extend .botones__boton;
-            margin-left: 25px;
-            height: 35px;
-            font: 17px 500;
-        }
-    }
-}
-
 .vendedor {
     &__header {
         background-color: $header-vendedores-background;
@@ -52,7 +37,7 @@
 }
 
 .actualizaciones {
-    padding: 2% 18%;
+    padding: 2% 6%;
     background-color: #EEF2FE;
 
     &__encabezado {
@@ -395,4 +380,19 @@ mat-accordion {
 
 mat-panel-title{
     width: 50% !important;
+}
+
+
+//Media queries
+
+@media (min-width: 772px) {
+    .actualizaciones{
+        padding: 2% 13%;
+    }
+}
+
+@media (min-width: 1224px) {
+    .actualizaciones{
+        padding: 2% 18%;
+    }
 }

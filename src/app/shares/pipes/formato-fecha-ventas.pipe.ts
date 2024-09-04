@@ -7,7 +7,7 @@ import { Venta } from '../models/sales-model';
 })
 export class FormatoFechaVentasPipe implements PipeTransform {
 
-  transform(fecha: Venta['deadline']): string {
+  transform(fecha: Date): string {
     let yearString: string = fecha.getFullYear() >= 10?fecha.getFullYear().toString():`0${fecha.getFullYear()}`
     let mesString: string = fecha.getMonth() >= 10?fecha.getMonth().toString():`0${fecha.getMonth()}`
     let diaString: string = fecha.getDate() >= 10?fecha.getDate().toString():`0${fecha.getDate()}`

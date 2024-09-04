@@ -91,13 +91,13 @@
             }
 
             i {
-                color: white;
-                border-radius: radius;
-                padding: 5.2px;
-                font-size: 13px;
-                border-radius: 50%;
+                color: #1F1D3E;
+                background-color: transparent;
+                font-size: 15px;
                 cursor: pointer;
-                border: 1px solid #1F1D3E
+                &:hover{
+                    color: white;
+                }
             }
         }
 

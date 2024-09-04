@@ -1,4 +1,5 @@
-<app-header [isVendedor]=false [idUsuario]=idUsuario [publicaciones]="true" [perVend]="true" [miCuenta]="true"></app-header>
+<app-header [isVendedor]=false [idUsuario]=idUsuario [publicaciones]="true"
+    [perVend]="true" [miCuenta]="true"></app-header>
 <main class="proveedor">
     <div class="proveedor__encabezado">
         <div class="proveedor__encabezado__sup">
@@ -20,7 +21,9 @@
         <div class="proveedor__paneles__actualizaciones">
             <div class="proveedor__paneles__actualizaciones__header">
                 <h2>Actualizaciones</h2>
-                <button [routerLink]="['/proveedor/actualizaciones/', idUsuario]">Ver Todas</button>
+                <button
+                    [routerLink]="['/proveedor/actualizaciones/', idUsuario]">Ver
+                    Todas</button>
             </div>
             <div class="proveedor__paneles__actualizaciones__contenido">
                 <div
@@ -30,27 +33,32 @@
                     {
                     <div
                         class="proveedor__paneles__actualizaciones__contenido__recientes__notificacion">
-                        @switch (actualizacion.tipo) {
+                        <div>
+                            @switch (actualizacion.tipo) {
                             @case(0){
-                                <h5>¡Te han hecho una pregunta!</h5>
-                            } 
+                            <h5>¡Te han hecho una pregunta!</h5>
+                            }
                             @case(1){
-                                <h5>¡Producto agregado!</h5>
+                            <h5>¡Producto agregado!</h5>
                             }
                             @case(2){
-                                <h5>¡Producto seleccionado por vendedor!</h5>
-                            }       
-                            @case(3){
-                                <h5>¡Producto vendido!</h5>
+                            <h5>¡Un Producto ha sido afiliado!</h5>
                             }
-                        }
+                            @case(3){
+                            <h5>¡Producto vendido!</h5>
+                            }
+                            }
+                            <p>{{ actualizacion.fecha | formatoFecha }} -
+                                <b>¡Presiona para ver
+                                    más!</b> </p>
+                        </div>
                         <button
                             (click)="abrirDetalle(actualizacion)">Más
                             Detalles</button>
                     </div>
                     }
                     @empty {
-                        <h4>¡Aún no tienes actualizaciones!</h4>
+                    <h4>¡Aún no tienes actualizaciones!</h4>
                     }
                 </div>
                 <div
@@ -60,12 +68,13 @@
                         <h4>Ganancia:</h4>
                         <p>{{ ganancias() | currency }}</p>
                     </div>
-                    <button>Ir a la sección Panel Ganancias</button>
+                    <button>Panel de Ganancias</button>
                 </div>
             </div>
         </div>
     </div>
     <app-estado [idProveedor]=idUsuario></app-estado>
-    <app-panel-ganancias [isVendedor]=false [idUsuario]=idUsuario></app-panel-ganancias>
+    <app-panel-ganancias [isVendedor]=false
+        [idUsuario]=idUsuario></app-panel-ganancias>
     <app-logros [isVendedor]=false [idUsuario]=idUsuario></app-logros>
 </main>

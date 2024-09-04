@@ -20,6 +20,10 @@
         background-color: $header-vendedores-background;
     }
 
+    .volver {
+        color: $vendedores-botones;
+    }
+
     main {
         background-color: #CDD8FD;
     }
@@ -34,6 +38,10 @@
         background-color: $header-proveedores-background;
     }
 
+    .volver {
+        color: $proveedores-botones;
+    }
+
     main {
         background-color: #CCCAF6;
     }
@@ -45,8 +53,16 @@
 
 main {
     color: #1F1D3E;
-    padding: 2% 18%;
+    padding: 3px 6% 2% 6%;
     background-color: #CCCAF6;
+}
+
+.volver {
+    position: absolute;
+    top: 69px;
+    left: 6%;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 h2 {
@@ -59,22 +75,22 @@ h2 {
 .encabezado {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     align-content: center;
-    margin-bottom: 20px;
+    margin: 7.4px 0 20px 0;
 
     h1 {
         font-weight: 900;
-        font-size: 28px;
+        font-size: 21px;
         margin: 0;
+        height: 35px;
+        line-height: 35px;
     }
 
     button {
+        display: none;
         @extend .botones__boton;
-        height: 36px;
-        font: 16px 500;
-        height: 36px;
     }
 }
 
@@ -119,9 +135,8 @@ h2 {
     margin-bottom: 30px;
 
     &__producto {
-        width: 50%;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         border: 1px solid #1F1D3E;
         border-right: 0px;
 
@@ -132,8 +147,8 @@ h2 {
                 background-color: white;
                 border: 1px solid #1F1D3E;
                 border-radius: 11px;
-                width: 170px;
-                height: 170px;
+                width: 80px;
+                height: 80px;
                 object-fit: scale-down;
                 margin: auto;
                 padding: 2%;
@@ -144,12 +159,20 @@ h2 {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 2.5% 3% 0.5% 2%;
+            padding: 2.5% 3% 2.5% 2%;
+            width: 100px;
+
+            estrellas {
+                width: 80px;
+                height: 10px;
+            }
 
             h3 {
-                font-size: 16.7px;
-                line-height: 21px;
+                font-size: 12px;
+                line-height: 12px;
                 font-weight: 800;
+                margin: 0;
+                word-break: break-all;
             }
         }
     }
@@ -197,7 +220,7 @@ h2 {
             height: 40%;
         }
 
-        &__botones{
+        &__botones {
             justify-content: space-around;
             border-bottom: #1F1D3E 1px solid;
             border-top: #1F1D3E 1px solid;
@@ -228,10 +251,10 @@ h2 {
     line-height: 50px;
 }
 
-.links{
+.links {
     margin-bottom: 60px;
 
-    .card__info{
+    .card__info {
         color: black;
         background-color: #ABBEFB;
     }
@@ -242,5 +265,146 @@ h2 {
         font-size: 16px;
         font-weight: 500;
         padding: 5px 25px;
+    }
+}
+
+@media (min-width:772px) {
+    main {
+        padding: 2% 13%;
+    }
+
+    .volver {
+        display: none;
+    }
+
+    .encabezado {
+        justify-content: space-between;
+
+        h1{
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: inline-block;
+            height: 36px;
+            font: 16px 500;
+            height: 36px;
+        }
+    }
+
+    .card {
+        background-color: $color-claro;
+        border-radius: 10px 10px 0px 10px;
+        display: flex;
+        flex-direction: row;
+        height: 190px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+
+        &__producto {
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            border: 1px solid #1F1D3E;
+            border-right: 0px;
+
+            &__imagen {
+                padding: 2%;
+
+                img {
+                    background-color: white;
+                    border: 1px solid #1F1D3E;
+                    border-radius: 11px;
+                    width: 170px;
+                    height: 170px;
+                    object-fit: scale-down;
+                    margin: auto;
+                    padding: 2%;
+                }
+            }
+
+            &__detalles {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 2.5% 3% 2.5% 2%;
+                width: auto;
+
+                h3 {
+                    font-size: 16.7px;
+                    line-height: 21px;
+                    font-weight: 800;
+                    margin: 0;
+                    word-break: break-all;
+                }
+            }
+        }
+
+        &__info {
+            width: 50%;
+            color: white;
+            border-radius: 0px 5px 0px 0px;
+            border: solid 1px #1F1D3E;
+
+            h3 {
+                font-weight: 700;
+                font-size: 16.7px;
+                line-height: 28px;
+                text-align: left;
+                padding: 3%;
+                margin: 0;
+            }
+
+            h2 {
+                font-size: 36px;
+                text-align: right;
+                margin: 0;
+            }
+
+            div {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            &__precio {
+                justify-content: space-between;
+                padding: 3%;
+                height: 35%;
+
+                h3 {
+                    padding: 0%;
+                }
+            }
+
+            &__entrega {
+                border-bottom: #1F1D3E 1px solid;
+                border-top: #1F1D3E 1px solid;
+                height: 40%;
+            }
+
+            &__botones {
+                justify-content: space-around;
+                border-bottom: #1F1D3E 1px solid;
+                border-top: #1F1D3E 1px solid;
+                height: 40%;
+                padding: 3%;
+            }
+
+            &__costo {
+                height: 25%;
+            }
+
+            &__completa {
+                height: 25%;
+            }
+        }
+    }
+}
+
+@media (min-width:1224px) {
+    main {
+        padding: 2% 18%;
     }
 }

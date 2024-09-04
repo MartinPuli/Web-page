@@ -12,11 +12,12 @@ import { LinksService } from '../../shares/services/links.service';
 import { link, linkCompleto } from '../../shares/models/links-model';
 import { RatesService } from '../../shares/services/rates.service';
 import { HeaderComponent } from '../header/header.component';
+import { EstrellasComponent } from '../estrellas/estrellas.component';
 
 @Component({
   selector: 'app-ventas-proceso',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormatoFechaPipe, FormatoFechaVentasPipe, RouterOutlet, RouterLink, RouterLinkActive, HeaderComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormatoFechaPipe, FormatoFechaVentasPipe, RouterOutlet, RouterLink, EstrellasComponent ,RouterLinkActive, HeaderComponent],
   templateUrl: './ventas.component.html',
   styleUrl: './ventas.component.scss'
 })
@@ -88,7 +89,10 @@ export class VentasComponent {
           this.signalVentas.set(ventasTraidas.map(venta => {
             return {
               venta,
-              producto: this._apiProductos.getProduct(venta.idProduct)
+              producto: this._apiProductos.getProduct(venta.idProduct),
+              rating: this._apiRates.getRatesProducto(venta.idProduct).length
+              ? this._apiRates.getRatesProducto(venta.idProduct).reduce((a,b)=> a + b, 0) / this._apiRates.getRatesProducto(venta.idProduct).length
+              : null
             }
           }
           ))

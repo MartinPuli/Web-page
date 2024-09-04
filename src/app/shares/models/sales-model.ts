@@ -26,6 +26,7 @@ export type Venta = VentaProceso | VentaCompleta ;
 export interface VentaProducto{
     venta: Venta
     producto: Producto
+    rating?: number | null
 }
 
 

@@ -24,7 +24,8 @@
                         alt="producto-imagen">
                     <div
                         class="home__inspirado__container__producto__texto__medio">
-                        <p> {{ producto.producto.nombre | limiteCaracteres: responsiveLimit }} </p>
+                        <p> {{ producto.producto.nombre | limiteCaracteres:
+                            responsiveLimit }} </p>
                         <div>
                             <h4>{{ producto.producto.precio | currency }}</h4>
                             @if (producto.cantRates == 0) {
@@ -58,7 +59,8 @@
             </div>
             <div class="home__ultimo__container__info">
                 <div>
-                    <h4> {{ productoParecido.producto.nombre | limiteCaracteres: responsiveLimit }} </h4>
+                    <h4> {{ productoParecido.producto.nombre | limiteCaracteres:
+                        responsiveLimit }} </h4>
                     <p> {{ productoParecido.producto.descripcion }}</p>
                 </div>
                 <div class="home__ultimo__container__info__botones">
@@ -85,7 +87,8 @@
                         alt="producto-imagen">
                     <div
                         class="home__vendido__container__producto__texto__medio">
-                        <p> {{ producto.producto.nombre | limiteCaracteres: responsiveLimit }}</p>
+                        <p> {{ producto.producto.nombre | limiteCaracteres:
+                            responsiveLimit }}</p>
                         <div>
                             <h4>{{ producto.producto.precio | currency }}</h4>
                             @if (producto.cantRates == 0) {
@@ -136,7 +139,7 @@
         @defer (when cargadoMes){
         <div class="home__vendido__container">
             @for (producto of productosVendidosMes; track $index) {
-                <div class="home__vendido__container__producto"
+            <div class="home__vendido__container__producto"
                 [routerLink]="['/products', producto.producto.id]">
                 <div class="home__vendido__container__producto__texto">
                     <img
@@ -144,7 +147,8 @@
                         alt="producto-imagen">
                     <div
                         class="home__vendido__container__producto__texto__medio">
-                        <p> {{ producto.producto.nombre | limiteCaracteres: responsiveLimit }} </p>
+                        <p> {{ producto.producto.nombre | limiteCaracteres:
+                            responsiveLimit }} </p>
                         <div>
                             <h4>{{ producto.producto.precio | currency }}</h4>
                             @if (producto.cantRates == 0) {

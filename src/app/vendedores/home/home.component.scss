@@ -286,7 +286,6 @@
     &__encabezado {
       display: flex;
       flex-direction: column;
-      align-items: center;
       margin-top: 45px;
       margin-bottom: 15px;
 
@@ -349,6 +348,7 @@
     &__categorias {
       &__encabezado {
         flex-direction: row;
+        
 
         button {
           margin-left: 20px;

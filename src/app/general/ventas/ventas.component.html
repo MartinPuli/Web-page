@@ -1,6 +1,7 @@
 <app-header [isVendedor]=isVendedor [idUsuario]=idUsuario [inicio]="true" [miCuenta]="true"></app-header>
 <main
     [ngClass]="{'vendedor vendedor__cuenta': isVendedor, 'proveedor proveedor__cuenta': !isVendedor}">
+    <i class="volver fa-solid fa-chevron-left"></i>
     <div class="encabezado">
         <h1>Mis ventas</h1>
         <button (click)="goBack()">Volver</button>
@@ -27,13 +28,12 @@
                 <div class="card__producto__detalles">
                     <h3
                         [innerHTML]="destacarTermino(link.producto.nombre , valorFiltradoLinks())"></h3>
-                    <h3>Rating: @if (link.rating) {
-
-                        {{ link.rating }}/10
-                        }@else{
-                        inexistente
+                        @if(link.rating){
+                            <estrellas [rating]=link.rating></estrellas>
                         }
-                    </h3>
+                        @else {
+                            <estrellas [nulo]=true [rating]=0></estrellas>
+                        }
                 </div>
             </div>
             <div class="card__info">
@@ -88,7 +88,15 @@
                 <div class="card__producto__detalles">
                     <h3
                         [innerHTML]="destacarTermino(venta.producto.nombre , valorFiltradoProceso())"></h3>
-                    <h3>Unidades: {{ venta.venta.quantity }}</h3>
+                    <div>
+                        @if(venta.rating){
+                            <estrellas [rating]=venta.rating></estrellas>
+                        }
+                        @else {
+                            <estrellas [nulo]=true [rating]=0></estrellas>
+                        }
+                        <h3>Unidades: {{ venta.venta.quantity }}</h3>
+                    </div>
                 </div>
             </div>
             <div class="card__info"
@@ -195,7 +203,15 @@
                 <div class="card__producto__detalles">
                     <h3
                         [innerHTML]="destacarTermino(venta.producto.nombre , valorFiltradoCompleto())"></h3>
-                    <h3>Unidades: {{ venta.venta.quantity }}</h3>
+                    <div>
+                        @if(venta.rating){
+                            <estrellas [rating]=venta.rating></estrellas>
+                        }
+                        @else {
+                            <estrellas [nulo]=true [rating]=0></estrellas>
+                        }
+                        <h3>Unidades: {{ venta.venta.quantity }}</h3>
+                    </div>
                 </div>
             </div>
             <div class="card__info"
